@@ -1,0 +1,26 @@
+{
+  "name": "magic-types",
+  "version": "0.0.1",
+  "description": "typechecking library",
+  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
+  "license": "AGPL",
+  "main": "index.js",
+  "scripts": {
+    "clean": "bin/clean",
+    "prepub": "bin/build",
+    "test": "bin/build && bin/test"
+  },
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/express-magic/magic-types"
+  },
+  "bugs": {
+    "url": "https://github.com/express-magic/magic-types/issues"
+  },
+  "homepage": "https://github.com/express-magic/magic-types"
+}
