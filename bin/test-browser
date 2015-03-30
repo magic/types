@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo 'create the test dir if it does not exist'
+mkdir -p test/
+
+echo 'remove test/browser.js'
+rm -f test/browser.js
+
+node_modules/.bin/browserify \
+  src/test/ src/types.js \
+  --outfile ./test/browser.js \
+  -t babelify \
+;
+
+node_modules/.bin/testem \
+  test/browser.js \
+;

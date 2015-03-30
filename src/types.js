@@ -76,35 +76,3 @@ export function isEmpty(ele) {
 
 //browser only
 export function isNL(ele){ return toStr.call(ele) === '[object NodeList]'; }
-
-//longExplicitNames
-export var isArray     = isA
-          , isBoolean  = isB
-          , isDefined  = isD
-          , isFunction = isF
-          , isNumber   = isN
-          , isObject   = isO
-          , isString   = isS
-          , isNodeList = isNL
-          //short
-          , isArr  = isA
-          , isBool = isB
-          , isDef  = isD
-          , isFn   = isF
-          , isNum  = isN
-          , isObj  = isO
-          , isStr  = isS
-          //s
-          , arr  = isA
-          , bool = isB
-          , def  = isD
-          , fn   = isF
-          , num  = isN
-          , obj  = isO
-          , str  = isS
-          , nl    = isNL
-          //special types
-          , date   = isDate
-          , falsy  = isFalsy
-          , truthy = isFalsy
-;
