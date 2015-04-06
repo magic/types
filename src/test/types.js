@@ -180,7 +180,6 @@ describe('magic-types', () => {
     
     it('should return false for non objects', () => {
       t.isO(v.str).should.be.false;
-      t.isO(v.arr).should.be.false;
     });
   });
 

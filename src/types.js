@@ -59,7 +59,7 @@ export function isB(ele) { return typeof ele === 'boolean'; }
 export function isD(ele) { return typeof ele !== 'undefined'; }
 export function isF(ele) { return typeof ele === 'function'; }
 export function isN(ele) { return typeof ele === 'number'; }
-export function isO(ele) { return toStr.call(ele) === '[object Object]'; }
+export function isO(ele) { return typeof ele === 'object'; }
 export function isS(ele) { return typeof ele === 'string'; }
 
 export function isDate(ele) { return ele.constructor === Date; }

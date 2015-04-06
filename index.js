@@ -106,7 +106,7 @@ function isN(ele) {
 }
 
 function isO(ele) {
-  return toStr.call(ele) === "[object Object]";
+  return typeof ele === "object";
 }
 
 function isS(ele) {
