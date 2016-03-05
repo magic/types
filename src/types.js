@@ -1,78 +1,147 @@
-var objProto = Object.prototype
-  , getOwnPropertyNames = Object.getOwnPropertyNames
-  , toStr = objProto.toString
-;
+const objProto = Object.prototype;
+const toStr = objProto.toString;
 
-export function cleanType(t) {
-  if ( t === 'array' ) {
-    t = '[object Array]';
-  } else if ( t === 'nodeList' || t === 'nodelist' ) {
-    t = '[object NodeList]';
-  } else if ( t === 'object' ) {
-    t = '[object Object]';
-  }
-  return t;
-}
+export const cleanType =
+  t =>
+    t === 'array' && '[object Array]' ||
+    t.toLowerCase() === 'nodelist' && '[object NodeList]' ||
+    t === 'object' && '[object Object]' ||
+    t;
 
-export function cleanTypes(types) {
-  if ( isS(types) ) {
-    return cleanType(t);
-  }
-  if ( isA(types) ) {
-    for ( var i = 0; i < types.length; i++ ) {
-      if ( isA(types[i]) ) {
-        types[i] = cleanTypes(types[i]);
-      } else if ( isS(types[i]) ) {
-        types[i] = cleanType(types[i]);
-      }
+export const cleanTypes =
+  (types = [], ...addTypes) => {
+    const allTypes = addTypes.concat(types);
+    const newTypes = allTypes.map(t => cleanType(t));
+
+    return newTypes.length === 1 ? newTypes[0] : newTypes;
+  };
+
+export const test =
+  (ele, types = [], ...addTypes) => {
+    if (isString(types) && isEmpty(addTypes)) {
+      const type = cleanType(types);
+      return toStr.call(ele) === type || typeof ele === type;
     }
-  }
-  return types;
-}
 
-export function test(ele, types) {
-  if ( isS(types) ) {
-    types = cleanType(types);
-    return ( toStr.call(ele) === types || typeof ele === types );
-  }
-  var res = false;
-  if ( isA(types) ) {
-    types.forEach( (t) => {
-      if ( ! res ) {
-        res = test(ele, t);
-      }
-    });
-  }
-  return res;
-}
+    const allTypes = addTypes.concat(types);
+    const tested = allTypes.some(
+      t =>
+        test(ele, t)
+    );
+    return tested;
+  };
 
-export function is(ele, ...types) {
-  return test(ele, types);
-}
+export const is =
+  (ele, ...types) =>
+    test(ele, types);
 
-export function not(ele, ...types) {
-  return ! test(ele, types);
-}
+export const not =
+  (ele, ...types) =>
+    !test(ele, types);
 
-export function isA(ele) { return toStr.call(ele) === '[object Array]'; }
-export function isB(ele) { return typeof ele === 'boolean'; }
-export function isD(ele) { return typeof ele !== 'undefined'; }
-export function isF(ele) { return typeof ele === 'function'; }
-export function isN(ele) { return typeof ele === 'number'; }
-export function isO(ele) { return typeof ele === 'object'; }
-export function isS(ele) { return typeof ele === 'string'; }
+export const isArray =
+  ele =>
+    toStr.call(ele) === '[object Array]';
 
-export function isDate(ele) { return ele.constructor === Date; }
+export const isBoolean =
+  ele =>
+    typeof ele === 'boolean';
 
-export function isTruthy(ele) { return !! ele; }
-export function isFalsy(ele) { return ! ele || isEmpty(ele); }
+export const isDefined =
+  ele =>
+    typeof ele !== 'undefined';
 
-export function isEmpty(ele) {
-  if ( ! ele ) { return true; }
-  if ( isA(ele) && ele.length === 0 ) { return true };
-  if ( isO(ele) && getOwnPropertyNames(ele).length === 0 ) { return true }
-  return false;
-}
+export const isFunction =
+  ele =>
+    typeof ele === 'function';
 
-//browser only
-export function isNL(ele){ return toStr.call(ele) === '[object NodeList]'; }
+export const isNumber =
+  ele =>
+    parseFloat(ele, 10) === parseFloat(ele, 10);
+
+export const toInt =
+  ele =>
+    isNumber(ele) &&
+    parseInt(ele, 10);
+
+export const toFloat =
+  ele =>
+    isNumber(ele) &&
+    parseFloat(ele, 10);
+
+export const isObject =
+  ele =>
+    typeof ele === 'object';
+
+export const isString =
+  ele =>
+    typeof ele === 'string';
+
+export const toString =
+  ele =>
+    (isString(ele) && ele) ||
+    (ele && isFunction(ele.toString) && ele.toString()) ||
+    ele + '';
+
+export const isRGBAObject =
+  e =>
+    isObject(e) &&
+    isNumber(e.r) &&
+    isNumber(e.g) &&
+    isNumber(e.b) &&
+    isNumber(e.a);
+
+export const isRGBObject =
+  e =>
+    isObject(e) &&
+    isNumber(e.r) &&
+    isNumber(e.g) &&
+    isNumber(e.b);
+
+export const isHexColor =
+  c => (
+    /^#[0-9A-F]{6}$/i.test(c)
+  );
+
+export const isHexAlphaColor =
+  c => (
+    /^#[0-9A-F]{8}$/i.test(c)
+  );
+
+export const isColor =
+  e =>
+    isRGBAObject(e) ||
+    isRGBObject(e) ||
+    isHexColor(e) ||
+    isHexAlphaColor(e);
+
+export const isDate =
+  ele =>
+    ele.constructor === Date;
+
+export const isTruthy =
+  ele =>
+    !!ele;
+
+export const isFalsy =
+  ele =>
+    !ele || isEmpty(ele);
+
+export const isEmpty =
+  ele =>
+    !ele ||
+    (isArray(ele) && ele.length === 0) ||
+    (isObject(ele) && Object.keys(ele).length === 0) ||
+    false;
+
+export const isError =
+  ele =>
+    Object.getPrototypeOf(ele).name === 'Error';
+
+export const isNodeList =
+  ele =>
+    toStr.call(ele) === '[object NodeList]';
+
+export const isHexString =
+  ele =>
+    isString(ele) && ele[0] === '#';
