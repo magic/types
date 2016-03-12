@@ -1,8 +1,0 @@
-#!/bin/bash
-
-echo 'babelify package'
-node_modules/.bin/babel \
-  src/types.js \
-  --out-file index.js \
-  --experimental \
-;
