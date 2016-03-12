@@ -1,31 +1,48 @@
 # magic-types
-minimal typechecking utilities
 
-usage:
+typechecking utilities
+
 ```js
-  var isStr = require('magic-types').isStr;
-  var str = 'magic';
-  if ( isStr(str) ) {
-    console.log('str is a string: ' + str); //yay
-  }
-  if ( is(str, 'string') ) {
-    console.log('str is string: ' + str); //yay
-  }
-  if ( not(str, 'object') ) {
-    console.log('str is not an object: ' + str); //yay
-  }
 
-  //aliases
-  isArray    = isArr  = arr  = isA;
-  isBoolean  = isBool = bool = isB;
-  isDefined  = isDef  = def  = isD;
-  isFunction = isFn   = fn   = isF;
-  isNumber   = isNum  = num  = isN;
-  isObject   = isObj  = obj  = isO;
-  isString   = isStr  = str  = isS;
-  isDate                     = date;
-  isEmpty                    = empty;
-  isTruthy                   = truthy;
-  isFalsy                    = falsy;
-  isNodeList = isNL          = nl;
+cleanType(typeString)
+converts array, nodelist and object to [object Array], [object NodeList], [object Object]
+
+cleanTypes(value, types = [String])
+converts an array of types and arguments using cleanType
+
+test(value, types = [String]);
+test a value
+
+is(ele, ...types);
+test a value
+
+not(ele, ...types)
+test if a value is not of a type
+
+type comparisons:
+isArray
+isBoolean
+isFunction
+isNumber
+isObject
+isString
+isRGBAObject
+isRGBObject
+isHexColor
+isHexAlphaColor
+isColor
+isDate
+isError
+isNodeList
+
+value comparisons:
+isDefined
+isTruthy
+isEmpty
+isFalsy
+
+conversion helpers:
+toString
+toInt
+toFloat
 ```
