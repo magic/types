@@ -2,7 +2,7 @@
   "name": "magic-types",
   "version": "0.0.1",
   "description": "typechecking library",
-  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
+  "author": "Wizards & Witches <team@wiznwit.com>",
   "license": "AGPL",
   "main": "index.js",
   "devDependencies": {
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/magic/types/issues"
   },
-  "homepage": "https://github.com/magic/types"
+  "homepage": "https://github.com/magic/types",
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
+  ]
 }
