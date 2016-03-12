@@ -170,9 +170,4 @@ exports.isError = isError;
 var isNodeList = function isNodeList(ele) {
   return toStr.call(ele) === '[object NodeList]';
 };
-
 exports.isNodeList = isNodeList;
-var isHexString = function isHexString(ele) {
-  return isString(ele) && ele[0] === '#';
-};
-exports.isHexString = isHexString;
