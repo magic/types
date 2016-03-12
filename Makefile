@@ -9,7 +9,7 @@ $NODE_BIN=node_modules/.bin/
 dev: lint
 	@echo 'babelify package and watch for changes'
 	@${NODE_BIN}babel \
-		src/types.js \
+		src/index.js \
 		--watch \
 		--out-file index.js \
 		--experimental
@@ -17,7 +17,7 @@ dev: lint
 build: lint
 	@echo 'babelify package'
 	@${NODE_BIN}babel \
-		src/types.js \
+		src/index.js \
 		--out-file index.js \
 		--experimental
 

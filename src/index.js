@@ -141,7 +141,3 @@ export const isError =
 export const isNodeList =
   ele =>
     toStr.call(ele) === '[object NodeList]';
-
-export const isHexString =
-  ele =>
-    isString(ele) && ele[0] === '#';
