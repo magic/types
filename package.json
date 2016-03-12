@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "typechecking library",
   "author": "Wizards & Witches <team@wiznwit.com>",
-  "license": "AGPL",
+  "license": "AGPL-3.0",
   "main": "index.js",
   "devDependencies": {
     "babel": "4.7.16",
