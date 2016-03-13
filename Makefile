@@ -16,14 +16,13 @@ dev: lint
 	@${NODE_BIN}babel \
 		src/index.js \
 		--watch \
-		--out-file index.js \
-		--experimental
+		--out-file index.js
 
 build: lint
 	@echo 'babelify package'
 	@${NODE_BIN}babel \
 		src/index.js \
-		--out-file index.js \
+		--out-file index.js
 	@echo 'build done'
 
 test: build
@@ -35,8 +34,7 @@ test: build
 	@echo 'building test source'
 	@${NODE_BIN}babel \
 		src/test/ \
-		--out-dir test/ \
-		--experimental
+		--out-dir test/
 	${NODE_BIN}mocha \
 		./test/index.js \
 		--reporter spec \
