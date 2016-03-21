@@ -29,16 +29,18 @@ test: build
 	@echo 'test start'
 	@echo 'remove and readd test directory'
 	@rm -rf test/*
-	@mkdir test/ -p
+	@mkdir -p test/
 
 	@echo 'building test source'
 	@${NODE_BIN}babel \
 		src/test/ \
 		--out-dir test/
+
 	${NODE_BIN}mocha \
 		./test/index.js \
 		--reporter spec \
 		--ui bdd
+
 	@echo 'test done'
 
 lint:
