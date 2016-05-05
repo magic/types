@@ -1,2 +1,2 @@
-import './cleanTypes';
-import './types';
+import './cleanTypes'
+import './types'
