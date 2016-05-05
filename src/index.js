@@ -141,3 +141,7 @@ export const isError =
 export const isNodeList =
   ele =>
     toStr.call(ele) === '[object NodeList]'
+
+export const isIterable =
+  ele =>
+    typeof ele === 'object'
