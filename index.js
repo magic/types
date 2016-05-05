@@ -148,3 +148,7 @@ var isError = exports.isError = function isError(ele) {
 var isNodeList = exports.isNodeList = function isNodeList(ele) {
   return toStr.call(ele) === '[object NodeList]';
 };
+
+var isIterable = exports.isIterable = function isIterable(ele) {
+  return (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === 'object';
+};
