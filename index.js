@@ -152,3 +152,7 @@ var isNodeList = exports.isNodeList = function isNodeList(ele) {
 var isIterable = exports.isIterable = function isIterable(ele) {
   return (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === 'object';
 };
+
+var isEmail = exports.isEmail = function isEmail(ele) {
+  return typeof ele === 'string' && ele.indexOf('@') > 0;
+};
