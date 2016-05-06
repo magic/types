@@ -145,3 +145,7 @@ export const isNodeList =
 export const isIterable =
   ele =>
     typeof ele === 'object'
+
+export const isEmail =
+  ele =>
+    typeof ele === 'string' && ele.indexOf('@') > 0

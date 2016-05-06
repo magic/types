@@ -15,6 +15,7 @@ var v = {
   nil: null,
   obj: { test: 'val' },
   str: 'someothervalue',
+  email: 'test@mail.test',
   undef: undefined,
   date: new Date(),
   error: new Error('testerror'),
@@ -322,6 +323,26 @@ describe('magic-types', () => {
       t.isIterable('false').should.be.false
       t.isIterable(0).should.be.false
       t.isIterable(false).should.be.false
+    })
+  })
+
+  describe('#isEmail()', () => {
+    it('should always return booleans', () => {
+      t.isEmail(v.email).should.be.true
+      t.isEmail(v.str).should.be.false
+    })
+
+    it('should return true for strings that contain a @', () => {
+      t.isEmail(v.email).should.be.true
+    })
+
+    it('should return false for non strings', () => {
+      t.isEmail(v.int).should.be.false
+      t.isEmail(v.bool.f).should.be.false
+    })
+
+    it('should return false for strings starting with @', () => {
+      t.isEmail('@t.t').should.be.false
     })
   })
 
