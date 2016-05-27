@@ -1,21 +1,18 @@
 {
   "parser"  : "babel-eslint",
 
-  "ecmaFeatures": {
-    "experimentalObjectRestSpread": true,
-    "modules": true
+  "parserOptions": {
+    "sourceType": "module"
   },
 
   "env": {
     "browser": false,
     "es6": true,
-    "node": true,
-    "mocha": true,
+    "node": true
   },
 
   "plugins": [
-    "standard",
-    "tdd"
+    "standard"
   ],
 
   "globals": {
@@ -26,16 +23,14 @@
     "__PROD__"     : false,
     "__DEBUG__"    : false,
     "__DEBUG_NEW_WINDOW__" : false,
-    "__BASENAME__" : false,
-    "it": true,
-    "describe": true
+    "__BASENAME__" : false
   },
 
   "rules": {
     "accessor-pairs": 2,
     "arrow-spacing": [2, { "before": true, "after": true }],
     "block-spacing": [2, "always"],
-    "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
+    "brace-style": [2, "stroustrup", { "allowSingleLine": false }],
     "comma-dangle": [2, "always-multiline"],
     "comma-spacing": [2, { "before": false, "after": true }],
     "comma-style": [2, "last"],
@@ -100,6 +95,7 @@
     "no-return-assign": 2,
     "no-self-compare": 2,
     "no-sequences": 2,
+    "no-shadow": 2,
     "no-shadow-restricted-names": 2,
     "no-spaced-func": 2,
     "no-sparse-arrays": 2,
@@ -142,14 +138,6 @@
     "object-curly-spacing": [2, "always", {
       "objectsInObjects": false,
       "arraysInObjects": false
-    }],
-
-    "tdd/assert-enforce-below-above": 2,
-    "tdd/assert-enforce-boolean": 2,
-    "tdd/assert-enforce-implicit-comparison": 2,
-    "tdd/assert-enforce-least-most": 2,
-    "tdd/assert-no-boolean-negation": 2,
-    "tdd/assert-no-operator": 2,
-    "tdd/assert-no-typeof": 2
+    }]
   }
 }
