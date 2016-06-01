@@ -25,7 +25,7 @@ export const not =
 
 export const isArray =
   ele =>
-    isFunction(ele.forEach)
+    isTruthy(ele) && isFunction(ele.forEach)
 
 export const isBoolean =
   ele =>
@@ -122,8 +122,7 @@ export const isFalsy =
 export const isEmpty =
   ele =>
     !ele ||
-    (isArray(ele) && ele.length === 0) ||
-    (isObject(ele) && Object.keys(ele).length === 0) ||
+    isObject(ele) && Object.keys(ele).length === 0 ||
     false
 
 export const isError =
