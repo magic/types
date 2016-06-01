@@ -1,18 +1,15 @@
 export const test =
   (ele, types = [], ...addTypes) => {
     if (isString(types) && isEmpty(addTypes)) {
-      const type = types
-      return Object.prototype.toString(ele) === type || typeof ele === type
+      return Object.prototype.toString(ele) === types || typeof ele === types
     }
 
-    const tested = addTypes
+    return addTypes
       .concat(types)
       .some(
         t =>
           test(ele, t)
       )
-
-    return tested
   }
 
 export const is =
@@ -51,16 +48,6 @@ export const isFloat =
   (n) =>
     n === +n && n !== (n | 0)
 
-export const toInt =
-  ele =>
-    isNumber(ele) &&
-    ele | 0
-
-export const toFloat =
-  ele =>
-    isNumber(ele) &&
-    parseFloat(ele, 10)
-
 export const isObject =
   ele =>
     typeof ele === 'object'
@@ -68,12 +55,6 @@ export const isObject =
 export const isString =
   ele =>
     typeof ele === 'string'
-
-export const toString =
-  ele =>
-    (isString(ele) && ele) ||
-    (ele && isFunction(ele.toString) && ele.toString()) ||
-    ele + ''
 
 export const isRGBAObject =
   e =>
@@ -91,14 +72,12 @@ export const isRGBObject =
     isNumber(e.b)
 
 export const isHexColor =
-  c => (
-    /^#[0-9A-F]{3}|[0-9A-F]{6}$/i.test(c)
-  )
+  c =>
+    /\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
 
 export const isHexAlphaColor =
-  c => (
-    /^#[0-9A-F]{4}|[0-9A-F]{8}$/i.test(c)
-  )
+  c =>
+    /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
 
 export const isColor =
   e =>
@@ -117,7 +96,8 @@ export const isTruthy =
 
 export const isFalsy =
   ele =>
-    !ele || isEmpty(ele)
+    !ele ||
+    isEmpty(ele)
 
 export const isEmpty =
   ele =>
@@ -136,3 +116,18 @@ export const isIterable =
 export const isEmail =
   ele =>
     typeof ele === 'string' && ele.indexOf('@') > 0
+
+export const toInt =
+  ele =>
+    isNumber(ele) &&
+    ele | 0
+
+export const toFloat =
+  ele =>
+    isNumber(ele) &&
+    parseFloat(ele, 10)
+
+export const toString =
+  ele =>
+    isString(ele) && ele ||
+    ele && isFunction(ele.toString) && ele.toString()
