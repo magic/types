@@ -92,12 +92,12 @@ export const isRGBObject =
 
 export const isHexColor =
   c => (
-    /^#[0-9A-F]{6}$/i.test(c)
+    /^#[0-9A-F]{3}|[0-9A-F]{6}$/i.test(c)
   )
 
 export const isHexAlphaColor =
   c => (
-    /^#[0-9A-F]{8}$/i.test(c)
+    /^#[0-9A-F]{4}|[0-9A-F]{8}$/i.test(c)
   )
 
 export const isColor =
