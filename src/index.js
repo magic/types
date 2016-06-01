@@ -1,33 +1,17 @@
-const objProto = Object.prototype
-const toStr = objProto.toString
-
-export const cleanType =
-  t =>
-    t === 'array' && '[object Array]' ||
-    t.toLowerCase() === 'nodelist' && '[object NodeList]' ||
-    t === 'object' && '[object Object]' ||
-    t
-
-export const cleanTypes =
-  (types = [], ...addTypes) => {
-    const allTypes = addTypes.concat(types)
-    const newTypes = allTypes.map(t => cleanType(t))
-
-    return newTypes.length === 1 ? newTypes[0] : newTypes
-  }
-
 export const test =
   (ele, types = [], ...addTypes) => {
     if (isString(types) && isEmpty(addTypes)) {
-      const type = cleanType(types)
-      return toStr.call(ele) === type || typeof ele === type
+      const type = types
+      return Object.prototype.toString(ele) === type || typeof ele === type
     }
 
-    const allTypes = addTypes.concat(types)
-    const tested = allTypes.some(
-      t =>
-        test(ele, t)
-    )
+    const tested = addTypes
+      .concat(types)
+      .some(
+        t =>
+          test(ele, t)
+      )
+
     return tested
   }
 
@@ -41,7 +25,7 @@ export const not =
 
 export const isArray =
   ele =>
-    toStr.call(ele) === '[object Array]'
+    isFunction(ele.forEach)
 
 export const isBoolean =
   ele =>
@@ -75,7 +59,7 @@ export const toInt =
 export const toFloat =
   ele =>
     isNumber(ele) &&
-    Number(ele)
+    parseFloat(ele, 10)
 
 export const isObject =
   ele =>
@@ -145,10 +129,6 @@ export const isEmpty =
 export const isError =
   ele =>
     Object.getPrototypeOf(ele).name === 'Error'
-
-export const isNodeList =
-  ele =>
-    toStr.call(ele) === '[object NodeList]'
 
 export const isIterable =
   ele =>
