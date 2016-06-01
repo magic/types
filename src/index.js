@@ -59,6 +59,14 @@ export const isNumber =
   ele =>
     ele === +ele
 
+export const isInteger =
+  ele =>
+    ele === +ele && ele === (ele | 0)
+
+export const isFloat =
+  (n) =>
+    n === +n && n !== (n | 0)
+
 export const toInt =
   ele =>
     isNumber(ele) &&
