@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isInteger } from '../index'
+import { isInteger } from '../src'
 import { bool, str, int, float } from './_defaultValues'
 
 ava(

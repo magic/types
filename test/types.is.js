@@ -1,5 +1,5 @@
 import test from 'ava'
-import { is } from '../index'
+import { is } from '../src'
 import { obj, arr, str } from './_defaultValues'
 
 test(

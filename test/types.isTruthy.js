@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isTruthy } from '../index'
+import { isTruthy } from '../src'
 import { bool, str, obj } from './_defaultValues'
 
 ava(

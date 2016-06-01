@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isIterable } from '../index'
+import { isIterable } from '../src'
 import { arr, bool, obj } from './_defaultValues'
 
 ava(

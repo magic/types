@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { not } from '../index'
+import { not } from '../src'
 import { str, obj, arr } from './_defaultValues'
 
 ava(

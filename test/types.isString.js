@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isString } from '../index'
+import { isString } from '../src'
 import { bool, arr, str, obj } from './_defaultValues'
 
 ava(

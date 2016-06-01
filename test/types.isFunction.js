@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isFunction } from '../index'
+import { isFunction } from '../src'
 import { func, arr, bool } from './_defaultValues'
 
 ava(

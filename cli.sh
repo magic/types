@@ -15,15 +15,16 @@ function dev() {
   echo-start 'dev'
 
   $NODE_BIN/babel \
-    src/index.js \
+    src/*.js \
     --watch \
+    --source-maps \
     --out-file index.js
 }
 
 function coverage() {
   echo-start 'coverage'
 
-  $NODE_BIN/nyc report $NODE_BIN/ava ./src/test \
+  $NODE_BIN/nyc --report --check-coverage $NODE_BIN/ava ./test
 
   echo-end 'coverage'
 }
@@ -33,8 +34,9 @@ function build() {
   echo-start 'build'
 
   $NODE_BIN/babel \
-    src/index.js \
-    --out-file index.js
+    src/*.js \
+      --source-maps \
+      --out-file index.js
 
   echo-end 'build'
 }
@@ -43,7 +45,6 @@ function test() {
   echo-start 'tests'
 
   $NODE_BIN/ava \
-    ./src/test \
     --watch \
     --verbose
 

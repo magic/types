@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isDefined } from '../index'
+import { isDefined } from '../src'
 import { bool, undef, str, int } from './_defaultValues'
 
 ava(

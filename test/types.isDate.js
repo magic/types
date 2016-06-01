@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isDate } from '../index'
+import { isDate } from '../src'
 import { bool, arr, date, obj } from './_defaultValues'
 
 ava(

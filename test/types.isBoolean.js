@@ -1,5 +1,5 @@
 import test from 'ava'
-import { isBoolean } from '../index'
+import { isBoolean } from '../src'
 import { bool, str, int, undef } from './_defaultValues'
 
 test(

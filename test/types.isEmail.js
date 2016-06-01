@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isEmail } from '../index'
+import { isEmail } from '../src'
 import { email, str, int, bool } from './_defaultValues'
 
 ava(

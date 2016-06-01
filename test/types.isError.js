@@ -1,5 +1,5 @@
 import ava from 'ava'
-import { isError } from '../index'
+import { isError } from '../src'
 import { error, bool } from './_defaultValues'
 
 ava(

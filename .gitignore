@@ -1,5 +1,4 @@
 node_modules
 npm-debug.log
-/test
 .idea
 .nyc_output/
