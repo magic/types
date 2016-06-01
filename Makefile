@@ -15,28 +15,28 @@ CLI=./cli.sh
 all: dev
 
 dev:
-	${CLI} $@
+	@${CLI} $@
 
 build:
-	${CLI} $@
+	@${CLI} $@
 
 clean:
-	${CLI} $@
+	@${CLI} $@
 
 lint:
-	${CLI} $@
+	@${CLI} $@
 
 lint-fix:
-	${CLI} $@
+	@${CLI} $@
 
 lint-watch:
-	${CLI} $@
+	@${CLI} $@
 
 test:
-	${CLI} $@
+	@${CLI} $@
 
 coverage:
-	${CLI} $@
+	@${CLI} $@
 
 help:
-	${CLI} $@
+	@${CLI} $@
