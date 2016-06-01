@@ -28,3 +28,9 @@ lint-fix:
 
 test:
 	${CLI} $@
+
+coverage:
+	${CLI} $@
+
+help:
+	${CLI} $@

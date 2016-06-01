@@ -20,6 +20,15 @@ function dev() {
     --out-file index.js
 }
 
+function coverage() {
+  lint
+  echo-start 'coverage'
+
+  $NODE_BIN/nyc report $NODE_BIN/ava ./src/test \
+
+  echo-end 'coverage'
+}
+
 function build() {
   lint
   echo-start 'build'
@@ -27,6 +36,7 @@ function build() {
   $NODE_BIN/babel \
     src/index.js \
     --out-file index.js
+
   echo-end 'build'
 }
 
@@ -83,6 +93,7 @@ clean    - remove build library and test files
 lint     - eslint javascript sources
 lint-fix - eslint and fix javascript sources
 test     - run tests
+coverage - generate coverage data
 "
 }
 
