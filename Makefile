@@ -7,7 +7,10 @@ CLI=./cli.sh
 	clean \
 	lint \
 	lint-fix \
-	test
+	lint-watch \
+	coverage \
+	test \
+	help
 
 all: dev
 
@@ -24,6 +27,9 @@ lint:
 	${CLI} $@
 
 lint-fix:
+	${CLI} $@
+
+lint-watch:
 	${CLI} $@
 
 test:

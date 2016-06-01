@@ -21,7 +21,6 @@ function dev() {
 }
 
 function coverage() {
-  lint
   echo-start 'coverage'
 
   $NODE_BIN/nyc report $NODE_BIN/ava ./src/test \
@@ -68,6 +67,15 @@ function lint-fix() {
     ./src/
 
   echo-end 'lint-fix'
+}
+
+function lint-watch() {
+  echo-start 'lint-watch'
+
+  $NODE_BIN/esw \
+    ./src/
+
+  echo-end 'lint-watch'
 }
 
 function clean() {
