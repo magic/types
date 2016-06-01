@@ -7,8 +7,7 @@ test(
   t => {
     t.true(is(obj, 'object'))
     t.true(is(obj, '[object Object]'))
-    t.true(is(arr, '[object Array]'))
-    t.true(is(arr, '[object Array]'))
+    t.true(is(arr, '[object Object]'))
   }
 )
 
