@@ -57,17 +57,17 @@ export const isFunction =
 
 export const isNumber =
   ele =>
-    parseFloat(ele, 10) === parseFloat(ele, 10)
+    ele === +ele
 
 export const toInt =
   ele =>
     isNumber(ele) &&
-    parseInt(ele, 10)
+    ele | 0
 
 export const toFloat =
   ele =>
     isNumber(ele) &&
-    parseFloat(ele, 10)
+    Number(ele)
 
 export const isObject =
   ele =>
