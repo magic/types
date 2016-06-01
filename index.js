@@ -14,15 +14,12 @@ var test = exports.test = function test(ele) {
   var types = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
 
   if (isString(types) && isEmpty(addTypes)) {
-    var type = types;
-    return Object.prototype.toString(ele) === type || (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === type;
+    return Object.prototype.toString(ele) === types || (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === types;
   }
 
-  var tested = addTypes.concat(types).some(function (t) {
+  return addTypes.concat(types).some(function (t) {
     return test(ele, t);
   });
-
-  return tested;
 };
 
 var is = exports.is = function is(ele) {
@@ -42,7 +39,7 @@ var not = exports.not = function not(ele) {
 };
 
 var isArray = exports.isArray = function isArray(ele) {
-  return isFunction(ele.forEach);
+  return isTruthy(ele) && isFunction(ele.forEach);
 };
 
 var isBoolean = exports.isBoolean = function isBoolean(ele) {
@@ -69,24 +66,12 @@ var isFloat = exports.isFloat = function isFloat(n) {
   return n === +n && n !== (n | 0);
 };
 
-var toInt = exports.toInt = function toInt(ele) {
-  return isNumber(ele) && ele | 0;
-};
-
-var toFloat = exports.toFloat = function toFloat(ele) {
-  return isNumber(ele) && parseFloat(ele, 10);
-};
-
 var isObject = exports.isObject = function isObject(ele) {
   return (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === 'object';
 };
 
 var isString = exports.isString = function isString(ele) {
   return typeof ele === 'string';
-};
-
-var toString = exports.toString = function toString(ele) {
-  return isString(ele) && ele || ele && isFunction(ele.toString) && ele.toString() || ele + '';
 };
 
 var isRGBAObject = exports.isRGBAObject = function isRGBAObject(e) {
@@ -98,12 +83,12 @@ var isRGBObject = exports.isRGBObject = function isRGBObject(e) {
 };
 
 var isHexColor = exports.isHexColor = function isHexColor(c) {
-  return (/^#[0-9A-F]{6}$/i.test(c)
+  return (/\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
   );
 };
 
 var isHexAlphaColor = exports.isHexAlphaColor = function isHexAlphaColor(c) {
-  return (/^#[0-9A-F]{8}$/i.test(c)
+  return (/\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
   );
 };
 
@@ -124,7 +109,7 @@ var isFalsy = exports.isFalsy = function isFalsy(ele) {
 };
 
 var isEmpty = exports.isEmpty = function isEmpty(ele) {
-  return !ele || isArray(ele) && ele.length === 0 || isObject(ele) && Object.keys(ele).length === 0 || false;
+  return !ele || isObject(ele) && Object.keys(ele).length === 0 || false;
 };
 
 var isError = exports.isError = function isError(ele) {
@@ -137,6 +122,18 @@ var isIterable = exports.isIterable = function isIterable(ele) {
 
 var isEmail = exports.isEmail = function isEmail(ele) {
   return typeof ele === 'string' && ele.indexOf('@') > 0;
+};
+
+var toInt = exports.toInt = function toInt(ele) {
+  return isNumber(ele) && ele | 0;
+};
+
+var toFloat = exports.toFloat = function toFloat(ele) {
+  return isNumber(ele) && parseFloat(ele, 10);
+};
+
+var toString = exports.toString = function toString(ele) {
+  return isString(ele) && ele || ele && isFunction(ele.toString) && ele.toString();
 };
 
 //# sourceMappingURL=index.js.map
