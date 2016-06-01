@@ -25,6 +25,13 @@ export const date = new Date()
 
 export const error = new Error('testerror')
 
+export const rgb = { r: 0, g: 255, b: 122 }
+export const rgba = { r: 0, g: 255, b: 122, a: 100 }
+export const hex3 = '#235'
+export const hex6 = '#232323'
+export const hexa4 = '#2323'
+export const hexa8 = '#23232323'
+
 export default {
   arr,
   bool,
@@ -37,4 +44,10 @@ export default {
   undef,
   date,
   error,
+  rgb,
+  rgba,
+  hex3,
+  hex6,
+  hexa4,
+  hexa8,
 }
