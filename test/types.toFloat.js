@@ -1,5 +1,5 @@
 import test from 'ava'
-import { toFloat, isInteger, isFloat } from '../src'
+import { toFloat, isFloat } from '../src'
 import { float, int, obj, str, undef } from './_defaultValues'
 
 test(
@@ -11,16 +11,16 @@ test(
     )
 
     t.false(
-      isFloat(toFloat(int)),
+      isFloat(toFloat(str)),
       'should not convert an int'
     )
   }
 )
 
 test(
-  'return a int or float if passed an int or float',
+  'return a float if passed an int or float',
   t => {
-    t.true(isInteger(toFloat(int)))
+    t.true(isFloat(toFloat(int)))
     t.true(isFloat(toFloat(float)))
   }
 )
