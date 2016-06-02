@@ -22,7 +22,8 @@ export const not =
 
 export const isArray =
   ele =>
-    isTruthy(ele) && isFunction(ele.forEach)
+    isTruthy(ele) &&
+    isFunction(ele.forEach)
 
 export const isBoolean =
   ele =>
@@ -42,11 +43,12 @@ export const isNumber =
 
 export const isInteger =
   ele =>
-    ele === +ele && ele === (ele | 0)
+    ele === +ele &&
+    ele === (ele | 0)
 
 export const isFloat =
-  (n) =>
-    n === +n && n !== (n | 0)
+  ele =>
+    ele === +ele
 
 export const isObject =
   ele =>
@@ -115,7 +117,8 @@ export const isIterable =
 
 export const isEmail =
   ele =>
-    typeof ele === 'string' && ele.indexOf('@') > 0
+    typeof ele === 'string' &&
+    ele.indexOf('@') > 0
 
 export const toInt =
   ele =>
@@ -130,4 +133,6 @@ export const toFloat =
 export const toString =
   ele =>
     isString(ele) && ele ||
-    ele && isFunction(ele.toString) && ele.toString()
+    ele &&
+    isFunction(ele.toString) &&
+    ele.toString()
