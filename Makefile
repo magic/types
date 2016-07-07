@@ -17,6 +17,9 @@ all: dev
 dev:
 	@${CLI} $@
 
+flow:
+	@${CLI} $@
+
 build:
 	@${CLI} $@
 

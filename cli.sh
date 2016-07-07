@@ -41,6 +41,10 @@ function build() {
   echo-end 'build'
 }
 
+function flow() {
+  $NODE_BIN/flow ./src
+}
+
 function test() {
   echo-start 'tests'
 
