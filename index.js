@@ -122,32 +122,4 @@ var isEmail = exports.isEmail = function isEmail(ele) {
   return typeof ele === 'string' && ele.indexOf('@') > 0;
 };
 
-var toInt = exports.toInt = function toInt(ele) {
-  if (!isNumber(ele)) {
-    return 0;
-  }
-
-  return ele | 0;
-};
-
-var toFloat = exports.toFloat = function toFloat(ele) {
-  if (!isNumber(ele)) {
-    return 0;
-  }
-
-  return parseFloat(ele, 10);
-};
-
-var toString = exports.toString = function toString(ele) {
-  if (isString(ele)) {
-    return ele;
-  }
-
-  if (ele && isFunction(ele.toString)) {
-    return ele.toString();
-  }
-
-  return ele + '';
-};
-
 //# sourceMappingURL=index.js.map
