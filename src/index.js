@@ -3,7 +3,6 @@
 type Test = (ele: any, types: string | Array<string>, ...addTypes: Array<string>) => boolean
 type TestWithTypes = (ele : any, ...types : Array<string>) => boolean
 type TestWithoutTypes = (ele : any) => boolean
-type ToNumber = (ele : any) => number
 
 type ArrayOfStringsOrString = Array<string> | string
 
@@ -128,34 +127,3 @@ export const isEmail : TestWithoutTypes =
   (ele : any) : boolean =>
     typeof ele === 'string' &&
     ele.indexOf('@') > 0
-
-export const toInt : ToNumber =
-  (ele : any) : number => {
-    if (!isNumber(ele)) {
-      return 0
-    }
-
-    return ele | 0
-  }
-
-export const toFloat : ToNumber =
-  (ele : any) : number => {
-    if (!isNumber(ele)) {
-      return 0
-    }
-
-    return parseFloat(ele, 10)
-  }
-
-export const toString : (ele : any) => string =
-  (ele : any) : string => {
-    if (isString(ele)) {
-      return ele
-    }
-
-    if (ele && isFunction(ele.toString)) {
-      return ele.toString()
-    }
-
-    return ele + ''
-  }
