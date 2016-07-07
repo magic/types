@@ -6,12 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var test = exports.test = function test(ele) {
+var test = exports.test = function test(ele, types) {
   for (var _len = arguments.length, addTypes = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
     addTypes[_key - 2] = arguments[_key];
   }
-
-  var types = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
 
   if (isString(types) && isEmpty(addTypes)) {
     return Object.prototype.toString(ele) === types || (typeof ele === 'undefined' ? 'undefined' : _typeof(ele)) === types;
@@ -62,8 +60,8 @@ var isInteger = exports.isInteger = function isInteger(ele) {
   return ele === +ele && ele === (ele | 0);
 };
 
-var isFloat = exports.isFloat = function isFloat(n) {
-  return n === +n && n !== (n | 0);
+var isFloat = exports.isFloat = function isFloat(ele) {
+  return ele === +ele;
 };
 
 var isObject = exports.isObject = function isObject(ele) {
@@ -125,15 +123,31 @@ var isEmail = exports.isEmail = function isEmail(ele) {
 };
 
 var toInt = exports.toInt = function toInt(ele) {
-  return isNumber(ele) && ele | 0;
+  if (!isNumber(ele)) {
+    return 0;
+  }
+
+  return ele | 0;
 };
 
 var toFloat = exports.toFloat = function toFloat(ele) {
-  return isNumber(ele) && parseFloat(ele, 10);
+  if (!isNumber(ele)) {
+    return 0;
+  }
+
+  return parseFloat(ele, 10);
 };
 
 var toString = exports.toString = function toString(ele) {
-  return isString(ele) && ele || ele && isFunction(ele.toString) && ele.toString();
+  if (isString(ele)) {
+    return ele;
+  }
+
+  if (ele && isFunction(ele.toString)) {
+    return ele.toString();
+  }
+
+  return ele + '';
 };
 
 //# sourceMappingURL=index.js.map
