@@ -42,7 +42,9 @@ function build() {
 }
 
 function flow() {
-  $NODE_BIN/flow ./src
+  cd src && \
+  ../$NODE_BIN/flow \
+    --color=always
 }
 
 function test() {

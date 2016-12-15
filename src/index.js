@@ -1,13 +1,7 @@
 // @flow
 
-type Test = (ele: any, types: string | Array<string>, ...addTypes: Array<string>) => boolean
-type TestWithTypes = (ele : any, ...types : Array<string>) => boolean
-type TestWithoutTypes = (ele : any) => boolean
-
-type ArrayOfStringsOrString = Array<string> | string
-
-export const test : Test =
-  (ele : any, types : ArrayOfStringsOrString, ...addTypes : Array<string>) : boolean => {
+export const test =
+  (ele : any, types : Array<string> | string, ...addTypes : Array<string>) : boolean => {
     if (isString(types) && isEmpty(addTypes)) {
       return Object.prototype.toString(ele) === types || typeof ele === types
     }
@@ -20,53 +14,53 @@ export const test : Test =
       )
   }
 
-export const is : TestWithTypes =
+export const is =
   (ele : any, ...types : Array<string>) : boolean =>
     test(ele, types)
 
-export const not : TestWithTypes =
+export const not =
   (ele : any, ...types: Array<string>) : boolean =>
     !test(ele, types)
 
-export const isArray : TestWithoutTypes =
+export const isArray =
   (ele : any) : boolean =>
     isTruthy(ele) &&
     isFunction(ele.forEach)
 
-export const isBoolean : TestWithoutTypes =
+export const isBoolean =
   (ele : any) : boolean =>
     typeof ele === 'boolean'
 
-export const isDefined : TestWithoutTypes =
+export const isDefined =
   (ele : any) : boolean =>
     typeof ele !== 'undefined'
 
-export const isFunction : TestWithoutTypes =
+export const isFunction =
   (ele : any) : boolean =>
     typeof ele === 'function'
 
-export const isNumber : TestWithoutTypes =
+export const isNumber =
   (ele : any) : boolean =>
     ele === +ele
 
-export const isInteger : TestWithoutTypes =
+export const isInteger =
   (ele : any) : boolean =>
     ele === +ele &&
     ele === (ele | 0)
 
-export const isFloat : TestWithoutTypes =
+export const isFloat =
   (ele : any) : boolean =>
     ele === +ele
 
-export const isObject : TestWithoutTypes =
+export const isObject =
   (ele : any) : boolean =>
     typeof ele === 'object'
 
-export const isString : TestWithoutTypes =
+export const isString =
   (ele : any) : boolean =>
     typeof ele === 'string'
 
-export const isRGBAObject : TestWithoutTypes =
+export const isRGBAObject =
   (e : any) : boolean =>
     isObject(e) &&
     isNumber(e.r) &&
@@ -74,56 +68,56 @@ export const isRGBAObject : TestWithoutTypes =
     isNumber(e.b) &&
     isNumber(e.a)
 
-export const isRGBObject : TestWithoutTypes =
+export const isRGBObject =
   (e : any) : boolean =>
     isObject(e) &&
     isNumber(e.r) &&
     isNumber(e.g) &&
     isNumber(e.b)
 
-export const isHexColor : TestWithoutTypes =
+export const isHexColor =
   (c : any) : boolean =>
     /\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
 
-export const isHexAlphaColor : TestWithoutTypes =
+export const isHexAlphaColor =
   (c : any) : boolean =>
     /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
 
-export const isColor : TestWithoutTypes =
+export const isColor =
   (e : any) : boolean =>
     isRGBAObject(e) ||
     isRGBObject(e) ||
     isHexColor(e) ||
     isHexAlphaColor(e)
 
-export const isDate : TestWithoutTypes =
+export const isDate =
   (ele : any) : boolean =>
     ele.constructor === Date
 
-export const isTruthy : TestWithoutTypes =
+export const isTruthy =
   (ele : any) : boolean =>
     !!ele
 
-export const isFalsy : TestWithoutTypes =
+export const isFalsy =
   (ele : any) : boolean =>
     !ele ||
     isEmpty(ele)
 
-export const isEmpty : TestWithoutTypes =
+export const isEmpty =
   (ele : any) : boolean =>
     !ele ||
     isObject(ele) && Object.keys(ele).length === 0 ||
     false
 
-export const isError : TestWithoutTypes =
+export const isError =
   (ele : any) : boolean =>
     Object.getPrototypeOf(ele).name === 'Error'
 
-export const isIterable : TestWithoutTypes =
+export const isIterable =
   (ele : any) : boolean =>
     typeof ele === 'object'
 
-export const isEmail : TestWithoutTypes =
+export const isEmail =
   (ele : any) : boolean =>
     typeof ele === 'string' &&
     ele.indexOf('@') > 0
