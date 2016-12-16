@@ -98,6 +98,10 @@ var isDate = exports.isDate = function isDate(ele) {
   return ele.constructor === Date;
 };
 
+var isRegExp = exports.isRegExp = function isRegExp(ele) {
+  return ele.constructor === RegExp;
+};
+
 var isTruthy = exports.isTruthy = function isTruthy(ele) {
   return !!ele;
 };
