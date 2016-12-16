@@ -37,7 +37,7 @@ var not = exports.not = function not(ele) {
 };
 
 var isArray = exports.isArray = function isArray(ele) {
-  return isTruthy(ele) && isFunction(ele.forEach);
+  return isFunction(Array.isArray) ? Array.isArray(ele) : isTruthy(ele) && isFunction(ele.forEach);
 };
 
 var isBoolean = exports.isBoolean = function isBoolean(ele) {
