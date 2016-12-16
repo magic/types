@@ -24,8 +24,9 @@ export const not =
 
 export const isArray =
   (ele : any) : boolean =>
-    isTruthy(ele) &&
-    isFunction(ele.forEach)
+    isFunction(Array.isArray)
+      ? Array.isArray(ele)
+      : isTruthy(ele) && isFunction(ele.forEach)
 
 export const isBoolean =
   (ele : any) : boolean =>
