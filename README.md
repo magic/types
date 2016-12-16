@@ -34,6 +34,7 @@ isColor
 isDate
 isError
 isNodeList
+isRegExp
 
 value comparisons:
 isDefined
