@@ -94,6 +94,10 @@ export const isDate =
   (ele : any) : boolean =>
     ele.constructor === Date
 
+export const isRegExp =
+  (ele : any) : boolean =>
+    ele.constructor === RegExp
+
 export const isTruthy =
   (ele : any) : boolean =>
     !!ele

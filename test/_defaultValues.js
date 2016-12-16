@@ -5,6 +5,8 @@ export const bool = {
   f: false,
 }
 
+export const regexp = /testregex/
+
 export const func = () => {}
 
 export const float = 9.9
