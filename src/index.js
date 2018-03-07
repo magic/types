@@ -126,3 +126,7 @@ export const isEmail =
   (ele : any) : boolean =>
     typeof ele === 'string' &&
     ele.indexOf('@') > 0
+
+export const isNull =
+  (ele: any) : boolean =>
+    ele === null

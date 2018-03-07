@@ -126,4 +126,8 @@ var isEmail = exports.isEmail = function isEmail(ele) {
   return typeof ele === 'string' && ele.indexOf('@') > 0;
 };
 
+var isNull = exports.isNull = function isNull(ele) {
+  return ele === null;
+};
+
 //# sourceMappingURL=index.js.map
