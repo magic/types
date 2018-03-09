@@ -1,132 +1,115 @@
-// @flow
+const t = {}
 
-export const test =
-  (ele : any, types : Array<string> | string, ...addTypes : Array<string>) : boolean => {
-    if (isString(types) && isEmpty(addTypes)) {
-      return Object.prototype.toString(ele) === types || typeof ele === types
-    }
+t.isArray = e =>
+  t.isFunction(Array.isArray)
+    ? Array.isArray(e)
+    : t.isNumber(e.length)
 
-    return addTypes
-      .concat(types)
-      .some(
-        (t : string) : boolean =>
-          test(ele, t)
-      )
+t.isBoolean = e => typeof e === 'boolean'
+
+t.isDefined = e => typeof e !== 'undefined'
+
+t.isFunction = e => typeof e === 'function'
+
+t.isNumber = e => e === +e
+
+t.isInteger = e => (e === +e && e === (e | 0))
+
+t.isFloat = e => e === +e
+
+t.isObject = e => typeof e === 'object' && e !== null
+
+t.isString = e => typeof e === 'string'
+
+t.isRGBAObject = e =>
+  t.isObject(e) &&
+  t.isNumber(e.r) &&
+  t.isNumber(e.g) &&
+  t.isNumber(e.b) &&
+  t.isNumber(e.a)
+
+t.isRGBObject = e =>
+  t.isObject(e) &&
+  t.isNumber(e.r) &&
+  t.isNumber(e.g) &&
+  t.isNumber(e.b)
+
+t.isHexColor = e =>
+  /\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+
+t.isHexAlphaColor = e =>
+  /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+
+t.isColor = e =>
+  t.isRGBAObject(e) ||
+  t.isRGBObject(e) ||
+  t.isHexColor(e) ||
+  t.isHexAlphaColor(e)
+
+t.isDate = e => e instanceof Date
+
+t.isRegExp = e => e instanceof RegExp
+
+t.isTruthy = e => !!e
+
+t.isFalsy = e => !e || t.isEmpty(e)
+
+t.isEmpty = e => {
+  if (t.isError(e)) {
+    return false
   }
 
-export const is =
-  (ele : any, ...types : Array<string>) : boolean =>
-    test(ele, types)
+  if (t.isDate(e)) {
+    return false
+  }
 
-export const not =
-  (ele : any, ...types: Array<string>) : boolean =>
-    !test(ele, types)
+  if (t.isRegExp(e)) {
+    return false
+  }
 
-export const isArray =
-  (ele : any) : boolean =>
-    isFunction(Array.isArray)
-      ? Array.isArray(ele)
-      : isTruthy(ele) && isFunction(ele.forEach)
+  const empty = !e
+    || !t.isDefined(e)
+    || t.isObject(e) && Object.keys(e).length === 0
 
-export const isBoolean =
-  (ele : any) : boolean =>
-    typeof ele === 'boolean'
+  return empty
+}
 
-export const isDefined =
-  (ele : any) : boolean =>
-    typeof ele !== 'undefined'
+t.isError = e => e instanceof Error
 
-export const isFunction =
-  (ele : any) : boolean =>
-    typeof ele === 'function'
+t.isIterable = e => t.isDefined(e) && !t.isNull(e) && t.isFunction(e.forEach)
 
-export const isNumber =
-  (ele : any) : boolean =>
-    ele === +ele
+t.isEmail = e => typeof e === 'string' && e.indexOf('@') > -1
 
-export const isInteger =
-  (ele : any) : boolean =>
-    ele === +ele &&
-    ele === (ele | 0)
+t.isNull = e => e === null
 
-export const isFloat =
-  (ele : any) : boolean =>
-    ele === +ele
+t.isUndefinedOrNull = value => value === null || value === undefined
 
-export const isObject =
-  (ele : any) : boolean =>
-    typeof ele === 'object'
+t.isBuffer = x => {
+  if (!x || typeof x !== 'object' || typeof x.length !== 'number') {
+    return false
+  }
 
-export const isString =
-  (ele : any) : boolean =>
-    typeof ele === 'string'
+  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
+    return false
+  }
 
-export const isRGBAObject =
-  (e : any) : boolean =>
-    isObject(e) &&
-    isNumber(e.r) &&
-    isNumber(e.g) &&
-    isNumber(e.b) &&
-    isNumber(e.a)
+  if (x.length > 0 && typeof x[0] !== 'number') {
+    return false
+  }
 
-export const isRGBObject =
-  (e : any) : boolean =>
-    isObject(e) &&
-    isNumber(e.r) &&
-    isNumber(e.g) &&
-    isNumber(e.b)
+  return true
+}
 
-export const isHexColor =
-  (c : any) : boolean =>
-    /\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
+t.test = (e, type, ...addTypes) => (
+  t.isString(type) && t.isEmpty(addTypes)
+    // only one type arg to check
+    ? Object.prototype.toString(e) === t || typeof e === t
+    // multiple type args, some loops and tests each single string / subarray
+    : addTypes.concat(type).some(tt => t.test(e, tt))
+)
 
-export const isHexAlphaColor =
-  (c : any) : boolean =>
-    /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(c)
+t.is = (e, ...types) => t.test(e, types)
 
-export const isColor =
-  (e : any) : boolean =>
-    isRGBAObject(e) ||
-    isRGBObject(e) ||
-    isHexColor(e) ||
-    isHexAlphaColor(e)
+t.not = (e, ...types) => !t.test(e, types)
 
-export const isDate =
-  (ele : any) : boolean =>
-    ele.constructor === Date
-
-export const isRegExp =
-  (ele : any) : boolean =>
-    ele.constructor === RegExp
-
-export const isTruthy =
-  (ele : any) : boolean =>
-    !!ele
-
-export const isFalsy =
-  (ele : any) : boolean =>
-    !ele ||
-    isEmpty(ele)
-
-export const isEmpty =
-  (ele : any) : boolean =>
-    !ele ||
-    isObject(ele) && Object.keys(ele).length === 0 ||
-    false
-
-export const isError =
-  (ele : any) : boolean =>
-    Object.getPrototypeOf(ele).name === 'Error'
-
-export const isIterable =
-  (ele : any) : boolean =>
-    typeof ele === 'object'
-
-export const isEmail =
-  (ele : any) : boolean =>
-    typeof ele === 'string' &&
-    ele.indexOf('@') > 0
-
-export const isNull =
-  (ele: any) : boolean =>
-    ele === null
+module.exports = t

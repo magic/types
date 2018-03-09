@@ -1,5 +1,0 @@
-[ignore]
-[include]
-[libs]
-.*/node_modules/magic-types/src/index.js.flow
-[options]

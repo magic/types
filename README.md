@@ -4,11 +4,9 @@ typechecking utilities
 
 ```js
 
-cleanType(typeString)
-converts array, nodelist and object to [object Array], [object NodeList], [object Object]
+const { test } = require('types')
 
-cleanTypes(value, types = [String])
-converts an array of types and arguments using cleanType
+import { is, not } from 'types'
 
 test(value, types = [String]);
 test a value
