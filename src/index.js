@@ -82,7 +82,7 @@ t.isEmail = e => typeof e === 'string' && e.indexOf('@') > -1
 
 t.isNull = e => e === null
 
-t.isUndefinedOrNull = value => value === null || value === undefined
+t.isUndefinedOrNull = value => value === null || !t.isDefined(value)
 
 t.isBuffer = x => {
   if (!x || typeof x !== 'object' || typeof x.length !== 'number') {
@@ -99,6 +99,8 @@ t.isBuffer = x => {
 
   return true
 }
+
+t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
 
 t.test = (e, type, ...addTypes) => (
   t.isString(type) && t.isEmpty(addTypes)

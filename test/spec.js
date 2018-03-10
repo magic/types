@@ -1,5 +1,3 @@
-const argv = require('argv')
-
 const types = require('../src')
 
 const fn = {
