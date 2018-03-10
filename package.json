@@ -25,8 +25,5 @@
   ],
   "devDependencies": {
     "test": "file:../test"
-  },
-  "dependencies": {
-    "argv": "file:../argv"
   }
 }
