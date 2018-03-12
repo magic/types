@@ -115,6 +115,10 @@ const fn = {
     { fn: () => types.isUndefinedOrNull(), expect: true },
     { fn: () => types.isUndefinedOrNull([]), expect: false,}
   ],
+  isThenable: [
+    { fn: () => types.isThenable({ then: () => {} }), expect: true },
+    { fn: () => types.isThenable({}), expect: false },
+  ]
 }
 
 module.exports = fn

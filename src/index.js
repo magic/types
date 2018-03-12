@@ -100,6 +100,8 @@ t.isBuffer = x => {
   return true
 }
 
+t.isThenable = e => e && t.isFunction(e.then)
+
 t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
 
 t.test = (e, type, ...addTypes) => (
