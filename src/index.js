@@ -101,6 +101,24 @@ t.isThenable = e => e && t.isFunction(e.then)
 
 t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
 
+t.isUUID = e => {
+  const split = e.split('-')
+  if (split.length !== 5) {
+    return false
+  }
+  const lengths = [8, 4, 4, 4, 12]
+
+  if (lengths.some((l, i) => split[i].length !== l)) {
+    return false
+  }
+
+  if (Object.values(e).some(s => s > 'f' || s < 0)) {
+    return false
+  }
+
+  return true
+}
+
 t.test = (e, ...types) => (
   types.length === 1
     // only one type arg to check

@@ -234,6 +234,15 @@ const fn = {
     { fn: () => types.isEmail([]), expect: false },
     { fn: () => types.isEmail({}), expect: false },
   ],
+  isUUID: [
+    { fn: () => types.isUUID('6ba7b810-9dad-11d1-80b4-00c04fd430c8'), expect: true },
+    { fn: () => types.isUUID('6ba7b811-9dad-11d1-80b4-00c04fd430c8'), expect: true },
+    { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4-00c04fd430c8'), expect: true },
+    { fn: () => types.isUUID('6ba7b814-9dad-11d1-80b4-00c04fd430c8'), expect: true },
+    { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4'), expect: false },
+    { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4-00c04fd430c'), expect: false },
+    { fn: () => types.isUUID('zzzzzzzz-9dad-11d1-80b4-00c04fd430c8'), expect: false },
+  ],
 }
 
 const d = Object.keys(types).filter(t => Object.keys(fn).indexOf(types[t]) > -1)
