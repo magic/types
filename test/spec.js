@@ -243,9 +243,27 @@ const fn = {
     { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4-00c04fd430c'), expect: false },
     { fn: () => types.isUUID('zzzzzzzz-9dad-11d1-80b4-00c04fd430c8'), expect: false },
   ],
+  isError: [
+    { fn: () => types.isError(new Error('test')), expect: true },
+    { fn: () => types.isError(0), expect: false },
+    { fn: () => types.isError('error'), expect: false },
+    { fn: () => types.isError('test'), expect: false },
+    { fn: () => types.isError({}), expect: false },
+    { fn: () => types.isError([]), expect: false },
+  ],
+  isDate: [
+    { fn: () => types.isDate(new Date()), expect: true },
+    { fn: () => types.isDate(new Date().getTime()), expect: false },
+    { fn: () => types.isDate('test'), expect: false },
+    { fn: () => types.isDate(123), expect: false },
+  ],
+  isRegExp: [
+    { fn: () => types.isRegExp(/test/), expect: true },
+    { fn: () => types.isRegExp(new RegExp()), expect: true },
+    { fn: () => types.isRegExp('test'), expect: false },
+    { fn: () => types.isRegExp(0), expect: false },
+    { fn: () => types.isRegExp([]), expect: false },
+  ],
 }
-
-const d = Object.keys(types).filter(t => Object.keys(fn).indexOf(types[t]) > -1)
-console.log({ d })
 
 module.exports = fn
