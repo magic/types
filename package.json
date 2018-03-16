@@ -25,6 +25,6 @@
     }
   ],
   "devDependencies": {
-    "test": "../test"
+    "test": "git+http://git@localhost:7005/test"
   }
 }
