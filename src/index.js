@@ -1,9 +1,6 @@
 const t = {}
 
-t.isArray = e =>
-  t.isFunction(Array.isArray)
-    ? Array.isArray(e)
-    : t.isNumber(e.length)
+t.isArray = e => Array.isArray(e)
 
 t.isBoolean = e => typeof e === 'boolean'
 
@@ -35,7 +32,7 @@ t.isRGBObject = e =>
   t.isNumber(e.b)
 
 t.isHexColor = e =>
-  /\#\b([a-f0-9]{3}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+  /\#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
 t.isHexAlphaColor = e =>
   /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
@@ -82,18 +79,18 @@ t.isEmail = e => typeof e === 'string' && e.indexOf('@') > -1
 
 t.isNull = e => e === null
 
-t.isUndefinedOrNull = value => value === null || !t.isDefined(value)
+t.isUndefinedOrNull = e => e === null || !t.isDefined(e)
 
-t.isBuffer = x => {
-  if (!x || typeof x !== 'object' || typeof x.length !== 'number') {
+t.isBuffer = e => {
+  if (!e || !t.isObject(e) || t.isEmpty(e)) {
     return false
   }
 
-  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
+  if (!t.isFunction(e.copy) || !t.isFunction(e.slice)) {
     return false
   }
 
-  if (x.length > 0 && typeof x[0] !== 'number') {
+  if (!t.isNumber(e[0])) {
     return false
   }
 
@@ -104,16 +101,16 @@ t.isThenable = e => e && t.isFunction(e.then)
 
 t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
 
-t.test = (e, type, ...addTypes) => (
-  t.isString(type) && t.isEmpty(addTypes)
+t.test = (e, ...types) => (
+  types.length === 1
     // only one type arg to check
-    ? Object.prototype.toString(e) === t || typeof e === t
+    ? Object.prototype.toString(e) === types[0] || typeof e === types[0]
     // multiple type args, some loops and tests each single string / subarray
-    : addTypes.concat(type).some(tt => t.test(e, tt))
+    : types.some(k => t.test(e, k))
 )
 
-t.is = (e, ...types) => t.test(e, types)
+t.is = (e, ...types) => t.test(e, ...types)
 
-t.not = (e, ...types) => !t.test(e, types)
+t.not = (e, ...types) => !t.test(e, ...types)
 
 module.exports = t
