@@ -6,9 +6,8 @@
   "license": "AGPL-3.0",
   "main": "src/index.js",
   "scripts": {
-    "start": "node test/",
-    "test": "VERBOSE=true node test/",
-    "coverage": "VERBOSE=true nyc -a node test/"
+    "start": "nyc -a node test/",
+    "test": "VERBOSE=true nyc -a node test/"
   },
   "repository": {
     "type": "git",
