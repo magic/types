@@ -15,4 +15,4 @@
 
 "types@git+http://git@localhost:7005/types":
   version "0.0.1"
-  resolved "git+http://git@localhost:7005/types#9c3460d30e82ef91200b391583842613c3d03288"
+  resolved "git+http://git@localhost:7005/types#2e75f007e38be031045c4b31b5828fa5e20f6113"
