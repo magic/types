@@ -102,6 +102,14 @@ t.isThenable = e => e && t.isFunction(e.then)
 t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
 
 t.isUUID = e => {
+  if (!t.isDefined(e)) {
+    return false
+  }
+
+  if (!t.isString(e)) {
+    return false
+  }
+
   const split = e.split('-')
   if (split.length !== 5) {
     return false

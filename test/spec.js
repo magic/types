@@ -242,6 +242,11 @@ const fn = {
     { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4'), expect: false },
     { fn: () => types.isUUID('6ba7b812-9dad-11d1-80b4-00c04fd430c'), expect: false },
     { fn: () => types.isUUID('zzzzzzzz-9dad-11d1-80b4-00c04fd430c8'), expect: false },
+    { fn: () => types.isUUID(), expect: false },
+    { fn: () => types.isUUID(''), expect: false },
+    { fn: () => types.isUUID([]), expect: false },
+    { fn: () => types.isUUID({}), expect: false },
+    { fn: () => types.isUUID(() => {}), expect: false },
   ],
   isError: [
     { fn: () => types.isError(new Error('test')), expect: true },
