@@ -32,10 +32,10 @@ t.isRGBObject = e =>
   t.isNumber(e.b)
 
 t.isHexColor = e =>
-  /\#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
+  /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
 t.isHexAlphaColor = e =>
-  /\#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+  /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
 
 t.isColor = e =>
   t.isRGBAObject(e) ||
@@ -64,11 +64,15 @@ t.isEmpty = e => {
     return false
   }
 
-  const empty = !e
-    || !t.isDefined(e)
-    || t.isObject(e) && Object.keys(e).length === 0
+  if (!e || !t.isDefined(e)) {
+    return true
+  }
 
-  return empty
+  if (t.isObject(e) && Object.keys(e).length === 0) {
+    return true
+  }
+
+  return false
 }
 
 t.isError = e => e instanceof Error
@@ -99,7 +103,7 @@ t.isBuffer = e => {
 
 t.isThenable = e => e && t.isFunction(e.then)
 
-t.isArguments = e => Object.prototype.toString.call(e) == '[object Arguments]'
+t.isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
 
 t.isUUID = e => {
   if (!t.isDefined(e)) {
@@ -114,8 +118,8 @@ t.isUUID = e => {
   if (split.length !== 5) {
     return false
   }
-  const lengths = [8, 4, 4, 4, 12]
 
+  const lengths = [8, 4, 4, 4, 12]
   if (lengths.some((l, i) => split[i].length !== l)) {
     return false
   }
@@ -127,13 +131,9 @@ t.isUUID = e => {
   return true
 }
 
-t.test = (e, ...types) => (
-  types.length === 1
-    // only one type arg to check
-    ? Object.prototype.toString(e) === types[0] || typeof e === types[0]
-    // multiple type args, some loops and tests each single string / subarray
-    : types.some(k => t.test(e, k))
-)
+t.testType = (e, type) => Object.prototype.toString(e) === type || typeof e === type
+
+t.test = (e, ...types) => types.some(k => t.testType(e, k))
 
 t.is = (e, ...types) => t.test(e, ...types)
 

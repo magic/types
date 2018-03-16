@@ -7,7 +7,23 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nyc -a node test/",
-    "test": "VERBOSE=true nyc -a node test/"
+    "test": "VERBOSE=true nyc -a node test/",
+    "lint": "esw -w ./src ./test",
+    "lint:fix": "eslint --fix ./src ./test"
+  },
+  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
+  "eslintConfig": {
+    "extends": "standard",
+    "rules": {
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ]
+    }
   },
   "repository": {
     "type": "git",
@@ -17,12 +33,6 @@
     "url": "https://github.com/magic/types/issues"
   },
   "homepage": "https://github.com/magic/types",
-  "contributors": [
-    {
-      "name": "jascha ehrenreich",
-      "github": "jaeh"
-    }
-  ],
   "devDependencies": {
     "test": "git+http://git@localhost:7005/test"
   }
