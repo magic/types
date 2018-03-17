@@ -2,7 +2,7 @@
   "name": "types",
   "version": "0.0.1",
   "description": "typechecking library",
-  "author": "Wizards & Witches <team@wiznwit.com>",
+  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
   "main": "src/index.js",
   "scripts": {
@@ -11,13 +11,21 @@
     "lint": "esw -w ./src ./test",
     "lint:fix": "eslint --fix ./src ./test"
   },
-  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "eslintConfig": {
     "extends": "standard",
     "rules": {
-      "comma-dangle": ["error", "always-multiline"],
-      "brace-style": ["error", "stroustrup"],
-      "semi": ["error", "never"]
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ]
     }
   },
   "repository": {
