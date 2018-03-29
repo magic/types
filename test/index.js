@@ -1,9 +1,9 @@
-const run = require('@magic/test')
+const run = require("@magic/test")
 
-const types = require('./spec')
+const types = require("./spec")
 
 const tests = {
-  types,
+  types
 }
 
 run(tests)
