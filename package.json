@@ -1,5 +1,5 @@
 {
-  "name": "types",
+  "name": "@magic/types",
   "version": "0.0.1",
   "description": "typechecking library",
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
