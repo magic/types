@@ -34,7 +34,9 @@ const fn = {
     { fn: () => types.isDefined(/test/), expect: true },
     { fn: () => types.isDefined(null), expect: true },
     { fn: () => types.isDefined(new Date()), expect: true },
-    { fn: () => types.isDefined(new Error("test")), expect: true }
+    { fn: () => types.isDefined(new Error("test")), expect: true },
+    { fn: () => types.isDefined(), expect: false },
+    { fn: () => types.isDefined(undefined), expect: false }
   ],
   isFunction: [
     { fn: () => types.isFunction(() => {}), expect: true },
