@@ -2,11 +2,11 @@ const t = {}
 
 t.isArray = e => Array.isArray(e)
 
-t.isBoolean = e => typeof e === "boolean"
+t.isBoolean = e => typeof e === 'boolean'
 
-t.isDefined = e => typeof e !== "undefined"
+t.isDefined = e => typeof e !== 'undefined'
 
-t.isFunction = e => typeof e === "function"
+t.isFunction = e => typeof e === 'function'
 
 t.isNumber = e => e === +e
 
@@ -14,9 +14,9 @@ t.isInteger = e => e === +e && e === (e | 0)
 
 t.isFloat = e => e === +e
 
-t.isObject = e => typeof e === "object" && e !== null
+t.isObject = e => typeof e === 'object' && e !== null
 
-t.isString = e => typeof e === "string"
+t.isString = e => typeof e === 'string'
 
 t.isRGBAObject = e =>
   t.isObject(e) &&
@@ -75,7 +75,7 @@ t.isError = e => e instanceof Error
 
 t.isIterable = e => t.isDefined(e) && !t.isNull(e) && t.isFunction(e.forEach)
 
-t.isEmail = e => typeof e === "string" && e.indexOf("@") > -1
+t.isEmail = e => typeof e === 'string' && e.indexOf('@') > -1
 
 t.isNull = e => e === null
 
@@ -99,7 +99,7 @@ t.isBuffer = e => {
 
 t.isThenable = e => e && t.isFunction(e.then)
 
-t.isArguments = e => Object.prototype.toString.call(e) === "[object Arguments]"
+t.isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
 
 t.isUUID = e => {
   if (!t.isDefined(e)) {
@@ -110,7 +110,7 @@ t.isUUID = e => {
     return false
   }
 
-  const split = e.split("-")
+  const split = e.split('-')
   if (split.length !== 5) {
     return false
   }
@@ -120,7 +120,7 @@ t.isUUID = e => {
     return false
   }
 
-  if (Object.values(e).some(s => s > "f" || s < 0)) {
+  if (Object.values(e).some(s => s > 'f' || s < 0)) {
     return false
   }
 
