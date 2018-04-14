@@ -7,12 +7,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nyc -a node test/",
-    "test": "VERBOSE=true nyc -a node test/",
-    "format": "prettier --write '{src,test}/**/*.js'",
-    "format:check": "prettier --list-different '{src,test}/**/*.js'"
-  },
-  "prettier": {
-    "semi": false
+    "test": "npm run format:check && VERBOSE=true nyc -a node test/",
+    "format": "format --write",
+    "format:check": "format --list-different"
   },
   "repository": {
     "type": "git",
@@ -23,8 +20,8 @@
   },
   "homepage": "https://github.com/magic/types",
   "devDependencies": {
+    "@magic/lint": "github:magic/lint",
     "@magic/test": "github:magic/test",
-    "nyc": "11.6.0",
-    "prettier": "1.11.1"
+    "nyc": "11.6.0"
   }
 }
