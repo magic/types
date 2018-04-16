@@ -1,53 +1,54 @@
 const t = {}
 
-t.isArray = e => Array.isArray(e)
+t.isArray = t.array = e => Array.isArray(e)
 
-t.isBoolean = e => typeof e === 'boolean'
+t.isBoolean = t.boolean = e => typeof e === 'boolean'
 
-t.isDefined = e => typeof e !== 'undefined'
+t.isDefined = t.defined = e => typeof e !== 'undefined'
 
-t.isFunction = e => typeof e === 'function'
+t.isFunction = t.function = e => typeof e === 'function'
 
-t.isNumber = e => e === +e
+t.isNumber = t.number = e => e === +e
 
-t.isInteger = e => e === +e && e === (e | 0)
+t.isInteger = t.integer = e => e === +e && e === (e | 0)
 
-t.isFloat = e => e === +e
+t.isFloat = t.float = e => e === +e
 
-t.isObject = e => typeof e === 'object' && e !== null
+t.isObject = t.object = e => typeof e === 'object' && e !== null
 
-t.isString = e => typeof e === 'string'
+t.isString = t.string = e => typeof e === 'string'
 
-t.isRGBAObject = e =>
+t.isRGBAObject = t.rgbaObject = e =>
   t.isObject(e) &&
   t.isNumber(e.r) &&
   t.isNumber(e.g) &&
   t.isNumber(e.b) &&
   t.isNumber(e.a)
 
-t.isRGBObject = e =>
+t.isRGBObject = t.rgbObject = e =>
   t.isObject(e) && t.isNumber(e.r) && t.isNumber(e.g) && t.isNumber(e.b)
 
-t.isHexColor = e =>
+t.isHexColor = t.hexColor = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
-t.isHexAlphaColor = e => /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+t.isHexAlphaColor = t.hexAlphaColor = e =>
+  /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
 
-t.isColor = e =>
+t.isColor = t.color = e =>
   t.isRGBAObject(e) ||
   t.isRGBObject(e) ||
   t.isHexColor(e) ||
   t.isHexAlphaColor(e)
 
-t.isDate = e => e instanceof Date
+t.isDate = t.date = e => e instanceof Date
 
-t.isRegExp = e => e instanceof RegExp
+t.isRegExp = t.RegExp = e => e instanceof RegExp
 
-t.isTruthy = e => !!e
+t.isTruthy = t.truthy = e => !!e
 
-t.isFalsy = e => !e || t.isEmpty(e)
+t.isFalsy = t.falsy = e => !e || t.isEmpty(e)
 
-t.isEmpty = e => {
+t.isEmpty = t.empty = e => {
   if (t.isError(e)) {
     return false
   }
@@ -71,17 +72,18 @@ t.isEmpty = e => {
   return false
 }
 
-t.isError = e => e instanceof Error
+t.isError = t.error = e => e instanceof Error
 
-t.isIterable = e => t.isDefined(e) && !t.isNull(e) && t.isFunction(e.forEach)
+t.isIterable = t.iterable = e =>
+  t.isDefined(e) && !t.isNull(e) && t.isFunction(e.forEach)
 
-t.isEmail = e => typeof e === 'string' && e.indexOf('@') > -1
+t.isEmail = t.email = e => typeof e === 'string' && e.indexOf('@') > -1
 
-t.isNull = e => e === null
+t.isNull = t.null = e => e === null
 
-t.isUndefinedOrNull = e => e === null || !t.isDefined(e)
+t.isUndefinedOrNull = t.undefinedOrNull = e => e === null || !t.isDefined(e)
 
-t.isBuffer = e => {
+t.isBuffer = t.buffer = e => {
   if (!e || !t.isObject(e) || t.isEmpty(e)) {
     return false
   }
@@ -97,11 +99,12 @@ t.isBuffer = e => {
   return true
 }
 
-t.isThenable = e => e && t.isFunction(e.then)
+t.isThenable = t.thenable = e => e && t.isFunction(e.then)
 
-t.isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
+t.isArguments = t.arguments = e =>
+  Object.prototype.toString.call(e) === '[object Arguments]'
 
-t.isUUID = e => {
+t.isUUID = t.uuid = e => {
   if (!t.isDefined(e)) {
     return false
   }
@@ -127,13 +130,13 @@ t.isUUID = e => {
   return true
 }
 
-t.testType = (e, type) =>
+t.testType = t.type = (e, type) =>
   Object.prototype.toString(e) === type || typeof e === type
 
-t.test = (e, ...types) => types.some(k => t.testType(e, k))
+t.test = t.types = (e, ...types) => types.some(k => t.testType(e, k))
 
-t.is = (e, ...types) => t.test(e, ...types)
+t.isEq = t.eq = t.is = (e, ...types) => t.test(e, ...types)
 
-t.not = (e, ...types) => !t.test(e, ...types)
+t.isNot = t.not = t.isNeq = t.neq = (e, ...types) => !t.test(e, ...types)
 
 module.exports = t
