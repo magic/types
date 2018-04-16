@@ -18,20 +18,20 @@ t.isObject = t.object = e => typeof e === 'object' && e !== null
 
 t.isString = t.string = e => typeof e === 'string'
 
-t.isRGBAObject = t.rgbaObject = e =>
+t.isRGBAObject = t.rgbaObject = t.rgba = e =>
   t.isObject(e) &&
   t.isNumber(e.r) &&
   t.isNumber(e.g) &&
   t.isNumber(e.b) &&
   t.isNumber(e.a)
 
-t.isRGBObject = t.rgbObject = e =>
+t.isRGBObject = t.rgbObject = t.rgb = e =>
   t.isObject(e) && t.isNumber(e.r) && t.isNumber(e.g) && t.isNumber(e.b)
 
-t.isHexColor = t.hexColor = e =>
+t.isHexColor = t.hexColor = t.hex = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
-t.isHexAlphaColor = t.hexAlphaColor = e =>
+t.isHexAlphaColor = t.hexAlphaColor = t.hexa = e =>
   /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
 
 t.isColor = t.color = e =>
@@ -42,30 +42,30 @@ t.isColor = t.color = e =>
 
 t.isDate = t.date = e => e instanceof Date
 
-t.isRegExp = t.RegExp = e => e instanceof RegExp
+t.isRegExp = t.regExp = t.regexp = e => e instanceof RegExp
 
 t.isTruthy = t.truthy = e => !!e
 
 t.isFalsy = t.falsy = e => !e || t.isEmpty(e)
 
 t.isEmpty = t.empty = e => {
-  if (t.isError(e)) {
+  if (t.error(e)) {
     return false
   }
 
-  if (t.isDate(e)) {
+  if (t.date(e)) {
     return false
   }
 
-  if (t.isRegExp(e)) {
+  if (t.regexp(e)) {
     return false
   }
 
-  if (!e || !t.isDefined(e)) {
+  if (!e || !t.defined(e)) {
     return true
   }
 
-  if (t.isObject(e) && Object.keys(e).length === 0) {
+  if (t.object(e) && Object.keys(e).length === 0) {
     return true
   }
 
@@ -75,41 +75,42 @@ t.isEmpty = t.empty = e => {
 t.isError = t.error = e => e instanceof Error
 
 t.isIterable = t.iterable = e =>
-  t.isDefined(e) && !t.isNull(e) && t.isFunction(e.forEach)
+  t.defined(e) && !t.null(e) && t.function(e.forEach)
 
-t.isEmail = t.email = e => typeof e === 'string' && e.indexOf('@') > -1
+t.isEmail = t.email = t.mail = e => typeof e === 'string' && e.indexOf('@') > -1
 
-t.isNull = t.null = e => e === null
+t.isNull = t.null = t.nil = e => e === null
 
-t.isUndefinedOrNull = t.undefinedOrNull = e => e === null || !t.isDefined(e)
+t.isUndefinedOrNull = t.undefinedOrNull = t.undefined = e =>
+  e === null || !t.defined(e)
 
 t.isBuffer = t.buffer = e => {
-  if (!e || !t.isObject(e) || t.isEmpty(e)) {
+  if (!e || !t.object(e) || t.empty(e)) {
     return false
   }
 
-  if (!t.isFunction(e.copy) || !t.isFunction(e.slice)) {
+  if (!t.function(e.copy) || !t.function(e.slice)) {
     return false
   }
 
-  if (!t.isNumber(e[0])) {
+  if (!t.number(e[0])) {
     return false
   }
 
   return true
 }
 
-t.isThenable = t.thenable = e => e && t.isFunction(e.then)
+t.isThenable = t.thenable = e => e && t.function(e.then)
 
 t.isArguments = t.arguments = e =>
   Object.prototype.toString.call(e) === '[object Arguments]'
 
 t.isUUID = t.uuid = e => {
-  if (!t.isDefined(e)) {
+  if (!t.defined(e)) {
     return false
   }
 
-  if (!t.isString(e)) {
+  if (!t.string(e)) {
     return false
   }
 
