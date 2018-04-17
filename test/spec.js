@@ -33,7 +33,7 @@ const types = [
   ['nil', 'null', 'isNil', 'isNull'],
   ['undefinedOrNull', 'isUndefinedOrNull'],
   ['buff', 'buffer', 'isBuffer'],
-  ['then', 'thenable', 'isThen', 'isThenable'],
+  ['promise', 'isPromise', 'then', 'thenable', 'isThen', 'isThenable'],
   ['args', 'arguments', 'isArgs', 'isArguments'],
   ['uuid', 'isUUID'],
   ['type', 'testType'],

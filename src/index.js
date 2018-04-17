@@ -99,7 +99,7 @@ t.isError = t.error = t.err = e => e instanceof Error
 t.isIterable = t.isIter = t.iterable = t.iter = e =>
   t.defined(e) && !t.null(e) && t.function(e.forEach)
 
-t.isEmail = t.isMail = t.email = t.mail = e => typeof e === 'string' && e.indexOf('@') > -1
+t.isEmail = t.isMail = t.email = t.mail = e => t.str(e) && e.indexOf('@') > -1
 
 t.isNull = t.isNil = t.null = t.nil = e => e === null
 
@@ -121,7 +121,8 @@ t.isBuffer = t.buffer = t.buff = e => {
   return true
 }
 
-t.isThenable = t.isThen = t.thenable = t.then = e => e && t.function(e.then)
+t.isPromise = t.promise = e => e && t.function(e.then)
+t.isThenable = t.isThen = t.thenable = t.then = t.promise
 
 t.isArguments = t.isArgs = t.arguments = t.args = e =>
   Object.prototype.toString.call(e) === '[object Arguments]'
