@@ -6,7 +6,7 @@ t.isBoolean = t.isBool = t.boolean = t.bool = e => typeof e === 'boolean'
 
 t.isDefined = t.isDef = t.defined = t.def = e => typeof e !== 'undefined'
 
-t.isUndefined = t.isUndef = t.undefined = t.undef = e => !t.defined(e)
+t.isUndefined = t.isUndef = t.undefined = t.undef = e => !t.def(e)
 
 t.isFunction = t.isFunc = t.isFn = t.function = t.func = t.fn = e =>
   typeof e === 'function'
@@ -18,19 +18,19 @@ t.isInteger = t.isInt = t.integer = t.int = e => e === +e && e === (e | 0)
 t.isFloat = t.float = e => e === +e
 
 t.isObject = t.isObj = t.object = t.obj = e =>
-  typeof e === 'object' && e !== null
+  typeof e === 'object' && !t.nil(e)
 
 t.isString = t.isStr = t.string = t.str = e => typeof e === 'string'
 
 t.isRGBAObject = t.isRGBA = t.rgbaObject = t.rgba = e =>
-  t.object(e) &&
-  t.number(e.r) &&
-  t.number(e.g) &&
-  t.number(e.b) &&
-  t.number(e.a)
+  t.obj(e) &&
+  t.num(e.r) &&
+  t.num(e.g) &&
+  t.num(e.b) &&
+  t.num(e.a)
 
 t.isRGBObject = t.isRGB = t.rgbObject = t.rgb = e =>
-  t.isObject(e) && t.isNumber(e.r) && t.isNumber(e.g) && t.isNumber(e.b)
+  t.obj(e) && t.num(e.r) && t.num(e.g) && t.num(e.b)
 
 t.isHexColor = t.isHex = t.hexColor = t.hex = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
@@ -56,10 +56,10 @@ t.isHexAlphaColor8 = t.isHexa8 = t.hexAlphaColor8 = t.hexa8 = e =>
   /#\b([a-f0-9]{8})\b/i.test(e)
 
 t.isColor = t.isCol = t.color = t.col = e =>
-  t.isRGBAObject(e) ||
-  t.isRGBObject(e) ||
-  t.isHexColor(e) ||
-  t.isHexAlphaColor(e)
+  t.rgba(e) ||
+  t.rgb(e) ||
+  t.hex(e) ||
+  t.hexa(e)
 
 t.isDate = t.isTime = t.date = t.time = e => e instanceof Date
 
@@ -68,7 +68,7 @@ t.isRegExp = t.isRegex = t.regExp = t.regexp = t.regex = e =>
 
 t.isTruthy = t.truthy = e => !!e
 
-t.isFalsy = t.falsy = e => !e || t.isEmpty(e)
+t.isFalsy = t.falsy = e => !e || t.empty(e)
 
 t.isEmpty = t.empty = e => {
   if (t.error(e)) {
@@ -79,15 +79,15 @@ t.isEmpty = t.empty = e => {
     return false
   }
 
-  if (t.regexp(e)) {
+  if (t.regex(e)) {
     return false
   }
 
-  if (!e || !t.defined(e)) {
+  if (!e || !t.def(e)) {
     return true
   }
 
-  if (t.object(e) && Object.keys(e).length === 0) {
+  if (t.obj(e) && Object.keys(e).length === 0) {
     return true
   }
 
@@ -97,20 +97,20 @@ t.isEmpty = t.empty = e => {
 t.isError = t.error = t.err = e => e instanceof Error
 
 t.isIterable = t.isIter = t.iterable = t.iter = e =>
-  t.defined(e) && !t.null(e) && t.function(e.forEach)
+  t.def(e) && !t.nil(e) && t.fn(e.forEach)
 
 t.isEmail = t.isMail = t.email = t.mail = e => t.str(e) && e.indexOf('@') > -1
 
 t.isNull = t.isNil = t.null = t.nil = e => e === null
 
-t.isUndefinedOrNull = t.undefinedOrNull = e => e === null || !t.defined(e)
+t.isUndefinedOrNull = t.undefinedOrNull = e => e === null || !t.def(e)
 
 t.isBuffer = t.buffer = t.buff = e => {
-  if (!e || !t.object(e) || t.empty(e)) {
+  if (!e || !t.obj(e) || t.empty(e)) {
     return false
   }
 
-  if (!t.function(e.copy) || !t.function(e.slice)) {
+  if (!t.fn(e.copy) || !t.fn(e.slice)) {
     return false
   }
 
@@ -121,18 +121,18 @@ t.isBuffer = t.buffer = t.buff = e => {
   return true
 }
 
-t.isPromise = t.promise = e => e && t.function(e.then)
+t.isPromise = t.promise = e => e && t.fn(e.then)
 t.isThenable = t.isThen = t.thenable = t.then = t.promise
 
 t.isArguments = t.isArgs = t.arguments = t.args = e =>
   Object.prototype.toString.call(e) === '[object Arguments]'
 
 t.isUUID = t.uuid = e => {
-  if (!t.defined(e)) {
+  if (!t.def(e)) {
     return false
   }
 
-  if (!t.string(e)) {
+  if (!t.str(e)) {
     return false
   }
 
