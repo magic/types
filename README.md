@@ -1,19 +1,26 @@
-# magic-types
+# @magic/types
 
 typechecking utilities
 
 
+##### install
+```javascript
+  # note that there is no @.
+  npm install magic/types
+
+```
+
 ##### import single function
 ```js
 // single function import
-const { isArray } = require('types')
+const { isArray } = require('@magic/types')
 
 isArray([]) // true
 ```
 
 ##### import all functions
 ```javascript
-const is = require('types')
+const is = require('@magic/types')
 
 is.array([]) // true
 
@@ -32,52 +39,55 @@ not(ele, ...types)
 
 type comparisons:  
 isArray([]) // true
-// alias is.array
+// alias isArr, is.array, is.arr
 
 isBoolean(true) // true
-// alias is.boolean
+// alias isBool, is.boolean, is.bool
 
 isDefined(undefined) //false
-// alias is.defined
+// alias isDef, is.defined, is.def
+
+isUndefined(undefined) //false
+// alias isUndef, is.undefined, is.undef
 
 isFunction(() => {}) // true
-// alias is.function
+// alias isFunc, isFn, is.function, is.func, is.fn
 
 isNumber(1) // true
-// alias is.number
+// alias isNum, is.number, is.num
 
 isInteger(1) // true
-// alias is.integer
+// alias isInt, is.integer, is.int
 
 isFloat(1.1) // true
 // alias is.float
 
 isObject({}) // true
-// alias is.object
+// alias isObj, is.object, is.obj
 
 isString('') // true
-// alias is.string
+// alias isStr, is.string, is.str
 
 isRGBAObject({ r: 1, g: 1, b: 1, a: 1 }) // true
-// alias is.rgbaObject, is.rgba
+// alias isRGBA, is.rgbaObject, is.rgba
 
 isRGBObject
-// alias is.rgbObject, is.rgb
+// alias isRGB, is.rgbObject, is.rgb
 
 isHexColor('#333') // true
-// alias is.hex, is.hexColor
+// alias isHex, is.hex, is.hexColor
 
 isHexAlphaColor('#3333') // true
-// alias is.hexa, is.hexAlphaColor
+// alias isHexa, is.hexa, is.hexAlphaColor
 
 isColor('#444') // true
-// alias is.color
+// alias isCol, is.color, is.col
 
 isDate(new Date()) // true
-// alias is.date
+// alias isTime, is.date, is.time
 
 isRegExp(/regexp/) // true
-// alias is.regexp, is.regExp
+// alias isRegex, is.regexp, is.regExp, is.regex
 
 isTruthy('true') // true
 // alias is.truthy
@@ -89,28 +99,28 @@ isEmpty('') // true
 // alias is.empty
 
 isError(new Error('')) // true
-// alias is.error
+// alias isErr, is.error, is.err
 
 isIterable([]) // true
 // alias is.iterable
 
 isEmail('a@b.c') // true
-// alias is.email, is.mail
+// alias isMail, is.email, is.mail
 
 isNull(null) // true
-// alias is.nil, is.null
+// alias isNil, is.nil, is.null
 
 isUndefinedOrNull(undefined || null) // true
-// alias is.undefined, is.undefinedOrNull
+// alias is.undefinedOrNull
 
 isBuffer(new Buffer('test')) // true
-// alias is.buffer
+// alias isBuff, is.buffer, is.buff
 
-isThenable(new Promise()) // true
-// alias is.thenable
+isPromise(new Promise()) // true
+// alias is.promise, isThenable, isThen, is.thenable, is.then
 
 isArguments(() => return arguments) // true
-// alias is.arguments
+// alias isArgs, is.arguments, is.args
 
 isUUID(uuid) // true
 // alias is.uuid
