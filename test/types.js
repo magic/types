@@ -157,6 +157,21 @@ const fn = {
     { fn: () => is.isUUID({}), expect: false },
     { fn: () => is.isUUID(() => {}), expect: false },
   ],
+  length: [
+    { fn: () => is.length(10)('1234567890'), info: 'is.length works' },
+    { fn: () => is.len(10)('1234567890'), info: 'is.len works' },
+    { fn: () => is.count(10)('1234567890'), info: 'is.count works' },
+    { fn: () => is.count(0)({}), info: 'can count empty objects' },
+    { fn: () => is.count(0)([]), info: 'can count empty arrays' },
+    { fn: () => is.count(0)(''), info: 'can count empty strings' },
+    { fn: () => is.count(3)([1, 2, 3]), info: 'can count arrays' },
+    { fn: () => is.count(1)({ test: 'true ' }), info: 'can count objects' },
+    { fn: () => is.count(1, '1'), info: 'can count uncurried' },
+    { fn: () => is.count(1, { t: 't' }), info: 'can count objects uncurried' },
+    { fn: () => is.count(3, [1, 2, 3]), info: 'can count arrays uncurried' },
+    { fn: () => is.count(5, '12345'), info: 'can count arrays uncurried' },
+    { fn: () => is.count(4, 1234), expect: false, info: 'numbers never count' },
+  ],
 }
 
 module.exports = fn
