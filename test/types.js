@@ -1,5 +1,9 @@
 const is = require('../src')
 
+const vals = {
+  obj: { t: 't' },
+}
+
 const fn = {
   isDefined: [
     { fn: () => is.isDefined([1, 2, 3]), expect: true },
@@ -156,6 +160,24 @@ const fn = {
     { fn: () => is.isUUID([]), expect: false },
     { fn: () => is.isUUID({}), expect: false },
     { fn: () => is.isUUID(() => {}), expect: false },
+  ],
+  length: [
+    { fn: () => is.length(3)('123'), info: 'is.length works' },
+    { fn: () => is.len(4)('1234'), info: 'is.len works' },
+    { fn: () => is.count(5)('12345'), info: 'is.count works' },
+    { fn: () => is.count('123')('123'), info: 'compare strings' },
+    { fn: () => is.len(0)({}), info: 'count empty objects' },
+    { fn: () => is.len(0)([]), info: 'count empty arrays' },
+    { fn: () => is.len(0)(''), info: 'count empty strings' },
+    { fn: () => is.len(3)([1, 2, 3]), info: 'count arrays' },
+    { fn: () => is.len(1)({ test: 'true ' }), info: 'count objects' },
+    { fn: () => is.len(1, '1'), info: 'count uncurried' },
+    { fn: () => is.len(1, { t: 't' }), info: 'count objects uncurried' },
+    { fn: () => is.len(vals.obj, vals.obj), info: 'compare objects uncurried' },
+    { fn: () => is.len(3, [1, 2, 3]), info: 'count arrays uncurried' },
+    { fn: () => is.count('123', '123'), info: 'compare strings' },
+    { fn: () => is.len(5, '12345'), info: 'count arrays uncurried' },
+    { fn: () => is.len(4, 1234), expect: false, info: 'numbers never count' },
   ],
 }
 

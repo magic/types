@@ -9,6 +9,7 @@ const types = [
   ['num', 'number', 'isNum', 'isNumber'],
   ['int', 'integer', 'isInt', 'isInteger'],
   ['float', 'isFloat'],
+  ['count', 'length', 'len'],
   ['obj', 'object', 'isObj', 'isObject'],
   ['str', 'string', 'isStr', 'isString'],
   ['rgba', 'rgbaObject', 'isRGBA', 'isRGBAObject'],
