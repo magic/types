@@ -94,6 +94,27 @@ t.isEmpty = t.empty = e => {
   return false
 }
 
+
+const count = (len, e) => {
+  if (len.hasOwnProperty('length')) {
+    len = len.length
+  } else if (t.obj(len)) {
+    len = Object.keys(len).length
+  }
+
+  if (e.hasOwnProperty('length')) {
+    e = e.length
+  } else if (t.obj(e)) {
+    e = Object.keys(e).length
+  }
+
+  return len === e
+}
+
+// curried or not curried, depending on number of arguments
+t.count = t.length = t.len = (len, e) =>
+  t.def(e) ? count(len, e) : e => count(len, e)
+
 t.isError = t.error = t.err = e => e instanceof Error
 
 t.isIterable = t.isIter = t.iterable = t.iter = e =>
