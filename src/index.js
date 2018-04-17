@@ -1,61 +1,69 @@
 const t = {}
 
-t.isArray = t.array = e => Array.isArray(e)
+t.isArray = t.isArr = t.array = t.arr = e => Array.isArray(e)
 
-t.isBoolean = t.boolean = e => typeof e === 'boolean'
+t.isBoolean = t.isBool = t.boolean = t.bool = e => typeof e === 'boolean'
 
-t.isDefined = t.defined = e => typeof e !== 'undefined'
+t.isDefined = t.isDef = t.defined = t.def = e => typeof e !== 'undefined'
+t.isUndefined = t.isUndef = t.undefined = t.undef = e => !t.defined(e)
 
-t.isFunction = t.function = e => typeof e === 'function'
+t.isFunction = t.isFunc = t.isFn = t.function = t.func = t.fn = e =>
+  typeof e === 'function'
 
-t.isNumber = t.number = e => e === +e
+t.isNumber = t.isNum = t.number = t.num = e => e === +e
 
-t.isInteger = t.integer = e => e === +e && e === (e | 0)
+t.isInteger = t.isInt = t.integer = t.int = e => e === +e && e === (e | 0)
 
 t.isFloat = t.float = e => e === +e
 
-t.isObject = t.object = e => typeof e === 'object' && e !== null
+t.isObject = t.isObj = t.object = t.obj = e =>
+  typeof e === 'object' && e !== null
 
-t.isString = t.string = e => typeof e === 'string'
+t.isString = t.isStr = t.string = t.str = e => typeof e === 'string'
 
-t.isRGBAObject = t.rgbaObject = t.rgba = e =>
-  t.isObject(e) &&
-  t.isNumber(e.r) &&
-  t.isNumber(e.g) &&
-  t.isNumber(e.b) &&
-  t.isNumber(e.a)
+t.isRGBAObject = t.isRGBA = t.rgbaObject = t.rgba = e =>
+  t.object(e) &&
+  t.number(e.r) &&
+  t.number(e.g) &&
+  t.number(e.b) &&
+  t.number(e.a)
 
-t.isRGBObject = t.rgbObject = t.rgb = e =>
+t.isRGBObject = t.isRGB = t.rgbObject = t.rgb = e =>
   t.isObject(e) && t.isNumber(e.r) && t.isNumber(e.g) && t.isNumber(e.b)
 
-t.isHexColor = t.hexColor = t.hex = e =>
+t.isHexColor = t.isHex = t.hexColor = t.hex = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
 t.isHexColor3 = t.isHex3 = t.hexColor3 = t.hex3 = e =>
   /#\b([a-f0-9]{3})\b/i.test(e)
+
 t.isHexColor4 = t.isHex4 = t.hexColor4 = t.hex4 = e =>
   /#\b([a-f0-9]{4})\b/i.test(e)
 
 t.isHexColor6 = t.isHex6 = t.hexColor6 = t.hex6 = e =>
   /#\b([a-f0-9]{6})\b/i.test(e)
+
 t.isHexColor8 = t.isHex8 = t.hexColor8 = t.hex8 = e =>
   /#\b([a-f0-9]{8})\b/i.test(e)
 
-t.isHexAlphaColor = t.hexAlphaColor = t.hexa = e =>
+t.isHexAlphaColor = t.isHexa = t.hexAlphaColor = t.hexa = e =>
   /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
 
-t.isHexAlphaColor4 = t.isHexa4 = t.hexa4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
-t.isHexAlphaColor8 = t.isHexa8 = t.hexa8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
+t.isHexAlphaColor4 = t.isHexa4 = t.hexAlphaColor4 = t.hexa4 = e =>
+  /#\b([a-f0-9]{4})\b/i.test(e)
+t.isHexAlphaColor8 = t.isHexa8 = t.hexAlphaColor8 = t.hexa8 = e =>
+  /#\b([a-f0-9]{8})\b/i.test(e)
 
-t.isColor = t.color = e =>
+t.isColor = t.isCol = t.color = t.col = e =>
   t.isRGBAObject(e) ||
   t.isRGBObject(e) ||
   t.isHexColor(e) ||
   t.isHexAlphaColor(e)
 
-t.isDate = t.date = e => e instanceof Date
+t.isDate = t.isTime = t.date = t.time = e => e instanceof Date
 
-t.isRegExp = t.regExp = t.regexp = e => e instanceof RegExp
+t.isRegExp = t.isRegex = t.regExp = t.regexp = t.regex = e =>
+  e instanceof RegExp
 
 t.isTruthy = t.truthy = e => !!e
 
@@ -85,19 +93,18 @@ t.isEmpty = t.empty = e => {
   return false
 }
 
-t.isError = t.error = e => e instanceof Error
+t.isError = t.error = t.err = e => e instanceof Error
 
-t.isIterable = t.iterable = e =>
+t.isIterable = t.isIter = t.iterable = t.iter = e =>
   t.defined(e) && !t.null(e) && t.function(e.forEach)
 
 t.isEmail = t.email = t.mail = e => typeof e === 'string' && e.indexOf('@') > -1
 
-t.isNull = t.null = t.nil = e => e === null
+t.isNull = t.isNil = t.null = t.nil = e => e === null
 
-t.isUndefinedOrNull = t.undefinedOrNull = t.undefined = e =>
-  e === null || !t.defined(e)
+t.isUndefinedOrNull = t.undefinedOrNull = e => e === null || !t.defined(e)
 
-t.isBuffer = t.buffer = e => {
+t.isBuffer = t.buffer = t.buff = e => {
   if (!e || !t.object(e) || t.empty(e)) {
     return false
   }
@@ -113,9 +120,9 @@ t.isBuffer = t.buffer = e => {
   return true
 }
 
-t.isThenable = t.thenable = e => e && t.function(e.then)
+t.isThenable = t.isThen = t.thenable = t.then = e => e && t.function(e.then)
 
-t.isArguments = t.arguments = e =>
+t.isArguments = t.isArgs = t.arguments = t.args = e =>
   Object.prototype.toString.call(e) === '[object Arguments]'
 
 t.isUUID = t.uuid = e => {
@@ -144,8 +151,8 @@ t.isUUID = t.uuid = e => {
   return true
 }
 
-t.testType = (e, type) =>
-  Object.prototype.toString(e) === type || typeof e === type
+t.testType = t.type = (e, type) =>
+  typeof e === type || Object.prototype.toString(e) === type
 
 t.test = t.types = (e, ...types) => types.some(k => t.testType(e, k))
 
