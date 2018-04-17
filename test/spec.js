@@ -29,7 +29,7 @@ const types = [
   ['empty', 'isEmpty'],
   ['err', 'error', 'isError'],
   ['iter', 'iterable', 'isIter', 'isIterable'],
-  ['mail', 'email', 'isEmail'],
+  ['mail', 'email', 'isMail', 'isEmail'],
   ['nil', 'null', 'isNil', 'isNull'],
   ['undefinedOrNull', 'isUndefinedOrNull'],
   ['buff', 'buffer', 'isBuffer'],
@@ -41,6 +41,7 @@ const types = [
   ['neq', 'isNeq', 'not', 'isNot'],
 ]
 
+// flatten function array
 const allFns = types.reduce((glob, t) => glob.concat(t))
 
 // compare two functions for equality

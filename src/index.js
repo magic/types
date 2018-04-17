@@ -5,6 +5,7 @@ t.isArray = t.isArr = t.array = t.arr = e => Array.isArray(e)
 t.isBoolean = t.isBool = t.boolean = t.bool = e => typeof e === 'boolean'
 
 t.isDefined = t.isDef = t.defined = t.def = e => typeof e !== 'undefined'
+
 t.isUndefined = t.isUndef = t.undefined = t.undef = e => !t.defined(e)
 
 t.isFunction = t.isFunc = t.isFn = t.function = t.func = t.fn = e =>
@@ -98,7 +99,7 @@ t.isError = t.error = t.err = e => e instanceof Error
 t.isIterable = t.isIter = t.iterable = t.iter = e =>
   t.defined(e) && !t.null(e) && t.function(e.forEach)
 
-t.isEmail = t.email = t.mail = e => typeof e === 'string' && e.indexOf('@') > -1
+t.isEmail = t.isMail = t.email = t.mail = e => typeof e === 'string' && e.indexOf('@') > -1
 
 t.isNull = t.isNil = t.null = t.nil = e => e === null
 
