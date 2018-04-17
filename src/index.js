@@ -23,11 +23,7 @@ t.isObject = t.isObj = t.object = t.obj = e =>
 t.isString = t.isStr = t.string = t.str = e => typeof e === 'string'
 
 t.isRGBAObject = t.isRGBA = t.rgbaObject = t.rgba = e =>
-  t.obj(e) &&
-  t.num(e.r) &&
-  t.num(e.g) &&
-  t.num(e.b) &&
-  t.num(e.a)
+  t.obj(e) && t.num(e.r) && t.num(e.g) && t.num(e.b) && t.num(e.a)
 
 t.isRGBObject = t.isRGB = t.rgbObject = t.rgb = e =>
   t.obj(e) && t.num(e.r) && t.num(e.g) && t.num(e.b)
@@ -56,10 +52,7 @@ t.isHexAlphaColor8 = t.isHexa8 = t.hexAlphaColor8 = t.hexa8 = e =>
   /#\b([a-f0-9]{8})\b/i.test(e)
 
 t.isColor = t.isCol = t.color = t.col = e =>
-  t.rgba(e) ||
-  t.rgb(e) ||
-  t.hex(e) ||
-  t.hexa(e)
+  t.rgba(e) || t.rgb(e) || t.hex(e) || t.hexa(e)
 
 t.isDate = t.isTime = t.date = t.time = e => e instanceof Date
 
@@ -93,7 +86,6 @@ t.isEmpty = t.empty = e => {
 
   return false
 }
-
 
 const count = (len, e) => {
   if (len.hasOwnProperty('length')) {
