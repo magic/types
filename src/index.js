@@ -31,8 +31,17 @@ t.isRGBObject = t.rgbObject = t.rgb = e =>
 t.isHexColor = t.hexColor = t.hex = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
+t.isHexColor3 = t.hexColor3 = t.hex3 = e => /#\b([a-f0-9]{3})\b/i.test(e)
+t.isHexColor4 = t.hexColor4 = t.hex4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
+
+t.isHexColor6 = t.hexColor6 = t.hex6 = e => /#\b([a-f0-9]{6})\b/i.test(e)
+t.isHexColor8 = t.hexColor8 = t.hex8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
+
 t.isHexAlphaColor = t.hexAlphaColor = t.hexa = e =>
   /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+
+t.isHexAlphaColor4 = t.isHexa4 = t.hexa4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
+t.isHexAlphaColor8 = t.isHexa8 = t.hexa8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
 t.isColor = t.color = e =>
   t.isRGBAObject(e) ||
