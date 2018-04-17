@@ -31,11 +31,15 @@ t.isRGBObject = t.rgbObject = t.rgb = e =>
 t.isHexColor = t.hexColor = t.hex = e =>
   /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i.test(e)
 
-t.isHexColor3 = t.hexColor3 = t.hex3 = e => /#\b([a-f0-9]{3})\b/i.test(e)
-t.isHexColor4 = t.hexColor4 = t.hex4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
+t.isHexColor3 = t.isHex3 = t.hexColor3 = t.hex3 = e =>
+  /#\b([a-f0-9]{3})\b/i.test(e)
+t.isHexColor4 = t.isHex4 = t.hexColor4 = t.hex4 = e =>
+  /#\b([a-f0-9]{4})\b/i.test(e)
 
-t.isHexColor6 = t.hexColor6 = t.hex6 = e => /#\b([a-f0-9]{6})\b/i.test(e)
-t.isHexColor8 = t.hexColor8 = t.hex8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
+t.isHexColor6 = t.isHex6 = t.hexColor6 = t.hex6 = e =>
+  /#\b([a-f0-9]{6})\b/i.test(e)
+t.isHexColor8 = t.isHex8 = t.hexColor8 = t.hex8 = e =>
+  /#\b([a-f0-9]{8})\b/i.test(e)
 
 t.isHexAlphaColor = t.hexAlphaColor = t.hexa = e =>
   /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
@@ -140,7 +144,7 @@ t.isUUID = t.uuid = e => {
   return true
 }
 
-t.testType = t.type = (e, type) =>
+t.testType = (e, type) =>
   Object.prototype.toString(e) === type || typeof e === type
 
 t.test = t.types = (e, ...types) => types.some(k => t.testType(e, k))

@@ -189,6 +189,18 @@ const fn = {
     { fn: () => types.isHexAlphaColor('ffffff'), expect: false },
     { fn: () => types.isHexAlphaColor(0), expect: false },
   ],
+  isHexa4: [
+    { fn: () => types.isHexa4('#0000') },
+    { fn: () => types.isHexa4('#000'), expect: false },
+    { fn: () => types.isHexa4('#00000'), expect: false },
+    { fn: () => types.isHexa4('#00000000'), expect: false },
+  ],
+  isHexa8: [
+    { fn: () => types.isHexa8('#00000000') },
+    { fn: () => types.isHexa8('#0000'), expect: false },
+    { fn: () => types.isHexa8('#000'), expect: false },
+    { fn: () => types.isHexa8('#00000'), expect: false },
+  ],
   isHexColor: [
     { fn: () => types.isHexColor('#ffffffff'), expect: true },
     { fn: () => types.isHexColor('#ffffff'), expect: true },
