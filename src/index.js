@@ -87,21 +87,26 @@ t.isEmpty = t.empty = e => {
   return false
 }
 
-const count = (len, e) => {
-  if (len.hasOwnProperty('length')) {
-    len = len.length
-  } else if (t.obj(len)) {
-    len = Object.keys(len).length
+const getLength = arg => {
+  if (t.num(arg)) {
+    return arg
   }
 
-  if (e.hasOwnProperty('length')) {
-    e = e.length
-  } else if (t.obj(e)) {
-    e = Object.keys(e).length
+  if (t.num(arg.length)) {
+    // arrays, strings
+    return arg.length
   }
 
-  return len === e
+  if (t.num(arg.size)) {
+    // Set, Map, WeakMap etc
+    return arg.size
+  }
+
+  // objects
+  return Object.keys(arg).length
 }
+
+const count = (len, e) => getLength(len) === getLength(e)
 
 // curried or not curried, depending on number of arguments
 t.count = t.length = t.len = (len, e) =>
