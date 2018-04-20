@@ -1,3 +1,5 @@
+const deep = require('@magic/deep')
+
 const t = {}
 
 t.isArray = t.isArr = t.array = t.arr = e => Array.isArray(e)
@@ -176,8 +178,13 @@ t.testType = t.type = (e, type) =>
 
 t.test = t.types = (e, ...types) => types.some(k => t.testType(e, k))
 
-t.isEq = t.eq = t.is = (e, ...types) => t.test(e, ...types)
+t.isEqual = t.isEq = t.equal = t.eq = t.is =
+  (e, ...types) => t.test(e, ...types)
 
 t.isNot = t.not = t.isNeq = t.neq = (e, ...types) => !t.test(e, ...types)
+
+
+t.deep = {}
+t.isDeepEqual = t.deepEqual = t.deep.equal = t.deep.eq = deep.equal
 
 module.exports = t
