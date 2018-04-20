@@ -211,7 +211,6 @@ const deepEqual = (a = null, b) => {
 
   // bool, string, number, falsy values
   if (comparable(a) || comparable(b)) {
-    console.log('comparable', a, b)
     return a === b
   }
 
