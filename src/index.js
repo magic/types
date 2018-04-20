@@ -90,12 +90,10 @@ t.isEmpty = t.empty = e => {
 const getLength = arg => {
   if (t.num(arg)) {
     return arg
-  }
-  else if (t.num(arg.length)) {
+  } else if (t.num(arg.length)) {
     // arrays, strings
     return arg.length
-  }
-  else if (t.num(arg.size)) {
+  } else if (t.num(arg.size)) {
     // Set, Map, WeakMap etc
     return arg.size
   }
@@ -107,8 +105,12 @@ const getLength = arg => {
 const count = (len, e) => getLength(len) === getLength(e)
 
 // curried or not curried, depending on number of arguments
-t.count = t.length = t.len = (len, e) =>
-  t.def(e) ? count(len, e) : e => count(len, e)
+t.count = t.length = t.len = getLength
+
+const eq = (a, b) => (t.def(b) ? count(a, b) : b => count(a, b))
+
+const e = 'equal'
+t.count[e] = t.length[e] = t.len[e] = t.count.eq = t.length.eq = t.len.eq = eq
 
 t.isError = t.error = t.err = e => e instanceof Error
 
