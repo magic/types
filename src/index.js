@@ -91,13 +91,11 @@ const getLength = arg => {
   if (t.num(arg)) {
     return arg
   }
-
-  if (t.num(arg.length)) {
+  else if (t.num(arg.length)) {
     // arrays, strings
     return arg.length
   }
-
-  if (t.num(arg.size)) {
+  else if (t.num(arg.size)) {
     // Set, Map, WeakMap etc
     return arg.size
   }
