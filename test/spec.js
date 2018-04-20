@@ -42,6 +42,7 @@ const types = [
   ['neq', 'isNeq', 'not', 'isNot'],
   ['isDeepEqual', 'deepEqual'],
   ['deep', ['equal', 'eq']],
+  ['isDeepDifferent', 'deepDifferent'],
 ]
 
 // flatten function array

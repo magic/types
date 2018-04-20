@@ -1,4 +1,4 @@
-const is = require('../src')
+const is = require('../../src')
 
 const object = {
   string: 'string',

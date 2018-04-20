@@ -176,11 +176,10 @@ t.testType = t.type = (e, type) =>
 
 t.test = t.types = (e, ...types) => types.some(k => t.testType(e, k))
 
-t.isEqual = t.isEq = t.equal = t.eq = t.is =
-  (e, ...types) => t.test(e, ...types)
+t.isEqual = t.isEq = t.equal = t.eq = t.is = (e, ...types) =>
+  t.test(e, ...types)
 
 t.isNot = t.not = t.isNeq = t.neq = (e, ...types) => !t.test(e, ...types)
-
 
 const comparable = a => t.boolean(a) || t.string(a) || t.number(a)
 
@@ -202,7 +201,6 @@ const deepEqual = (a = null, b) => {
   if (t.null(b)) {
     return a === b
   }
-
 
   // types must match
   if (typeof a !== typeof b) {
@@ -287,8 +285,15 @@ const deepEqual = (a = null, b) => {
   return typeof a === typeof b
 }
 
-t.deep = {}
-t.isDeepEqual = t.deepEqual = t.deep.equal = t.deep.eq = deepEqual
+t.isDeepEqual = t.deepEqual = deepEqual
+t.isDeepDifferent = t.deepDifferent = (a, b) =>
+  t.def(b) ? !deepEqual(a, b) : c => !deepEqual(a, c)
 
+t.deep = {
+  equal: deepEqual,
+  eq: deepEqual,
+  different: t.isDeepDifferent,
+  diff: t.isDeepDifferent,
+}
 
 module.exports = t
