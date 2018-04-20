@@ -38,8 +38,10 @@ const types = [
   ['args', 'arguments', 'isArgs', 'isArguments'],
   ['uuid', 'isUUID'],
   ['type', 'testType'],
-  ['types', 'test', 'is', 'eq', 'isEq'],
+  ['types', 'test', 'is', 'eq', 'isEq', 'isEqual', 'equal'],
   ['neq', 'isNeq', 'not', 'isNot'],
+  ['isDeepEqual', 'deepEqual'],
+  ['deep', ['equal', 'eq']],
 ]
 
 // flatten function array
