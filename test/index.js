@@ -4,4 +4,5 @@ module.exports = {
   types: require('./types'),
   colors: require('./colors'),
   util: require('./util'),
+  deep: require('./deep'),
 }
