@@ -1,5 +1,3 @@
-const deep = require('@magic/deep')
-
 const t = {}
 
 t.isArray = t.isArr = t.array = t.arr = e => Array.isArray(e)
@@ -184,7 +182,114 @@ t.isEqual = t.isEq = t.equal = t.eq = t.is =
 t.isNot = t.not = t.isNeq = t.neq = (e, ...types) => !t.test(e, ...types)
 
 
+const comparable = a => t.boolean(a) || t.string(a) || t.number(a)
+
+const deepEqual = (a = null, b) => {
+  // cheap
+  if (a === b) {
+    return true
+  }
+
+  // curry
+  if (t.undefined(b)) {
+    if (t.null(a)) {
+      return false
+    }
+
+    return c => deepEqual(a, c)
+  }
+
+  if (t.null(b)) {
+    return a === b
+  }
+
+
+  // types must match
+  if (typeof a !== typeof b) {
+    return false
+  }
+
+  // bool, string, number, falsy values
+  if (comparable(a) || comparable(b)) {
+    console.log('comparable', a, b)
+    return a === b
+  }
+
+  // identical 'prototype' property.
+  if (a.prototype !== b.prototype) {
+    return false
+  }
+
+  // dates
+  if (t.date(a)) {
+    if (!t.date(b)) {
+      return false
+    }
+
+    return a.getTime() === b.getTime()
+  }
+
+  // functions
+  if (t.function(a)) {
+    if (!t.function(b)) {
+      return false
+    }
+
+    return a.toString() === b.toString()
+  }
+
+  // buffers
+  if (t.buffer(a)) {
+    if (!t.buffer(b)) {
+      return false
+    }
+    if (a.length !== b.length) {
+      return false
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  // objects
+  const ka = Object.keys(a)
+  const kb = Object.keys(b)
+
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length !== kb.length) {
+    return false
+  }
+  // the same set of keys (although not necessarily the same order),
+  ka.sort()
+  kb.sort()
+  // ~~~cheap key test
+  for (let i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] !== kb[i]) {
+      return false
+    }
+  }
+
+  // equivalent values for every corresponding key, and
+  // ~~~possibly expensive deep test
+  let key
+  for (let i = ka.length - 1; i >= 0; i--) {
+    key = ka[i]
+    if (!deepEqual(a[key], b[key])) {
+      return false
+    }
+  }
+
+  return typeof a === typeof b
+}
+
 t.deep = {}
-t.isDeepEqual = t.deepEqual = t.deep.equal = t.deep.eq = deep.equal
+t.isDeepEqual = t.deepEqual = t.deep.equal = t.deep.eq = deepEqual
+
 
 module.exports = t
