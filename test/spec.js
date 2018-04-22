@@ -43,6 +43,7 @@ const types = [
   ['isDeepEqual', 'deepEqual'],
   ['deep', ['equal', 'eq']],
   ['isDeepDifferent', 'deepDifferent'],
+  ['isMergable', 'isMergableObject', 'mergable', 'mergableObject'],
 ]
 
 // flatten function array

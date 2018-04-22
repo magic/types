@@ -228,6 +228,16 @@ const fn = {
       info: 'numbers never count',
     },
   ],
+  isMergable: [
+    { fn: () => is.mergable({}), expect: true },
+    { fn: () => is.mergable({ t: 't' }), expect: true },
+    { fn: () => is.mergable(), expect: false },
+    { fn: () => is.mergable(0), expect: false },
+    { fn: () => is.mergable(() => {}), expect: false },
+    { fn: () => is.mergable(''), expect: false },
+    { fn: () => is.mergable(new Date()), expect: false },
+    { fn: () => is.mergable(/regex/), expect: false },
+  ],
 }
 
 module.exports = fn

@@ -20,6 +20,11 @@ t.isFloat = t.float = e => e === +e
 t.isObject = t.isObj = t.object = t.obj = e =>
   typeof e === 'object' && !t.nil(e)
 
+t.isMergableObject = t.mergableObject = t.isMergable = t.mergable = e =>
+  t.obj(e)
+  && !t.date(e)
+  && !t.regexp(e)
+
 t.isString = t.isStr = t.string = t.str = e => typeof e === 'string'
 
 t.isRGBAObject = t.isRGBA = t.rgbaObject = t.rgba = e =>
