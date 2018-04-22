@@ -40,10 +40,10 @@ const types = [
   ['type', 'testType'],
   ['types', 'test', 'is', 'eq', 'isEq', 'isEqual', 'equal'],
   ['neq', 'isNeq', 'not', 'isNot'],
-  ['isDeepEqual', 'deepEqual'],
+  ['isDeepEqual', 'deepEqual', 'deepEq'],
   ['deep', ['equal', 'eq']],
-  ['isDeepDifferent', 'deepDifferent'],
-  ['isMergable', 'isMergableObject', 'mergable', 'mergableObject'],
+  ['isDeepDifferent', 'deepDifferent', 'diff', 'different', 'isDifferent'],
+  ['mergeable', 'isMergeable', 'mergeableObject', 'isMergeableObject'],
 ]
 
 // flatten function array

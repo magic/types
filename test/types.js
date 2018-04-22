@@ -228,15 +228,17 @@ const fn = {
       info: 'numbers never count',
     },
   ],
-  isMergable: [
-    { fn: () => is.mergable({}), expect: true },
-    { fn: () => is.mergable({ t: 't' }), expect: true },
-    { fn: () => is.mergable(), expect: false },
-    { fn: () => is.mergable(0), expect: false },
-    { fn: () => is.mergable(() => {}), expect: false },
-    { fn: () => is.mergable(''), expect: false },
-    { fn: () => is.mergable(new Date()), expect: false },
-    { fn: () => is.mergable(/regex/), expect: false },
+  isMergeable: [
+    { fn: () => is.isMergeable({}), expect: true },
+    { fn: () => is.isMergeableObject({}), expect: true },
+    { fn: () => is.mergeableObject({}), expect: true },
+    { fn: () => is.mergeable({ t: 't' }), expect: true },
+    { fn: () => is.mergeable(), expect: false },
+    { fn: () => is.mergeable(0), expect: false },
+    { fn: () => is.mergeable(() => {}), expect: false },
+    { fn: () => is.mergeable(''), expect: false },
+    { fn: () => is.mergeable(new Date()), expect: false },
+    { fn: () => is.mergeable(/regex/), expect: false },
   ],
 }
 
