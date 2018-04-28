@@ -1,5 +1,3 @@
-const t = {}
-
 const isArray = e => Array.isArray(e)
 
 const isBoolean = e => typeof e === 'boolean'
@@ -16,15 +14,18 @@ const isInteger = e => e === +e && e === (e | 0)
 
 const isFloat = e => e === +e
 
-const isObject = e => typeof e === 'object' && !t.nil(e)
+const isObject = e => typeof e === 'object' && !isNull(e)
 
-const isMergableObject = e => t.obj(e) && !t.date(e) && !t.regexp(e)
+const isMergeableObject = e => isObject(e) && !isDate(e) && !isRegExp(e)
 
 const isString = e => typeof e === 'string'
 
-const isRGBAObject = e => t.obj(e) && [e.r, e.g, e.b, e.a].every(t.num)
+const isRGBValue = e => ![e.r, e.g, e.b].some(n => !isNumber(n))
+const isRGBAValue = e => ![e.r, e.g, e.b, e.a].some(n => !isNumber(n))
 
-const isRGBObject = e => t.obj(e) && t.num(e.r) && t.num(e.g) && t.num(e.b)
+const isRGBAObject = e => isObject(e) && isRGBAValue(e)
+
+const isRGBObject = e => isObject(e) && isRGBValue(e)
 
 const hexRegex = /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i
 const isHexColor = e => hexRegex.test(e)
@@ -43,7 +44,8 @@ const isHexAlphaColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
 
 const isHexAlphaColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
-const isColor = e => t.rgba(e) || t.rgb(e) || t.hex(e) || t.hexa(e)
+const isColor = e =>
+  isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
 
 const isDate = e => e instanceof Date
 
@@ -51,40 +53,39 @@ const isRegExp = e => e instanceof RegExp
 
 const isTruthy = e => !!e
 
-const isFalsy = e => !e || t.empty(e)
+const isFalsy = e => !e || isEmpty(e)
 
 const isEmpty = e => {
-  if (t.error(e)) {
+  if (isError(e)) {
     return false
   }
 
-  if (t.date(e)) {
+  if (isDate(e)) {
     return false
   }
 
-  if (t.regex(e)) {
+  if (isRegExp(e)) {
     return false
   }
 
-  if (!e || !t.def(e)) {
+  if (isNull(e) || isUndefined(e)) {
     return true
   }
 
-  if (t.obj(e) && Object.keys(e).length === 0) {
+  if (isObject(e) && Object.keys(e).length === 0) {
     return true
   }
 
-  return false
+  return e === 0 || e === '' || !e
 }
-t.isEmpty = t.empty = isEmpty
 
 const getLength = arg => {
-  if (t.num(arg)) {
+  if (isNumber(arg)) {
     return arg
-  } else if (t.num(arg.length)) {
+  } else if (isNumber(arg.length)) {
     // arrays, strings
     return arg.length
-  } else if (t.num(arg.size)) {
+  } else if (isNumber(arg.size)) {
     // Set, Map, WeakMap etc
     return arg.size
   }
@@ -98,52 +99,56 @@ const count = (len, e) => getLength(len) === getLength(e)
 
 const compareCount = (len, e) => getLength(len) === getLength(e)
 const isLengthEqual = (a, b) =>
-  t.def(b) ? compareCount(a, b) : b => compareCount(a, b)
+  isDefined(b) ? compareCount(a, b) : b => compareCount(a, b)
 
-const e = 'equal'
+const isLengthGreater = (a, b) =>
+  isDefined(b) ? getLength(a) > getLength(b) : c => isLengthGreater(a, c)
+
+const isLengthSmaller = (a, b) =>
+  isDefined(b) ? getLength(a) < getLength(b) : c => isLengthSmaller(a, c)
 
 const isError = e => e instanceof Error
 
-const isIterable = e => t.def(e) && !t.nil(e) && t.fn(e.forEach)
+const isIterable = e => isDefined(e) && !isNull(e) && isFunction(e.forEach)
 
-const isEmail = e => t.str(e) && e.indexOf('@') > -1
+const isEmail = e => isString(e) && e.indexOf('@') > -1
 
 const isNull = e => e === null
 
-const isUndefinedOrNull = e => e === null || !t.def(e)
+const isUndefinedOrNull = e => e === null || !isDefined(e)
 
 const isBuffer = e => {
-  if (!e || !t.obj(e) || t.empty(e)) {
+  if (!e || !isObject(e) || isEmpty(e)) {
     return false
   }
 
-  if (!t.fn(e.copy) || !t.fn(e.slice)) {
+  if (!isFunction(e.copy) || !isFunction(e.slice)) {
     return false
   }
 
-  if (!t.number(e[0])) {
+  if (!isNumber(e[0])) {
     return false
   }
 
   return true
 }
 
-const isPromise = e => e && t.fn(e.then)
+const isPromise = e => e && isFunction(e.then)
 
 const isArguments = e =>
   Object.prototype.toString.call(e) === '[object Arguments]'
 
 const isUUID = e => {
-  if (!t.def(e)) {
+  if (!isDefined(e)) {
     return false
   }
 
-  if (!t.str(e)) {
+  if (!isString(e)) {
     return false
   }
 
   const split = e.split('-')
-  if (split.length !== 5) {
+  if (!is.len.equal(split, 5)) {
     return false
   }
 
@@ -159,16 +164,16 @@ const isUUID = e => {
   return true
 }
 
-const testType = (e, type) =>
+const isType = (e, type) =>
   typeof e === type || Object.prototype.toString(e) === type
 
-const test = (e, ...types) => types.some(k => t.testType(e, k))
+const isTypes = (e, ...types) => types.some(k => isType(e, k))
 
-const isEqual = (e, ...types) => t.test(e, ...types)
+const isEqual = (e, ...types) => isTypes(e, ...types)
 
-const isNot = (e, ...types) => !t.test(e, ...types)
+const isNot = (e, ...types) => !isTypes(e, ...types)
 
-const isComparable = a => t.boolean(a) || t.string(a) || t.number(a)
+const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
 
 const isDeepEqual = (a, b) => {
   // curry
@@ -176,6 +181,7 @@ const isDeepEqual = (a, b) => {
     if (!isUndefined(a)) {
       return c => isDeepEqual(a, c)
     }
+
     return true
   }
 
@@ -195,8 +201,8 @@ const isDeepEqual = (a, b) => {
     return eq
   }
 
-  if (isMergableObject(a)) {
-    if (!isMergableObject(b)) {
+  if (isMergeableObject(a)) {
+    if (!isMergeableObject(b)) {
       return false
     }
     const ka = Object.keys(a)
@@ -221,55 +227,233 @@ const isDeepDifferent = (a, b) => {
   return !isDeepEqual(a, b)
 }
 
-t.count = t.length = t.len = getLength
-t.count.equal = t.length.equal = t.len.equal = t.count.eq = t.length.eq = t.len.eq = isLengthEqual
-t.isError = t.error = t.err = isError
-t.isIterable = t.isIter = t.iterable = t.iter = isIterable
-t.isEmail = t.isMail = t.email = t.mail = isEmail
-t.isNull = t.isNil = t.null = t.nil = isNull
-t.isUndefinedOrNull = t.undefinedOrNull = isUndefinedOrNull
-t.isBuffer = t.buffer = t.buff = isBuffer
-t.isPromise = t.promise = t.isThenable = t.isThen = t.thenable = t.then = isPromise
-t.isArguments = t.isArgs = t.arguments = t.args = isArguments
-t.isUUID = t.uuid = isUUID
-t.testType = t.type = testType
-t.test = t.types = test
-t.isEqual = t.isEq = t.equal = t.eq = t.is = isEqual
-t.isNot = t.not = t.isNeq = t.neq = isNot
-t.isArray = t.isArr = t.array = t.arr = isArray
-t.isBoolean = t.isBool = t.boolean = t.bool = isBoolean
-t.isDefined = t.isDef = t.defined = t.def = isDefined
-t.isUndefined = t.isUndef = t.undefined = t.undef = isUndefined
-t.isFunction = t.isFunc = t.isFn = t.function = t.func = t.fn = isFunction
-t.isNumber = t.isNum = t.number = t.num = isNumber
-t.isInteger = t.isInt = t.integer = t.int = isInteger
-t.isFloat = t.float = isFloat
-t.isObject = t.isObj = t.object = t.obj = isObject
-t.isMergeableObject = t.mergeableObject = t.isMergeable = t.mergeable = isMergableObject
-t.isString = t.isStr = t.string = t.str = isString
-t.isRGBAObject = t.isRGBA = t.rgbaObject = t.rgba = isRGBAObject
-t.isRGBObject = t.isRGB = t.rgbObject = t.rgb = isRGBObject
-t.isHexColor = t.isHex = t.hexColor = t.hex = isHexColor
-t.isHexColor3 = t.isHex3 = t.hexColor3 = t.hex3 = isHexColor3
-t.isHexColor4 = t.isHex4 = t.hexColor4 = t.hex4 = isHexColor4
-t.isHexColor6 = t.isHex6 = t.hexColor6 = t.hex6 = isHexColor6
-t.isHexColor8 = t.isHex8 = t.hexColor8 = t.hex8 = isHexColor8
-t.isHexAlphaColor = t.isHexa = t.hexAlphaColor = t.hexa = isHexAlphaColor
-t.isHexAlphaColor4 = t.isHexa4 = t.hexAlphaColor4 = t.hexa4 = isHexAlphaColor4
-t.isHexAlphaColor8 = t.isHexa8 = t.hexAlphaColor8 = t.hexa8 = isHexAlphaColor8
-t.isColor = t.isCol = t.color = t.col = isColor
-t.isDate = t.isTime = t.date = t.time = isDate
-t.isRegExp = t.isRegex = t.regExp = t.regexp = t.regex = isRegExp
-t.isTruthy = t.truthy = isTruthy
-t.isFalsy = t.falsy = isFalsy
-t.isDeepEqual = t.deepEqual = t.deepEq = isDeepEqual
-t.isDeepDifferent = t.deepDifferent = t.isDifferent = t.different = t.diff = isDeepDifferent
+const is = {
+  count: getLength,
+  length: getLength,
+  len: getLength,
 
-t.deep = {
-  equal: isDeepEqual,
-  eq: isDeepEqual,
-  different: isDeepDifferent,
-  diff: isDeepDifferent,
+  isError,
+  error: isError,
+  err: isError,
+
+  isIterable,
+  isIter: isIterable,
+  iterable: isIterable,
+  iter: isIterable,
+
+  isEmail,
+  isMail: isEmail,
+  email: isEmail,
+  mail: isEmail,
+
+  isNull,
+  isNil: isNull,
+  null: isNull,
+  nil: isNull,
+
+  isUndefinedOrNull,
+  undefinedOrNull: isUndefinedOrNull,
+
+  isBuffer,
+  buffer: isBuffer,
+  buff: isBuffer,
+
+  isPromise,
+  promise: isPromise,
+  isThenable: isPromise,
+  isThen: isPromise,
+  thenable: isPromise,
+  then: isPromise,
+
+  isArguments,
+  isArgs: isArguments,
+  arguments: isArguments,
+  args: isArguments,
+
+  isUUID,
+  uuid: isUUID,
+
+  isType,
+  testType: isType,
+  type: isType,
+
+  isTypes,
+  test: isTypes,
+  types: isTypes,
+
+  isEmpty,
+  empty: isEmpty,
+
+  isEqual,
+  isEq: isEqual,
+  equal: isEqual,
+  eq: isEqual,
+  is: isEqual,
+
+  isNot,
+  not: isNot,
+  isNeq: isNot,
+  neq: isNot,
+
+  isArray,
+  isArr: isArray,
+  array: isArray,
+  arr: isArray,
+
+  isBoolean,
+  isBool: isBoolean,
+  boolean: isBoolean,
+  bool: isBoolean,
+
+  isDefined,
+  isDef: isDefined,
+  defined: isDefined,
+  def: isDefined,
+
+  isUndefined,
+  isUndef: isUndefined,
+  undefined: isUndefined,
+  undef: isUndefined,
+
+  isFunction,
+  isFunc: isFunction,
+  isFn: isFunction,
+  function: isFunction,
+  func: isFunction,
+  fn: isFunction,
+
+  isNumber,
+  isNum: isNumber,
+  number: isNumber,
+  num: isNumber,
+
+  isInteger,
+  isInt: isInteger,
+  integer: isInteger,
+  int: isInteger,
+
+  isFloat,
+  float: isFloat,
+
+  isObject,
+  isObj: isObject,
+  object: isObject,
+  obj: isObject,
+
+  isMergeableObject,
+  mergeableObject: isMergeableObject,
+  isMergeable: isMergeableObject,
+  mergeable: isMergeableObject,
+
+  isString,
+  isStr: isString,
+  string: isString,
+  str: isString,
+
+  isRGBAObject,
+  isRGBA: isRGBAObject,
+  rgbaObject: isRGBAObject,
+  rgba: isRGBAObject,
+
+  isRGBObject,
+  isRGB: isRGBObject,
+  rgbObject: isRGBObject,
+  rgb: isRGBObject,
+
+  isHexColor,
+  isHex: isHexColor,
+  hexColor: isHexColor,
+  hex: isHexColor,
+
+  isHexColor3,
+  isHex3: isHexColor3,
+  hexColor3: isHexColor3,
+  hex3: isHexColor3,
+
+  isHexColor4,
+  isHex4: isHexColor4,
+  hexColor4: isHexColor4,
+  hex4: isHexColor4,
+
+  isHexColor6,
+  isHex6: isHexColor6,
+  hexColor6: isHexColor6,
+  hex6: isHexColor6,
+
+  isHexColor8,
+  isHex8: isHexColor8,
+  hexColor8: isHexColor8,
+  hex8: isHexColor8,
+
+  isHexAlphaColor,
+  isHexa: isHexAlphaColor,
+  hexAlphaColor: isHexAlphaColor,
+  hexa: isHexAlphaColor,
+
+  isHexAlphaColor4,
+  isHexa4: isHexAlphaColor4,
+  hexAlphaColor4: isHexAlphaColor4,
+  hexa4: isHexAlphaColor4,
+
+  isHexAlphaColor8,
+  isHexa8: isHexAlphaColor8,
+  hexAlphaColor8: isHexAlphaColor8,
+  hexa8: isHexAlphaColor8,
+
+  isColor,
+  isCol: isColor,
+  color: isColor,
+  col: isColor,
+
+  isDate,
+  isTime: isDate,
+  date: isDate,
+  time: isDate,
+
+  isRegExp,
+  isRegex: isRegExp,
+  regExp: isRegExp,
+  regexp: isRegExp,
+  regex: isRegExp,
+
+  isTruthy,
+  truthy: isTruthy,
+
+  isFalsy,
+  falsy: isFalsy,
+
+  isDeepEqual,
+  deepEqual: isDeepEqual,
+  deepEq: isDeepEqual,
+
+  isDeepDifferent,
+  deepDifferent: isDeepDifferent,
+  deepDiff: isDeepDifferent,
+
+  deep: isDeepEqual,
 }
 
-module.exports = t
+is.len.eq = isLengthEqual
+is.count.equal = isLengthEqual
+is.length.equal = isLengthEqual
+is.len.equal = isLengthEqual
+is.count.eq = isLengthEqual
+is.length.eq = isLengthEqual
+
+is.length.greater = isLengthGreater
+is.length.gt = isLengthGreater
+is.length.bigger = isLengthGreater
+
+is.length.lower = isLengthSmaller
+is.length.smaller = isLengthSmaller
+is.length.lt = isLengthSmaller
+
+is.deep.isDifferent = isDeepDifferent
+is.deep.different = isDeepDifferent
+is.deep.diff = isDeepDifferent
+
+is.deep.isEqual = isDeepEqual
+is.deep.equal = isDeepEqual
+is.deep.eq = isDeepEqual
+
+module.exports = is
