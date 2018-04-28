@@ -1,77 +1,224 @@
-const t = require('../src')
+const is = require('../src')
+const { log, version } = require('@magic/test')
 
-const types = [
-  ['arr', 'array', 'isArr', 'isArray'],
-  ['bool', 'boolean', 'isBool', 'isBoolean'],
-  ['def', 'defined', 'isDef', 'isDefined'],
-  ['undef', 'undefined', 'isUndef', 'isUndefined'],
-  ['fn', 'func', 'function', 'isFn', 'isFunc', 'isFunction'],
-  ['num', 'number', 'isNum', 'isNumber'],
-  ['int', 'integer', 'isInt', 'isInteger'],
-  ['float', 'isFloat'],
-  ['count', 'length', 'len'],
-  ['obj', 'object', 'isObj', 'isObject'],
-  ['str', 'string', 'isStr', 'isString'],
-  ['rgba', 'rgbaObject', 'isRGBA', 'isRGBAObject'],
-  ['rgb', 'rgbObject', 'isRGB', 'isRGBObject'],
-  ['hex', 'hexColor', 'isHex', 'isHexColor'],
-  ['hex3', 'hexColor3', 'isHex3', 'isHexColor3'],
-  ['hex4', 'hexColor4', 'isHex4', 'isHexColor4'],
-  ['hex6', 'hexColor6', 'isHex6', 'isHexColor6'],
-  ['hex8', 'hexColor8', 'isHex8', 'isHexColor8'],
-  ['hexa', 'hexAlphaColor', 'isHexa', 'isHexAlphaColor'],
-  ['hexa4', 'hexAlphaColor4', 'isHexa4', 'isHexAlphaColor4'],
-  ['hexa8', 'hexAlphaColor8', 'isHexa8', 'isHexAlphaColor8'],
-  ['col', 'color', 'isCol', 'isColor'],
-  ['time', 'date', 'isTime', 'isDate'],
-  ['regex', 'regexp', 'regExp', 'isRegex', 'isRegExp'],
-  ['truthy', 'isTruthy'],
-  ['falsy', 'isFalsy'],
-  ['empty', 'isEmpty'],
-  ['err', 'error', 'isError'],
-  ['iter', 'iterable', 'isIter', 'isIterable'],
-  ['mail', 'email', 'isMail', 'isEmail'],
-  ['nil', 'null', 'isNil', 'isNull'],
-  ['undefinedOrNull', 'isUndefinedOrNull'],
-  ['buff', 'buffer', 'isBuffer'],
-  ['promise', 'isPromise', 'then', 'thenable', 'isThen', 'isThenable'],
-  ['args', 'arguments', 'isArgs', 'isArguments'],
-  ['uuid', 'isUUID'],
-  ['type', 'testType'],
-  ['types', 'test', 'is', 'eq', 'isEq', 'isEqual', 'equal'],
-  ['neq', 'isNeq', 'not', 'isNot'],
-  ['isDeepEqual', 'deepEqual', 'deepEq'],
-  ['deep', ['equal', 'eq']],
-  ['isDeepDifferent', 'deepDifferent', 'diff', 'different', 'isDifferent'],
-  ['mergeable', 'isMergeable', 'mergeableObject', 'isMergeableObject'],
-]
+const spec = {
+  arr: is.fn,
+  array: is.fn,
+  isArr: is.fn,
+  isArray: is.fn,
 
-// flatten function array
-const allFns = types.reduce((glob, t) => glob.concat(t))
+  bool: is.fn,
+  boolean: is.fn,
+  isBool: is.fn,
+  isBoolean: is.fn,
 
-// compare two functions for equality
-const compare = (a, b) => a.toString() !== b.toString()
+  def: is.fn,
+  defined: is.fn,
+  isDef: is.fn,
+  isDefined: is.fn,
 
-// returns a test function that tests if all items in an array are equal
-const equal = a => () => a.some(b => compare(a, b))
+  undef: is.fn,
+  undefined: is.fn,
+  isUndef: is.fn,
+  isUndefined: is.fn,
 
-// test every nested types array for equality with the other array elements
-const equalities = types.map(t => ({
-  fn: equal(t),
-  info: `test function equality: ${t}`,
-}))
+  fn: is.fn,
+  func: is.fn,
+  function: is.fn,
+  isFn: is.fn,
+  isFunc: is.fn,
+  isFunction: is.fn,
+
+  num: is.fn,
+  number: is.fn,
+  isNum: is.fn,
+  isNumber: is.fn,
+
+  int: is.fn,
+  integer: is.fn,
+  isInt: is.fn,
+  isInteger: is.fn,
+
+  float: is.fn,
+  isFloat: is.fn,
+
+  count: is.fn,
+  length: is.fn,
+  len: is.fn,
+
+  obj: is.fn,
+  object: is.fn,
+  isObj: is.fn,
+  isObject: is.fn,
+
+  str: is.fn,
+  string: is.fn,
+  isStr: is.fn,
+  isString: is.fn,
+
+  rgba: is.fn,
+  rgbaObject: is.fn,
+  isRGBA: is.fn,
+  isRGBAObject: is.fn,
+
+  rgb: is.fn,
+  rgbObject: is.fn,
+  isRGB: is.fn,
+  isRGBObject: is.fn,
+
+  hex: is.fn,
+  hexColor: is.fn,
+  isHex: is.fn,
+  isHexColor: is.fn,
+
+  hex3: is.fn,
+  hexColor3: is.fn,
+  isHex3: is.fn,
+  isHexColor3: is.fn,
+
+  hex4: is.fn,
+  hexColor4: is.fn,
+  isHex4: is.fn,
+  isHexColor4: is.fn,
+
+  hex6: is.fn,
+  hexColor6: is.fn,
+  isHex6: is.fn,
+  isHexColor6: is.fn,
+
+  hex8: is.fn,
+  hexColor8: is.fn,
+  isHex8: is.fn,
+  isHexColor8: is.fn,
+
+  hexa: is.fn,
+  hexAlphaColor: is.fn,
+  isHexa: is.fn,
+  isHexAlphaColor: is.fn,
+
+  hexa4: is.fn,
+  hexAlphaColor4: is.fn,
+  isHexa4: is.fn,
+  isHexAlphaColor4: is.fn,
+
+  hexa8: is.fn,
+  hexAlphaColor8: is.fn,
+  isHexa8: is.fn,
+  isHexAlphaColor8: is.fn,
+
+  col: is.fn,
+  color: is.fn,
+  isCol: is.fn,
+  isColor: is.fn,
+
+  time: is.fn,
+  date: is.fn,
+  isTime: is.fn,
+  isDate: is.fn,
+
+  regex: is.fn,
+  regexp: is.fn,
+  regExp: is.fn,
+  isRegex: is.fn,
+  isRegExp: is.fn,
+
+  truthy: is.fn,
+  isTruthy: is.fn,
+
+  falsy: is.fn,
+  isFalsy: is.fn,
+
+  empty: is.fn,
+  isEmpty: is.fn,
+
+  err: is.fn,
+  error: is.fn,
+  isError: is.fn,
+
+  iter: is.fn,
+  iterable: is.fn,
+  isIter: is.fn,
+  isIterable: is.fn,
+
+  mail: is.fn,
+  email: is.fn,
+  isMail: is.fn,
+  isEmail: is.fn,
+
+  nil: is.fn,
+  null: is.fn,
+  isNil: is.fn,
+  isNull: is.fn,
+
+  undefinedOrNull: is.fn,
+  isUndefinedOrNull: is.fn,
+
+  buff: is.fn,
+  buffer: is.fn,
+  isBuffer: is.fn,
+
+  promise: is.fn,
+  isPromise: is.fn,
+  then: is.fn,
+  thenable: is.fn,
+  isThen: is.fn,
+  isThenable: is.fn,
+
+  args: is.fn,
+  arguments: is.fn,
+  isArgs: is.fn,
+  isArguments: is.fn,
+
+  uuid: is.fn,
+  isUUID: is.fn,
+
+  isType: is.fn,
+  type: is.fn,
+  testType: is.fn,
+
+  isTypes: is.fn,
+  types: is.fn,
+  test: is.fn,
+  is: is.fn,
+  eq: is.fn,
+  isEq: is.fn,
+  isEqual: is.fn,
+  equal: is.fn,
+
+  neq: is.fn,
+  isNeq: is.fn,
+  not: is.fn,
+  isNot: is.fn,
+
+  deep: [
+    is.fn,
+    {
+      isDifferent: is.fn,
+      different: is.fn,
+      diff: is.fn,
+      isEqual: is.fn,
+      equal: is.fn,
+      eq: is.fn,
+    },
+  ],
+
+  isDeepEqual: is.fn,
+  deepEqual: is.fn,
+  deepEq: is.fn,
+
+  isDeepDifferent: is.fn,
+  deepDifferent: is.fn,
+  deepDiff: is.fn,
+
+  mergeable: is.fn,
+  isMergeable: is.fn,
+  mergeableObject: is.fn,
+  isMergeableObject: is.fn,
+}
 
 const fns = [
-  {
-    fn: () => Object.keys(t).filter(k => allFns.indexOf(k) === -1),
-    expect: a => a.length === 0 || console.log('Missing Spec Tests', a),
-    info: 'Number of test functions is equal to lib functions',
-  },
-  {
-    fn: () => allFns.some(k => t.function(t[k])),
-    info: 'All exposed fields are functions',
-  },
-  ...equalities,
+  { fn: () => version.lib(is, spec), expect: is.len.eq(0) },
+  { fn: () => version.spec(spec, is), expect: is.len.eq(0) },
 ]
 
 module.exports = fns
