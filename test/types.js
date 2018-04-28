@@ -1,10 +1,6 @@
 const is = require('../src')
 
-const vals = {
-  obj: { t: 't' },
-}
-
-const fn = {
+module.exports = {
   isDefined: [
     { fn: () => is.isDefined([1, 2, 3]), expect: true },
     { fn: () => is.isDef([1, 2, 3]), expect: true },
@@ -241,5 +237,3 @@ const fn = {
     { fn: () => is.mergeable(/regex/), expect: false },
   ],
 }
-
-module.exports = fn
