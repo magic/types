@@ -69,8 +69,7 @@ const fns = [
     expect: false,
   },
   {
-    fn: () =>
-      is.deep.different({ t: (a, b) => [a, b] }, { t: (a, b) => [a, b] }),
+    fn: () => is.deep.different({ t: (a, b) => [a, b] }, { t: (a, b) => [a, b] }),
     expect: false,
   },
   {
@@ -102,7 +101,8 @@ const fns = [
   // currying
   {
     fn: () => is.deep.different(),
-    info: 'deep.different called without arguments returns true ',
+    expect: false,
+    info: 'deep.different called without arguments returns false ',
   },
   { fn: () => is.deep.different(null), expect: is.function },
   { fn: () => is.deep.different(date), expect: is.function },
