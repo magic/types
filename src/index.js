@@ -44,8 +44,7 @@ const isHexAlphaColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
 
 const isHexAlphaColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
-const isColor = e =>
-  isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
+const isColor = e => isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
 
 const isDate = e => e instanceof Date
 
@@ -64,16 +63,12 @@ const isEmpty = e => {
     return false
   }
 
-  if (isRegExp(e)) {
-    return false
-  }
-
   if (isNull(e) || isUndefined(e)) {
     return true
   }
 
-  if (isObject(e) && Object.keys(e).length === 0) {
-    return true
+  if (isArray(e) || isObject(e) || isRegExp(e)) {
+    return isLengthSmaller(e, 1)
   }
 
   return e === 0 || e === '' || !e
@@ -88,6 +83,13 @@ const getLength = arg => {
   } else if (isNumber(arg.size)) {
     // Set, Map, WeakMap etc
     return arg.size
+  } else if (isRegExp(arg)) {
+    const str = arg.toString()
+    if (str === '/(?:)/') {
+      return 0
+    } else {
+      return str.length > 2
+    }
   }
 
   // objects
@@ -98,8 +100,7 @@ const getLength = arg => {
 const count = (len, e) => getLength(len) === getLength(e)
 
 const compareCount = (len, e) => getLength(len) === getLength(e)
-const isLengthEqual = (a, b) =>
-  isDefined(b) ? compareCount(a, b) : b => compareCount(a, b)
+const isLengthEqual = (a, b) => (isDefined(b) ? compareCount(a, b) : b => compareCount(a, b))
 
 const isLengthGreater = (a, b) =>
   isDefined(b) ? getLength(a) > getLength(b) : c => isLengthGreater(a, c)
@@ -135,8 +136,7 @@ const isBuffer = e => {
 
 const isPromise = e => e && isFunction(e.then)
 
-const isArguments = e =>
-  Object.prototype.toString.call(e) === '[object Arguments]'
+const isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
 
 const isUUID = e => {
   if (!isDefined(e)) {
@@ -164,8 +164,7 @@ const isUUID = e => {
   return true
 }
 
-const isType = (e, type) =>
-  typeof e === type || Object.prototype.toString(e) === type
+const isType = (e, type) => typeof e === type || Object.prototype.toString(e) === type
 
 const isTypes = (e, ...types) => types.some(k => isType(e, k))
 
@@ -193,18 +192,11 @@ const isDeepEqual = (a, b) => {
   const comp = (_, i) => !isDeepEqual(a[i], b[i])
 
   if (isArray(a)) {
-    if (!isArray(b)) {
-      return false
-    }
-
     const eq = !a.some(comp)
     return eq
   }
 
   if (isMergeableObject(a)) {
-    if (!isMergeableObject(b)) {
-      return false
-    }
     const ka = Object.keys(a)
     const kb = Object.keys(b)
 
@@ -218,7 +210,7 @@ const isDeepEqual = (a, b) => {
 const isDeepDifferent = (a, b) => {
   if (isUndefined(b)) {
     if (isUndefined(a)) {
-      return true
+      return false
     }
 
     return c => isDeepDifferent(a, c)
