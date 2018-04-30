@@ -190,6 +190,10 @@ const spec = {
   not: is.fn,
   isNot: is.fn,
 
+  isComparable: is.fn,
+  Comparable: is.fn,
+  comparable: is.fn,
+
   deep: [
     is.fn,
     {
