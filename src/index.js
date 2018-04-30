@@ -175,34 +175,96 @@ const isNot = (e, ...types) => !isTypes(e, ...types)
 
 const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
 
-const isDeepEqual = (a, b) => {
+const isDeepEqual = (a = null, b) => {
   // curry
-  if (isUndefined(b)) {
-    if (!isUndefined(a)) {
-      return c => isDeepEqual(a, c)
+  if (is.undefined(b)) {
+    if (is.null(a)) {
+      return false
+    }
+
+    return c => isDeepEqual(a, c)
+  }
+
+  if (is.null(b)) {
+    return a === b
+  }
+
+  // types must match
+  if (typeof a !== typeof b) {
+    return false
+  }
+  
+  // bool, string, number, falsy values
+  if (isComparable(a) || isComparable(b)) {
+    return a === b
+  }
+
+  // identical 'prototype' property.
+  if (a.prototype !== b.prototype) {
+    return false
+  }
+
+  if (isArguments(a)) {
+    return isLengthEqual(a, b)
+  }
+
+  // real types must match too
+  if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
+    return false
+  }
+
+  // dates
+  if (is.date(a)) {
+    return a.getTime() === b.getTime()
+  }
+
+  // functions
+  if (is.function(a)) {
+    return a.toString() === b.toString()
+  }
+
+  // buffers
+  if (is.buffer(a)) {
+    if (a.length !== b.length) {
+      return false
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        return false
+      }
     }
 
     return true
   }
 
-  // types must match
-  if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
+  // objects
+  const ka = Object.keys(a)
+  const kb = Object.keys(b)
+
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length !== kb.length) {
     return false
   }
-
-  const comp = (_, i) => !isDeepEqual(a[i], b[i])
-
-  if (isArray(a)) {
-    const eq = !a.some(comp)
-    return eq
+  // the same set of keys (although not necessarily the same order),
+  ka.sort()
+  kb.sort()
+  // ~~~cheap key test
+  for (let i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] !== kb[i]) {
+      return false
+    }
   }
 
-  if (isMergeableObject(a)) {
-    const ka = Object.keys(a)
-    const kb = Object.keys(b)
-
-    const eq = ka.length === kb.length && !ka.some(comp)
-    return eq
+  // equivalent values for every corresponding key, and
+  // ~~~possibly expensive deep test
+  let key
+  for (let i = ka.length - 1; i >= 0; i--) {
+    key = ka[i]
+    if (!isDeepEqual(a[key], b[key])) {
+      return false
+    }
   }
 
   return typeof a === typeof b
