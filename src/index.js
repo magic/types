@@ -57,17 +57,17 @@ const isFalsy = e => !e || isEmpty(e)
 const isEmpty = e => {
   if (isError(e)) {
     return false
-  }
-
-  if (isDate(e)) {
+  } else if (isDate(e)) {
     return false
-  }
-
-  if (isNull(e) || isUndefined(e)) {
+  } else if (isNull(e)) {
     return true
-  }
-
-  if (isArray(e) || isObject(e) || isRegExp(e)) {
+  } else if (isUndefined(e)) {
+    return true
+  } else if (isArray(e)) {
+    return isLengthSmaller(e, 1)
+  } else if (isRegExp(e)) {
+    return isLengthSmaller(e, 1)
+  } else if (isObject(e)) {
     return isLengthSmaller(e, 1)
   }
 
@@ -119,15 +119,15 @@ const isNull = e => e === null
 const isUndefinedOrNull = e => e === null || !isDefined(e)
 
 const isBuffer = e => {
-  if (!e || !isObject(e) || isEmpty(e)) {
+  if (!e) {
     return false
-  }
-
-  if (!isFunction(e.copy) || !isFunction(e.slice)) {
+  } else if (isEmpty(e)) {
     return false
-  }
-
-  if (!isNumber(e[0])) {
+  } else if (!isObject(e)) {
+    return false
+  } else if (!isFunction(e.copy)) {
+    return false
+  } else if (!isNumber(e[0])) {
     return false
   }
 
@@ -157,6 +157,7 @@ const isUUID = e => {
     return false
   }
 
+  // hex strings end at 'f'
   if (Object.values(e).some(s => s > 'f' || s < 0)) {
     return false
   }
@@ -396,6 +397,10 @@ const is = {
   isCol: isColor,
   color: isColor,
   col: isColor,
+
+  isComparable,
+  Comparable: isComparable,
+  comparable: isComparable,
 
   isDate,
   isTime: isDate,
