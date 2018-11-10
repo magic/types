@@ -141,6 +141,10 @@ isEq(42, 'number') // true
 isNot = isNeq = is.not(42, 'number') // true
 // alias is.neq
 
+isDeepEqual([1, 2, 3], [1, 2, 3]) // true
+// alias is.deep.eq, is.deep.equal
+isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
+// alias is.deep.diff, is.deep.different
 ```
 
 TODO:
