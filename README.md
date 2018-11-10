@@ -138,3 +138,6 @@ isNot = isNeq = is.not(42, 'number') // true
 // alias is.neq
 
 ```
+
+TODO:
+curry most functions with multiple arguments
