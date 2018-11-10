@@ -2,6 +2,10 @@
 
 typechecking utilities
 
+[![NPM version][npm-image]][npm-url]
+[![Linux Build Status][travis-image]][travis-url]
+[![Windows Build Status][appveyor-image]][appveyor-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 
 ##### install
 ```javascript
@@ -141,3 +145,13 @@ isNot = isNeq = is.not(42, 'number') // true
 
 TODO:
 curry most functions with multiple arguments
+
+
+[npm-image]: https://img.shields.io/npm/v/@magic/types.svg
+[npm-url]: https://www.npmjs.com/package/@magic/types
+[travis-image]: https://travis-ci.com/magic/types.svg?branch=master
+[travis-url]: https://travis-ci.org/magic/types
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/fjlaoi06hye3p6p3/branch/master
+[appveyor-url]: https://ci.appveyor.com/project/jaeh/types/branch/master
+[coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
+[coveralls-url]: https://coveralls.io/github/magic/types
