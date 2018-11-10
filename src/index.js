@@ -193,7 +193,7 @@ const isDeepEqual = (a = null, b) => {
   if (typeof a !== typeof b) {
     return false
   }
-  
+
   // bool, string, number, falsy values
   if (isComparable(a) || isComparable(b)) {
     return a === b
