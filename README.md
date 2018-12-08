@@ -1,5 +1,7 @@
 # @magic/types
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/magic/types.svg)](https://greenkeeper.io/)
+
 typechecking utilities
 
 [![NPM version][npm-image]][npm-url]
