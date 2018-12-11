@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/magic/types/issues"
   },
+  "files": [
+    "src"
+  ],
   "homepage": "https://github.com/magic/types",
   "devDependencies": {
     "@magic/test": "github:magic/test"
