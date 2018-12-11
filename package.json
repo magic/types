@@ -24,6 +24,6 @@
   ],
   "homepage": "https://github.com/magic/types",
   "devDependencies": {
-    "@magic/test": "github:magic/test"
+    "@magic/test": "0.0.1"
   }
 }
