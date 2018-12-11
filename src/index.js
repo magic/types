@@ -96,9 +96,6 @@ const getLength = arg => {
   return Object.keys(arg).length
 }
 
-// curried or not curried, depending on number of arguments
-const count = (len, e) => getLength(len) === getLength(e)
-
 const compareCount = (len, e) => getLength(len) === getLength(e)
 const isLengthEqual = (a, b) => (isDefined(b) ? compareCount(a, b) : b => compareCount(a, b))
 
@@ -286,6 +283,7 @@ const is = {
   count: getLength,
   length: getLength,
   len: getLength,
+  ln: getLength,
 
   isError,
   error: isError,
@@ -492,20 +490,22 @@ const is = {
   deep: isDeepEqual,
 }
 
-is.len.eq = isLengthEqual
-is.count.equal = isLengthEqual
-is.length.equal = isLengthEqual
-is.len.equal = isLengthEqual
-is.count.eq = isLengthEqual
-is.length.eq = isLengthEqual
+// assign ln as properties of the getLength function
+const ln = {
+  eq: isLengthEqual,
+  equal: isLengthEqual,
+  greater: isLengthGreater,
+  gt: isLengthGreater,
+  bigger: isLengthGreater,
+  lower: isLengthSmaller,
+  smaller: isLengthSmaller,
+  lt: isLengthSmaller,
+}
 
-is.length.greater = isLengthGreater
-is.length.gt = isLengthGreater
-is.length.bigger = isLengthGreater
-
-is.length.lower = isLengthSmaller
-is.length.smaller = isLengthSmaller
-is.length.lt = isLengthSmaller
+const lenKeys = ['count', 'length', 'len', 'ln']
+Object.entries(ln).forEach(([k, v]) =>
+  lenKeys.forEach(key => is[key][k] = v)
+)
 
 is.deep.isDifferent = isDeepDifferent
 is.deep.different = isDeepDifferent

@@ -1,5 +1,5 @@
 const is = require('../src')
-const { log, version } = require('@magic/test')
+const { version } = require('@magic/test')
 
 const spec = {
   arr: is.fn,
@@ -42,9 +42,10 @@ const spec = {
   float: is.fn,
   isFloat: is.fn,
 
-  count: is.fn,
-  length: is.fn,
-  len: is.fn,
+  count: () => true,
+  len: () => true,
+  ln: () => true,
+  length: () => true,
 
   obj: is.fn,
   object: is.fn,
