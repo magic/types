@@ -503,9 +503,7 @@ const ln = {
 }
 
 const lenKeys = ['count', 'length', 'len', 'ln']
-Object.entries(ln).forEach(([k, v]) =>
-  lenKeys.forEach(key => is[key][k] = v)
-)
+Object.entries(ln).forEach(([k, v]) => lenKeys.forEach(key => (is[key][k] = v)))
 
 is.deep.isDifferent = isDeepDifferent
 is.deep.different = isDeepDifferent
