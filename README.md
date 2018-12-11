@@ -9,9 +9,7 @@ typechecking utilities
 
 ##### install
 ```javascript
-  # note that there is no @.
-  npm install magic/types
-
+  npm install @magic/types
 ```
 
 ##### import single function
@@ -27,7 +25,6 @@ isArray([]) // true
 const is = require('@magic/types')
 
 is.array([]) // true
-
 ```
 
 ##### functions
@@ -41,7 +38,7 @@ is(ele, ...types)
 not(ele, ...types)
 // alias is.neq, isNeq, isNot
 
-type comparisons:  
+type comparisons:
 isArray([]) // true
 // alias isArr, is.array, is.arr
 
@@ -149,7 +146,6 @@ isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 
 TODO:
 curry most functions with multiple arguments
-
 
 [npm-image]: https://img.shields.io/npm/v/@magic/types.svg
 [npm-url]: https://www.npmjs.com/package/@magic/types
