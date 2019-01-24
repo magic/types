@@ -102,8 +102,14 @@ const isLengthEqual = (a, b) => (isDefined(b) ? compareCount(a, b) : b => compar
 const isLengthGreater = (a, b) =>
   isDefined(b) ? getLength(a) > getLength(b) : c => isLengthGreater(a, c)
 
+const isLengthGreaterOrEqual = (a, b) =>
+  isDefined(b) ? getLength(a) >= getLength(b) : c => isLengthGreaterOrEqual(a, c)
+
 const isLengthSmaller = (a, b) =>
   isDefined(b) ? getLength(a) < getLength(b) : c => isLengthSmaller(a, c)
+
+const isLengthSmallerOrEqual = (a, b) =>
+  isDefined(b) ? getLength(a) <= getLength(b) : c => isLengthSmallerOrEqual(a, c)
 
 const isError = e => e instanceof Error
 
@@ -488,6 +494,12 @@ const is = {
   deepDiff: isDeepDifferent,
 
   deep: isDeepEqual,
+
+  isLengthGreater,
+  isLengthGreaterOrEqual,
+  isLengthSmaller,
+  isLengthSmallerOrEqual,
+  isLengthEqual,
 }
 
 // assign ln as properties of the getLength function
@@ -497,9 +509,19 @@ const ln = {
   greater: isLengthGreater,
   gt: isLengthGreater,
   bigger: isLengthGreater,
+  biggerequal: isLengthGreaterOrEqual,
+  greater: isLengthGreater,
+  greaterequal: isLengthGreaterOrEqual,
+  gte: isLengthGreaterOrEqual,
+  gteq: isLengthGreaterOrEqual,
+
   lower: isLengthSmaller,
   smaller: isLengthSmaller,
   lt: isLengthSmaller,
+  lowerequal: isLengthSmallerOrEqual,
+  smallerequal: isLengthSmallerOrEqual,
+  lte: isLengthSmallerOrEqual,
+  lteq: isLengthSmallerOrEqual,
 }
 
 const lenKeys = ['count', 'length', 'len', 'ln']

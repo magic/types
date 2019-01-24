@@ -219,6 +219,12 @@ const spec = {
   isMergeable: is.fn,
   mergeableObject: is.fn,
   isMergeableObject: is.fn,
+
+  isLengthGreater: is.fn,
+  isLengthGreaterOrEqual: is.fn,
+  isLengthSmaller: is.fn,
+  isLengthSmallerOrEqual: is.fn,
+  isLengthEqual: is.fn,
 }
 
 const fns = [
