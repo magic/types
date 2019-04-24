@@ -7,7 +7,12 @@
   "main": "src/index.js",
   "scripts": {
     "start": "t -p",
-    "test": "t --exclude docsrc docs config.js",
+    "build": "NODE_ENV=production magic build",
+    "prod": "NODE_ENV=production magic build serve",
+    "clean": "magic clean",
+    "serve": "magic serve",
+    "dev": "magic dev",
+    "test": "t --exclude docs docsrc config.js",
     "format": "f -w --exclude docs",
     "format:check": "f --exclude docs",
     "calls": "calls"
