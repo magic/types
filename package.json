@@ -24,6 +24,10 @@
   ],
   "homepage": "https://github.com/magic/types",
   "devDependencies": {
+    "@magic-modules/gitbadges": "github:magic-modules/gitbadges",
+    "@magic-modules/pre": "github:magic-modules/pre",
+    "@magic-themes/docs": "github:magic-themes/docs",
+    "@magic/core": "github:magic/core",
     "@magic/test": "0.0.9"
   }
 }
