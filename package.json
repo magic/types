@@ -28,6 +28,6 @@
     "@magic-modules/pre": "github:magic-modules/pre",
     "@magic-themes/docs": "github:magic-themes/docs",
     "@magic/core": "github:magic/core",
-    "@magic/test": "0.0.9"
+    "@magic/test": "0.0.10"
   }
 }
