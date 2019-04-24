@@ -6,7 +6,7 @@ typechecking utilities
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Greenkeeper badge](https://badges.greenkeeper.io/magic/types.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 
 ##### install
 ```javascript
@@ -145,14 +145,13 @@ isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
 ```
 
-TODO:
-curry most functions with multiple arguments
-
 [npm-image]: https://img.shields.io/npm/v/@magic/types.svg
 [npm-url]: https://www.npmjs.com/package/@magic/types
 [travis-image]: https://travis-ci.com/magic/types.svg?branch=master
 [travis-url]: https://travis-ci.org/magic/types
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/fjlaoi06hye3p6p3/branch/master
+[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/types.svg
 [appveyor-url]: https://ci.appveyor.com/project/jaeh/types/branch/master
 [coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
 [coveralls-url]: https://coveralls.io/github/magic/types
+[greenkeeper-image]: https://badges.greenkeeper.io/magic/types.svg
+[greenkeeper-url]: https://greenkeeper.io
