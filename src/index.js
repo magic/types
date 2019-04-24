@@ -160,7 +160,7 @@ const isUUID = e => {
     return false
   }
 
-  // hex strings end at 'f'
+  // hex strings end with 'f'
   if (Object.values(e).some(s => s > 'f' || s < 0)) {
     return false
   }
@@ -245,12 +245,13 @@ const isDeepEqual = (a = null, b) => {
   const ka = Object.keys(a)
   const kb = Object.keys(b)
 
-  // having the same number of owned properties (keys incorporates
-  // hasOwnProperty)
+  // having the same number of keys
+  // Object.keys uses hasOwnProperty internally
   if (ka.length !== kb.length) {
     return false
   }
-  // the same set of keys (although not necessarily the same order),
+  // the same set of keys
+  // although not necessarily the same order
   ka.sort()
   kb.sort()
   // ~~~cheap key test
@@ -312,6 +313,9 @@ const is = {
 
   isUndefinedOrNull,
   undefinedOrNull: isUndefinedOrNull,
+  undefinedOrNil: isUndefinedOrNull,
+  undefOrNull: isUndefinedOrNull,
+  undefOrNil: isUndefinedOrNull,
 
   isBuffer,
   buffer: isBuffer,

@@ -113,7 +113,7 @@ isNull(null) // true
 // alias isNil, is.nil, is.null
 
 isUndefinedOrNull(undefined || null) // true
-// alias is.undefinedOrNull
+// alias is.undefinedOrNull, is.undefinedOrNil, is.undefOrNull, is.undefOrNil
 
 isBuffer(new Buffer('test')) // true
 // alias isBuff, is.buffer, is.buff

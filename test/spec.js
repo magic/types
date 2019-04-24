@@ -153,6 +153,9 @@ const spec = {
 
   undefinedOrNull: is.fn,
   isUndefinedOrNull: is.fn,
+  undefinedOrNil: is.fn,
+  undefOrNil: is.fn,
+  undefOrNull: is.fn,
 
   buff: is.fn,
   buffer: is.fn,
