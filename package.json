@@ -7,9 +7,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "t -p",
-    "test": "t",
-    "format": "f -w",
-    "format:check": "f",
+    "test": "t --exclude docsrc docs config.js",
+    "format": "f -w --exclude docs",
+    "format:check": "f --exclude docs",
     "calls": "calls"
   },
   "repository": {
