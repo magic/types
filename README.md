@@ -7,6 +7,20 @@ typechecking utilities
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
+
+[npm-image]: https://img.shields.io/npm/v/@magic/types.svg
+[npm-url]: https://www.npmjs.com/package/@magic/types
+[travis-image]: https://api.travis-ci.org/magic/types.svg?branch=master
+[travis-url]: https://travis-ci.org/magic/types
+[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/types/master.svg
+[appveyor-url]: https://ci.appveyor.com/project/jaeh/types/branch/master
+[coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
+[coveralls-url]: https://coveralls.io/github/magic/types
+[greenkeeper-image]: https://badges.greenkeeper.io/magic/types.svg
+[greenkeeper-url]: https://badges.greenkeeper.io/magic/types.svg
+[snyk-image]: https://snyk.io/test/github/magic/types/badge.svg
+[snyk-url]: https://snyk.io/test/github/magic/types
 
 ##### install
 ```javascript
@@ -144,14 +158,3 @@ isDeepEqual([1, 2, 3], [1, 2, 3]) // true
 isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
 ```
-
-[npm-image]: https://img.shields.io/npm/v/@magic/types.svg
-[npm-url]: https://www.npmjs.com/package/@magic/types
-[travis-image]: https://travis-ci.com/magic/types.svg?branch=master
-[travis-url]: https://travis-ci.org/magic/types
-[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/types.svg
-[appveyor-url]: https://ci.appveyor.com/project/jaeh/types/branch/master
-[coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
-[coveralls-url]: https://coveralls.io/github/magic/types
-[greenkeeper-image]: https://badges.greenkeeper.io/magic/types.svg
-[greenkeeper-url]: https://greenkeeper.io
