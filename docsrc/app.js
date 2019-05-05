@@ -1,5 +1,8 @@
 module.exports = {
   state: {
+    logotext: '@magic/types',
+    title: '@magic/types',
+    description: 'typechecking utilities for node.',
     menu: [
       { to: '/#install', text: 'install' },
       { to: '/#require', text: 'require' },
@@ -49,6 +52,8 @@ module.exports = {
           { to: '/#functions-deepdifferent', text: 'isDeepDifferent' },
         ],
       },
+
+      { to: '/#source', text: 'source' },
     ],
   },
 }
