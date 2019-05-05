@@ -2,13 +2,14 @@ module.exports = {
   state: {
     logotext: '@magic/types',
     title: '@magic/types',
-    description: 'typechecking utilities for node.',
+    description: 'comprehensive and thoroughly tested type comparison library',
     menu: [
       { to: '/#install', text: 'install' },
-      { to: '/#require', text: 'require' },
-      { to: '/#import-single-function', text: 'import single function' },
-      { to: '/#import-all-functions', text: 'import all functions' },
-      {
+      { to: '/#require', text: 'require', items: [
+        { to: '/#require-single-function', text: 'import single function' },
+        { to: '/#require-all-functions', text: 'import all functions' },
+      ]},
+        {
         to: '/#functions',
         text: 'functions',
         items: [

@@ -1,23 +1,25 @@
-module.exports = () => [
-  h2('@magic/types'),
-  p('comprehensive and thoroughly tested type comparison library'),
+module.exports = state => [
+  h1(state.title),
+  p(state.description),
 
   GitBadges({
     project: 'magic/types',
     appveyor: 'jaeh/types',
   }),
 
-  h3({ id: 'install' }, ' install'),
+  h2({ id: 'install' }, ' install'),
   Pre('npm install @magic/types'),
 
-  h3({ id: 'import-single-function' }, ' import single function'),
+  h2({ id: 'require'}, 'require'),
+
+  h3({ id: 'require-single-function' }, ' import single function'),
   Pre(`
 // single function import
 const { isArray } = require('@magic/types')
 
 isArray([]) // true`),
 
-  h3({ id: 'import-all-functions' }, ' import all functions'),
+  h3({ id: 'require-all-functions' }, ' import all functions'),
   Pre(`
 const is = require('@magic/types')
 
@@ -26,7 +28,7 @@ is.array([]) // true`),
   h3({ id: 'functions' }, 'functions'),
   p('@magic/types exports an object of functions to typecheck.'),
 
-  h4({ id: 'functions-is' }, 'is'),
+  h3({ id: 'functions-is' }, 'is'),
   p('test a value for multiple types'),
   Pre(`
 is(ele, ...types)
@@ -36,7 +38,7 @@ is(42, 'string', 'object') // false
 `),
   p({ class: 'alias' }, 'alias is.eq, isEq, test'),
 
-  h4({ id: 'functions-not' }, 'not'),
+  h3({ id: 'functions-not' }, 'not'),
   p('test if a value is not of a type'),
   Pre(`
 not(ele, ...types)
@@ -45,22 +47,22 @@ not('astring', 'string', 'object') // false
 not(42, 'string', 'object') // true`),
   p({ class: 'alias' }, 'alias is.neq, isNeq, isNot'),
 
-  h4({ id: 'functions-testtype' }, 'testType'),
+  h3({ id: 'functions-testtype' }, 'testType'),
   Pre("testType(42, 'number') // true"),
   p({ class: 'alias' }, 'alias is.type'),
 
-  h4({ id: 'functions-test' }, 'test'),
+  h3({ id: 'functions-test' }, 'test'),
   p('test if a value is one of the provided types'),
   Pre(`
 test(42, ['string', 'object']) // false
 test('42', ['string', 'object']) // true`),
   p({ class: 'alias' }, 'alias is.types'),
 
-  h4({ id: 'functions-array' }, 'type comparisons'),
+  h3({ id: 'functions-array' }, 'type comparisons'),
   Pre('isArray([]) // true'),
   p('alias isArr, is.array, is.arr'),
 
-  h4({ id: 'functions-boolean' }, 'isBoolean'),
+  h3({ id: 'functions-boolean' }, 'isBoolean'),
   Pre('isBoolean(true) // true'),
   p({ class: 'alias' }, 'alias isBool, is.boolean, is.bool'),
 
@@ -154,10 +156,10 @@ test('42', ['string', 'object']) // true`),
 
   h3({ id: 'functions-undefinedornull' }, 'isUndefinedOrNull'),
   Pre('isUndefinedOrNull(undefined || null) // true'),
-  p(
-    { class: 'alias' },
-    'alias is.undefinedOrNull, is.undefinedOrNil, is.undefOrNull, is.undefOrNil',
-  ),
+  p({ class: 'alias' }, [
+    'alias is.undefinedOrNull,',
+    ' is.undefinedOrNil, is.undefOrNull, is.undefOrNil',
+  ]),
 
   h3({ id: 'functions-buffer' }, 'isBuffer'),
   Pre("isBuffer(new Buffer('test')) // true"),
