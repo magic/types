@@ -1,5 +1,5 @@
 module.exports = {
-  ROOT: 'docsrc',
+  ROOT: 'example',
   THEME: 'docs',
   WEB_ROOT: '/types/',
 
