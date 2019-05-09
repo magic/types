@@ -286,6 +286,11 @@ const isDeepDifferent = (a, b) => {
   return !isDeepEqual(a, b)
 }
 
+const isMap = a => a instanceof Map
+const isSet = a => a instanceof Set
+const isWeakMap = a => a instanceof WeakMap
+const isWeakSet = a => a instanceof WeakSet
+
 const is = {
   count: getLength,
   length: getLength,
@@ -504,6 +509,18 @@ const is = {
   isLengthSmaller,
   isLengthSmallerOrEqual,
   isLengthEqual,
+
+  isMap,
+  map: isMap,
+
+  isSet,
+  set: isSet,
+
+  isWeakMap,
+  weakMap: isWeakMap,
+
+  isWeakSet,
+  weakSet: isWeakSet,
 }
 
 // assign ln as properties of the getLength function
