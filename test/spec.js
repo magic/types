@@ -228,6 +228,16 @@ const spec = {
   isLengthSmaller: is.fn,
   isLengthSmallerOrEqual: is.fn,
   isLengthEqual: is.fn,
+
+  isMap: is.fn,
+  map: is.fn,
+  isSet: is.fn,
+  set: is.fn,
+
+  isWeakMap: is.fn,
+  weakMap: is.fn,
+  isWeakSet: is.fn,
+  weakSet: is.fn,
 }
 
 const fns = [

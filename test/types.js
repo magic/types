@@ -240,4 +240,45 @@ module.exports = {
     { fn: () => is.comparable({}), expect: false },
     { fn: () => is.comparable([]), expect: false },
   ],
+
+  isMap: [
+    { fn: () => is.map(new Map()), expect: true },
+    { fn: () => is.map({}), expect: false },
+    { fn: () => is.map([]), expect: false },
+    { fn: () => is.map(''), expect: false },
+    { fn: () => is.map(new Set()), expect: false },
+    { fn: () => is.map(new WeakSet()), expect: false },
+    { fn: () => is.map(new WeakMap()), expect: false },
+  ],
+
+  isWeakMap: [
+    { fn: () => is.weakMap(new WeakMap()), expect: true },
+    { fn: () => is.weakMap({}), expect: false },
+    { fn: () => is.weakMap([]), expect: false },
+    { fn: () => is.weakMap(''), expect: false },
+    { fn: () => is.weakMap(new WeakSet()), expect: false },
+    { fn: () => is.weakMap(new Set()), expect: false },
+    { fn: () => is.weakMap(new Map()), expect: false },
+  ],
+
+  isSet: [
+    { fn: () => is.set(new Set()), expect: true },
+    { fn: () => is.set({}), expect: false },
+    { fn: () => is.set([]), expect: false },
+    { fn: () => is.set(''), expect: false },
+    { fn: () => is.set(new Map()), expect: false },
+    { fn: () => is.set(new WeakSet()), expect: false },
+    { fn: () => is.set(new WeakMap()), expect: false },
+  ],
+
+  weakSet: [
+    { fn: () => is.weakSet(new WeakSet()), expect: true },
+    { fn: () => is.weakSet({}), expect: false },
+    { fn: () => is.weakSet([]), expect: false },
+    { fn: () => is.weakSet(''), expect: false },
+    { fn: () => is.weakSet(new WeakMap()), expect: false },
+    { fn: () => is.weakSet(new Set()), expect: false },
+    { fn: () => is.weakSet(new Map()), expect: false },
+  ]
+
 }
