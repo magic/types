@@ -158,3 +158,9 @@ isDeepEqual([1, 2, 3], [1, 2, 3]) // true
 isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
 ```
+
+
+#### Changelog
+
+##### 0.0.5
+added Map, WeakMap, Set and WeakSet
