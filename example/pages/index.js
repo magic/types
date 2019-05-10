@@ -2,10 +2,7 @@ module.exports = state => [
   h1(state.title),
   p(state.description),
 
-  GitBadges({
-    project: 'magic/types',
-    appveyor: 'jaeh/types',
-  }),
+  GitBadges('magic/types'),
 
   h2({ id: 'install' }, ' install'),
   Pre('npm install @magic/types'),
@@ -192,6 +189,23 @@ test('42', ['string', 'object']) // true`),
   h3({ id: 'functions-deepdifferent' }, 'isDeepDifferent'),
   Pre('isDeepDifferent([1, 2, 3], [1, 2, 3]) // false'),
   p({ class: 'alias' }, 'alias is.deep.diff, is.deep.different'),
+
+  h3({ id: 'functions-ismap' }, 'isMap'),
+  Pre('isMap(new Map()) //true'),
+  p({ class: 'alias' }, 'alias is.map'),
+
+  h3({ id: 'functions-isset' }, 'isSet'),
+  Pre('isSet(new Set()) //true'),
+  p({ class: 'alias' }, 'alias is.set'),
+
+  h3({ id: 'functions-isweakmap' }, 'isWeakMap'),
+  Pre('isWeakMap(new WeakMap()) //true'),
+  p({ class: 'alias' }, 'alias is.weakMap'),
+
+  h3({ id: 'functions-isweakset' }, 'isWeakSet'),
+  Pre('isWeakSet(new WeakSet()) //true'),
+  p({ class: 'alias' }, 'alias is.weakSet'),
+
 
   h2({ id: 'source' }, 'source'),
   p([
