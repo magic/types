@@ -169,3 +169,12 @@ isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 
 ##### 0.0.5
 added Map, WeakMap, Set and WeakSet
+
+##### 0.1.0
+use es6 modules
+
+##### 0.1.1
+FIX: add module field to package.json
+
+##### 0.1.2
+FIX: is.number no longer errors on node es6 modules and other weird objects
