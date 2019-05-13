@@ -1,10 +1,10 @@
 {
   "name": "@magic/types",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "typechecking library",
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
-  "main": "src/index.js",
+  "main": "src/index.mjs",
   "scripts": {
     "start": "t -p",
     "build": "NODE_ENV=production magic build",
