@@ -2,6 +2,8 @@ module.exports = state => [
   h1(state.title),
   p(state.description),
 
+  h3('v0.1.0 uses esmodules without compilation'),
+
   GitBadges('magic/types'),
 
   h2({ id: 'install' }, ' install'),

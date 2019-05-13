@@ -2,6 +2,10 @@
 
 typechecking utilities
 
+### version 0.1.0 uses esmodules
+0.1.0 and onwards uses esmodules,
+docs will be updated soon
+
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
