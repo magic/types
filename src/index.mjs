@@ -8,7 +8,7 @@ export const isUndefined = e => !isDefined(e)
 
 export const isFunction = e => typeof e === 'function'
 
-export const isNumber = e => e === +e
+export const isNumber = e => typeof e !== 'object' && e === +e
 
 export const isInteger = e => e === +e && e === (e | 0)
 
