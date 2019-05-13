@@ -5,11 +5,15 @@ module.exports = {
     description: 'comprehensive and thoroughly tested type comparison library',
     menu: [
       { to: '/#install', text: 'install' },
-      { to: '/#require', text: 'require', items: [
-        { to: '/#require-single-function', text: 'import single function' },
-        { to: '/#require-all-functions', text: 'import all functions' },
-      ]},
-        {
+      {
+        to: '/#require',
+        text: 'require',
+        items: [
+          { to: '/#require-single-function', text: 'import single function' },
+          { to: '/#require-all-functions', text: 'import all functions' },
+        ],
+      },
+      {
         to: '/#functions',
         text: 'functions',
         items: [

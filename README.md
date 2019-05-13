@@ -135,6 +135,7 @@ isBuffer(new Buffer('test')) // true
 isPromise(new Promise()) // true
 // alias is.promise, isThenable, isThen, is.thenable, is.then
 
+// removed (for now?)!
 isArguments(() => return arguments) // true
 // alias isArgs, is.arguments, is.args
 

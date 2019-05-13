@@ -7,7 +7,7 @@ module.exports = state => [
   h2({ id: 'install' }, ' install'),
   Pre('npm install @magic/types'),
 
-  h2({ id: 'require'}, 'require'),
+  h2({ id: 'require' }, 'require'),
 
   h3({ id: 'require-single-function' }, ' import single function'),
   Pre(`
@@ -166,9 +166,9 @@ test('42', ['string', 'object']) // true`),
   Pre('isPromise(new Promise()) // true'),
   p({ class: 'alias' }, 'alias is.promise, isThenable, isThen, is.thenable, is.then'),
 
-  h3({ id: 'functions-arguments' }, 'isArguments'),
-  Pre('isArguments(() => return arguments) // true'),
-  p({ class: 'alias' }, 'alias isArgs, is.arguments, is.args'),
+  // h3({ id: 'functions-arguments' }, 'isArguments'),
+  // Pre('isArguments(() => return arguments) // true'),
+  // p({ class: 'alias' }, 'alias isArgs, is.arguments, is.args'),
 
   h3({ id: 'functions-uuid' }, 'isUUID'),
   Pre('isUUID(uuid) // true'),
@@ -205,7 +205,6 @@ test('42', ['string', 'object']) // true`),
   h3({ id: 'functions-isweakset' }, 'isWeakSet'),
   Pre('isWeakSet(new WeakSet()) //true'),
   p({ class: 'alias' }, 'alias is.weakSet'),
-
 
   h2({ id: 'source' }, 'source'),
   p([
