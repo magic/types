@@ -1,60 +1,60 @@
-const isArray = e => Array.isArray(e)
+export const isArray = e => Array.isArray(e)
 
-const isBoolean = e => typeof e === 'boolean'
+export const isBoolean = e => typeof e === 'boolean'
 
-const isDefined = e => typeof e !== 'undefined'
+export const isDefined = e => typeof e !== 'undefined'
 
-const isUndefined = e => !isDefined(e)
+export const isUndefined = e => !isDefined(e)
 
-const isFunction = e => typeof e === 'function'
+export const isFunction = e => typeof e === 'function'
 
-const isNumber = e => e === +e
+export const isNumber = e => e === +e
 
-const isInteger = e => e === +e && e === (e | 0)
+export const isInteger = e => e === +e && e === (e | 0)
 
-const isFloat = e => e === +e
+export const isFloat = e => e === +e
 
-const isObject = e => typeof e === 'object' && !isNull(e)
+export const isObject = e => typeof e === 'object' && !isNull(e)
 
-const isMergeableObject = e => isObject(e) && !isDate(e) && !isRegExp(e)
+export const isMergeableObject = e => isObject(e) && !isDate(e) && !isRegExp(e)
 
-const isString = e => typeof e === 'string'
+export const isString = e => typeof e === 'string'
 
-const isRGBValue = e => ![e.r, e.g, e.b].some(n => !isNumber(n))
-const isRGBAValue = e => ![e.r, e.g, e.b, e.a].some(n => !isNumber(n))
+export const isRGBValue = e => ![e.r, e.g, e.b].some(n => !isNumber(n))
+export const isRGBAValue = e => ![e.r, e.g, e.b, e.a].some(n => !isNumber(n))
 
-const isRGBAObject = e => isObject(e) && isRGBAValue(e)
+export const isRGBAObject = e => isObject(e) && isRGBAValue(e)
 
-const isRGBObject = e => isObject(e) && isRGBValue(e)
+export const isRGBObject = e => isObject(e) && isRGBValue(e)
 
-const hexRegex = /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i
-const isHexColor = e => hexRegex.test(e)
+export const hexRegex = /#\b([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})\b/i
+export const isHexColor = e => hexRegex.test(e)
 
-const isHexColor3 = e => /#\b([a-f0-9]{3})\b/i.test(e)
+export const isHexColor3 = e => /#\b([a-f0-9]{3})\b/i.test(e)
 
-const isHexColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
+export const isHexColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
 
-const isHexColor6 = e => /#\b([a-f0-9]{6})\b/i.test(e)
+export const isHexColor6 = e => /#\b([a-f0-9]{6})\b/i.test(e)
 
-const isHexColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
+export const isHexColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
-const isHexAlphaColor = e => /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
+export const isHexAlphaColor = e => /#\b([a-f0-9]{4}|[a-f0-9]{8})\b/i.test(e)
 
-const isHexAlphaColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
+export const isHexAlphaColor4 = e => /#\b([a-f0-9]{4})\b/i.test(e)
 
-const isHexAlphaColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
+export const isHexAlphaColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
-const isColor = e => isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
+export const isColor = e => isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
 
-const isDate = e => e instanceof Date
+export const isDate = e => e instanceof Date
 
-const isRegExp = e => e instanceof RegExp
+export const isRegExp = e => e instanceof RegExp
 
-const isTruthy = e => !!e
+export const isTruthy = e => !!e
 
-const isFalsy = e => !e || isEmpty(e)
+export const isFalsy = e => !e || isEmpty(e)
 
-const isEmpty = e => {
+export const isEmpty = e => {
   if (isError(e)) {
     return false
   } else if (isDate(e)) {
@@ -74,7 +74,7 @@ const isEmpty = e => {
   return e === 0 || e === '' || !e
 }
 
-const getLength = arg => {
+export const getLength = arg => {
   if (isNumber(arg)) {
     return arg
   } else if (isNumber(arg.length)) {
@@ -96,32 +96,32 @@ const getLength = arg => {
   return Object.keys(arg).length
 }
 
-const compareCount = (len, e) => getLength(len) === getLength(e)
-const isLengthEqual = (a, b) => (isDefined(b) ? compareCount(a, b) : b => compareCount(a, b))
+export const compareCount = (len, e) => getLength(len) === getLength(e)
+export const isLengthEqual = (a, b) => (isDefined(b) ? compareCount(a, b) : b => compareCount(a, b))
 
-const isLengthGreater = (a, b) =>
+export const isLengthGreater = (a, b) =>
   isDefined(b) ? getLength(a) > getLength(b) : c => isLengthGreater(a, c)
 
-const isLengthGreaterOrEqual = (a, b) =>
+export const isLengthGreaterOrEqual = (a, b) =>
   isDefined(b) ? getLength(a) >= getLength(b) : c => isLengthGreaterOrEqual(a, c)
 
-const isLengthSmaller = (a, b) =>
+export const isLengthSmaller = (a, b) =>
   isDefined(b) ? getLength(a) < getLength(b) : c => isLengthSmaller(a, c)
 
-const isLengthSmallerOrEqual = (a, b) =>
+export const isLengthSmallerOrEqual = (a, b) =>
   isDefined(b) ? getLength(a) <= getLength(b) : c => isLengthSmallerOrEqual(a, c)
 
-const isError = e => e instanceof Error
+export const isError = e => e instanceof Error
 
-const isIterable = e => isDefined(e) && !isNull(e) && isFunction(e.forEach)
+export const isIterable = e => isDefined(e) && !isNull(e) && isFunction(e.forEach)
 
-const isEmail = e => isString(e) && e.indexOf('@') > -1
+export const isEmail = e => isString(e) && e.indexOf('@') > -1
 
-const isNull = e => e === null
+export const isNull = e => e === null
 
-const isUndefinedOrNull = e => e === null || !isDefined(e)
+export const isUndefinedOrNull = e => e === null || !isDefined(e)
 
-const isBuffer = e => {
+export const isBuffer = e => {
   if (!e) {
     return false
   } else if (isEmpty(e)) {
@@ -137,11 +137,11 @@ const isBuffer = e => {
   return true
 }
 
-const isPromise = e => e && isFunction(e.then)
+export const isPromise = e => e && isFunction(e.then)
 
-const isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
+export const isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
 
-const isUUID = e => {
+export const isUUID = e => {
   if (!isDefined(e)) {
     return false
   }
@@ -168,17 +168,17 @@ const isUUID = e => {
   return true
 }
 
-const isType = (e, type) => typeof e === type || Object.prototype.toString(e) === type
+export const isType = (e, type) => typeof e === type || Object.prototype.toString(e) === type
 
-const isTypes = (e, ...types) => types.some(k => isType(e, k))
+export const isTypes = (e, ...types) => types.some(k => isType(e, k))
 
-const isEqual = (e, ...types) => isTypes(e, ...types)
+export const isEqual = (e, ...types) => isTypes(e, ...types)
 
-const isNot = (e, ...types) => !isTypes(e, ...types)
+export const isNot = (e, ...types) => !isTypes(e, ...types)
 
-const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
+export const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
 
-const isDeepEqual = (a = null, b) => {
+export const isDeepEqual = (a = null, b) => {
   // curry
   if (is.undefined(b)) {
     if (is.null(a)) {
@@ -207,9 +207,9 @@ const isDeepEqual = (a = null, b) => {
     return false
   }
 
-  if (isArguments(a)) {
-    return isLengthEqual(a, b)
-  }
+  // if (isArguments(a)) {
+  //   return isLengthEqual(a, b)
+  // }
 
   // real types must match too
   if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
@@ -274,7 +274,7 @@ const isDeepEqual = (a = null, b) => {
   return typeof a === typeof b
 }
 
-const isDeepDifferent = (a, b) => {
+export const isDeepDifferent = (a, b) => {
   if (isUndefined(b)) {
     if (isUndefined(a)) {
       return false
@@ -286,12 +286,12 @@ const isDeepDifferent = (a, b) => {
   return !isDeepEqual(a, b)
 }
 
-const isMap = a => a instanceof Map
-const isSet = a => a instanceof Set
-const isWeakMap = a => a instanceof WeakMap
-const isWeakSet = a => a instanceof WeakSet
+export const isMap = a => a instanceof Map
+export const isSet = a => a instanceof Set
+export const isWeakMap = a => a instanceof WeakMap
+export const isWeakSet = a => a instanceof WeakSet
 
-const is = {
+export const is = {
   count: getLength,
   length: getLength,
   len: getLength,
@@ -333,10 +333,10 @@ const is = {
   thenable: isPromise,
   then: isPromise,
 
-  isArguments,
-  isArgs: isArguments,
-  arguments: isArguments,
-  args: isArguments,
+  // isArguments,
+  // isArgs: isArguments,
+  // arguments: isArguments,
+  // args: isArguments,
 
   isUUID,
   uuid: isUUID,
@@ -556,4 +556,4 @@ is.deep.isEqual = isDeepEqual
 is.deep.equal = isDeepEqual
 is.deep.eq = isDeepEqual
 
-module.exports = is
+export default is

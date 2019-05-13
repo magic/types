@@ -1,5 +1,5 @@
-const is = require('../src')
-const { version } = require('@magic/test')
+import is from '../src/index.mjs'
+import { version } from '@magic/test'
 
 const spec = {
   arr: is.fn,
@@ -168,10 +168,10 @@ const spec = {
   isThen: is.fn,
   isThenable: is.fn,
 
-  args: is.fn,
-  arguments: is.fn,
-  isArgs: is.fn,
-  isArguments: is.fn,
+  // args: is.fn,
+  // arguments: is.fn,
+  // isArgs: is.fn,
+  // isArguments: is.fn,
 
   uuid: is.fn,
   isUUID: is.fn,
@@ -245,4 +245,4 @@ const fns = [
   { fn: () => version.spec(spec, is), expect: is.len.eq(0) },
 ]
 
-module.exports = fns
+export default fns

@@ -1,4 +1,4 @@
-const types = require('../src')
+import types from '../src/index.mjs'
 
 const fns = {
   isRGBAObject: [
@@ -136,4 +136,4 @@ const fns = {
   ],
 }
 
-module.exports = fns
+export default fns

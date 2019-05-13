@@ -1,4 +1,4 @@
-const is = require('../src')
+import is from '../src/index.mjs'
 
 const fns = {
   isArray: [
@@ -155,4 +155,4 @@ const fns = {
   ],
 }
 
-module.exports = fns
+export default fns

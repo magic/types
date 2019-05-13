@@ -1,6 +1,6 @@
-const is = require('../src')
+import is from '../src/index.mjs'
 
-module.exports = [
+export default [
   { fn: is.length.equal(0, []), expect: true, info: 'empty arrays have length 0' },
   {
     fn: is.length.bigger(0, []),

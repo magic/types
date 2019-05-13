@@ -1,4 +1,4 @@
-const is = require('../../src')
+import is from '../../src/index.mjs'
 
 const object = {
   string: 'string',
@@ -80,7 +80,7 @@ const fns = [
   { fn: () => is.deep.equal(buff, buff3), expect: false },
   { fn: () => is.deep.equal(buff, buff), expect: true },
   { fn: () => is.deep.equal(buff, 'string'), expect: false },
-  { fn: () => is.deep.equal(arguments, arguments), expect: true },
+  //   { fn: () => is.deep.equal(arguments, arguments), expect: true },
   { fn: () => is.deep.equal(prot1, prot1), expect: true },
   { fn: () => is.deep.equal(prot1, prot2), expect: false },
   { fn: () => is.deep.equal(date, date), expect: true },
@@ -100,4 +100,4 @@ const fns = [
   { fn: () => is.deep.equal({ t: 't' })(['test']), expect: false },
 ]
 
-module.exports = fns
+export default fns

@@ -1,6 +1,6 @@
-const is = require('../src')
+import is from '../src/index.mjs'
 
-module.exports = {
+export default {
   test: [
     { fn: () => is.test(0, 'number') },
     { fn: () => is.types(0, 'number') },
