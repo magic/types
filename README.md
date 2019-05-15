@@ -34,14 +34,14 @@ docs will be updated soon
 ##### import single function
 ```js
 // single function import
-const { isArray } = require('@magic/types')
+import { isArray } from '@magic/types'
 
 isArray([]) // true
 ```
 
 ##### import all functions
 ```javascript
-const is = require('@magic/types')
+import is from '@magic/types'
 
 is.array([]) // true
 ```
