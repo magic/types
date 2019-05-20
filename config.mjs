@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ROOT: 'example',
   THEME: 'docs',
   WEB_ROOT: '/types/',

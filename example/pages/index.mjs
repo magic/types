@@ -1,26 +1,31 @@
-module.exports = state => [
+export const state = {
+  title: '@magic/types',
+  description: 'comprehensive and thoroughly tested type comparison library',
+}
+
+export const View = state => [
   h1(state.title),
   p(state.description),
 
-  h3('v0.1.0 uses esmodules without compilation'),
+  h3('v0.1.0 uses esmodules without compilation.'),
 
   GitBadges('magic/types'),
 
   h2({ id: 'install' }, ' install'),
   Pre('npm install @magic/types'),
 
-  h2({ id: 'require' }, 'require'),
+  h2({ id: 'import' }, 'import'),
 
-  h3({ id: 'require-single-function' }, ' import single function'),
+  h3({ id: 'import-single-function' }, ' import single function'),
   Pre(`
 // single function import
-const { isArray } = require('@magic/types')
+import { isArray } from '@magic/types'
 
 isArray([]) // true`),
 
-  h3({ id: 'require-all-functions' }, ' import all functions'),
+  h3({ id: 'import-all-functions' }, ' import all functions'),
   Pre(`
-const is = require('@magic/types')
+import is from '@magic/types'
 
 is.array([]) // true`),
 
