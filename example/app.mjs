@@ -8,8 +8,8 @@ export const state = {
       to: '/#import',
       text: 'import',
       items: [
-        { to: '/-single-function', text: 'import single function' },
-        { to: '/-all-functions', text: 'import all functions' },
+        { to: '-single-function', text: 'import single function' },
+        { to: '-all-functions', text: 'import all functions' },
       ],
     },
     {
@@ -20,7 +20,6 @@ export const state = {
         { to: '-not', text: 'not' },
         { to: '-test', text: 'test' },
         { to: '-testtype', text: 'testType' },
-        { to: '-type-compare', text: 'type comparisons' },
         { to: '-array', text: 'isArray' },
         { to: '-boolean', text: 'isBoolean' },
         { to: '-defined', text: 'isDefined' },
