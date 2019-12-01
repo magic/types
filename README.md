@@ -15,8 +15,8 @@ docs will be updated soon
 
 [npm-image]: https://img.shields.io/npm/v/@magic/types.svg
 [npm-url]: https://www.npmjs.com/package/@magic/types
-[travis-image]: https://api.travis-ci.org/magic/types.svg?branch=master
-[travis-url]: https://travis-ci.org/magic/types
+[travis-image]: https://img.shields.io/travis/com/magic/types/master
+[travis-url]: https://travis-ci.com/magic/types
 [appveyor-image]: https://img.shields.io/appveyor/ci/magic/types/master.svg
 [appveyor-url]: https://ci.appveyor.com/project/magic/types/branch/master
 [coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
