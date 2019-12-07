@@ -165,8 +165,28 @@ export default {
       { fn: () => is.len.eq(3)(new Set([1, 2, 3])), info: 'Number and Set' },
       { fn: () => is.len.eq(5)(new Set([1, 2, 3])), expect: false, info: 'Set and Number' },
       { fn: () => is.len.eq([1, 2, 3], new Set([1, 2, 3])), info: 'Array and Set' },
-      { fn: () => is.len.eq(new Map([['1', 1], ['2', 2]]), new Set([1, 2])), info: 'Map and Set' },
-      { fn: () => is.len.eq([1, 2], new Map([['1', 1], ['2', 2]])), info: 'Array and Map' },
+      {
+        fn: () =>
+          is.len.eq(
+            new Map([
+              ['1', 1],
+              ['2', 2],
+            ]),
+            new Set([1, 2]),
+          ),
+        info: 'Map and Set',
+      },
+      {
+        fn: () =>
+          is.len.eq(
+            [1, 2],
+            new Map([
+              ['1', 1],
+              ['2', 2],
+            ]),
+          ),
+        info: 'Array and Map',
+      },
       { fn: () => is.len.eq(new Map([['1', 1]]), new Map([['1', 1]])), info: 'Map and Map' },
       { fn: () => is.len.eq('123', '123'), info: 'compare strings' },
       { fn: () => is.len.eq(0)({}), info: 'empty objects' },

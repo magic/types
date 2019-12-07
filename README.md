@@ -28,7 +28,7 @@ docs will be updated soon
 
 ##### install
 ```javascript
-  npm install @magic/types
+npm install @magic/types
 ```
 
 ##### import single function
