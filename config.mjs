@@ -4,6 +4,5 @@ export default {
   WEB_ROOT: '/types/',
   URL: 'magic.github.io/types',
   PUBLIC: 'docs',
-
-  FOR_DEATH_CAN_NOT_HAVE_HIM: true,
+  HOIST: 'Gdpr',
 }
