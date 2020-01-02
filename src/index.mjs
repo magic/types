@@ -1,3 +1,5 @@
+import deep from '@magic/deep'
+
 export const isArray = e => Array.isArray(e)
 
 export const isBoolean = e => typeof e === 'boolean'
@@ -177,114 +179,6 @@ export const isEqual = (e, ...types) => isTypes(e, ...types)
 export const isNot = (e, ...types) => !isTypes(e, ...types)
 
 export const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
-
-export const isDeepEqual = (a = null, b) => {
-  // curry
-  if (is.undefined(b)) {
-    if (is.null(a)) {
-      return false
-    }
-
-    return c => isDeepEqual(a, c)
-  }
-
-  if (is.null(b)) {
-    return a === b
-  }
-
-  // types must match
-  if (typeof a !== typeof b) {
-    return false
-  }
-
-  // bool, string, number, falsy values
-  if (isComparable(a) || isComparable(b)) {
-    return a === b
-  }
-
-  // identical 'prototype' property.
-  if (a.prototype !== b.prototype) {
-    return false
-  }
-
-  // if (isArguments(a)) {
-  //   return isLengthEqual(a, b)
-  // }
-
-  // real types must match too
-  if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
-    return false
-  }
-
-  // dates
-  if (is.date(a)) {
-    return a.getTime() === b.getTime()
-  }
-
-  // functions
-  if (is.function(a)) {
-    return a.toString() === b.toString()
-  }
-
-  // buffers
-  if (is.buffer(a)) {
-    if (a.length !== b.length) {
-      return false
-    }
-
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] !== b[i]) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  // objects
-  const ka = Object.keys(a)
-  const kb = Object.keys(b)
-
-  // having the same number of keys
-  // Object.keys uses hasOwnProperty internally
-  if (ka.length !== kb.length) {
-    return false
-  }
-  // the same set of keys
-  // although not necessarily the same order
-  ka.sort()
-  kb.sort()
-  // ~~~cheap key test
-  for (let i = ka.length - 1; i >= 0; i--) {
-    if (ka[i] !== kb[i]) {
-      return false
-    }
-  }
-
-  // equivalent values for every corresponding key, and
-  // ~~~possibly expensive deep test
-  let key
-  for (let i = ka.length - 1; i >= 0; i--) {
-    key = ka[i]
-    if (!isDeepEqual(a[key], b[key])) {
-      return false
-    }
-  }
-
-  return typeof a === typeof b
-}
-
-export const isDeepDifferent = (a, b) => {
-  if (isUndefined(b)) {
-    if (isUndefined(a)) {
-      return false
-    }
-
-    return c => isDeepDifferent(a, c)
-  }
-
-  return !isDeepEqual(a, b)
-}
 
 export const isMap = a => a instanceof Map
 export const isSet = a => a instanceof Set
@@ -494,15 +388,15 @@ export const is = {
   isFalsy,
   falsy: isFalsy,
 
-  isDeepEqual,
-  deepEqual: isDeepEqual,
-  deepEq: isDeepEqual,
+  isDeepEqual: deep.eq,
+  deepEqual: deep.eq,
+  deepEq: deep.eq,
 
-  isDeepDifferent,
-  deepDifferent: isDeepDifferent,
-  deepDiff: isDeepDifferent,
+  isDeepDifferent: deep.diff,
+  deepDifferent: deep.diff,
+  deepDiff: deep.diff,
 
-  deep: isDeepEqual,
+  deep,
 
   isLengthGreater,
   isLengthGreaterOrEqual,
@@ -548,12 +442,12 @@ const ln = {
 const lenKeys = ['count', 'length', 'len', 'ln']
 Object.entries(ln).forEach(([k, v]) => lenKeys.forEach(key => (is[key][k] = v)))
 
-is.deep.isDifferent = isDeepDifferent
-is.deep.different = isDeepDifferent
-is.deep.diff = isDeepDifferent
+is.deep.isDifferent = deep.diff
+is.deep.different = deep.diff
+is.deep.diff = deep.diff
 
-is.deep.isEqual = isDeepEqual
-is.deep.equal = isDeepEqual
-is.deep.eq = isDeepEqual
+is.deep.isEqual = deep.eq
+is.deep.equal = deep.eq
+is.deep.eq = deep.eq
 
 export default is

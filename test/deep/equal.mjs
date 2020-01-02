@@ -87,7 +87,7 @@ const fns = [
   { fn: () => is.deep.equal(date, new Date()), expect: false },
   { fn: () => is.deep.equal(date, ''), expect: false },
   { fn: () => is.deep.equal(null, null), expect: true },
-  { fn: () => is.deep.equal(null), expect: false },
+  { fn: () => is.deep.equal(undefined, null), expect: false },
   { fn: () => is.deep.equal(), expect: false },
   { fn: () => is.deep.equal(date, null), expect: false },
   // currying
