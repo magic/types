@@ -4,5 +4,5 @@ export default {
   WEB_ROOT: '/types/',
   URL: 'magic.github.io/types',
   PUBLIC: 'docs',
-  HOIST: 'Gdpr',
+  HOIST: ['Gdpr', 'LightSwitch'],
 }
