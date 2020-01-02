@@ -2,10 +2,6 @@
 
 typechecking utilities
 
-### version 0.1.0 uses esmodules
-0.1.0 and onwards uses esmodules,
-docs will be updated soon
-
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
@@ -178,3 +174,6 @@ FIX: add module field to package.json
 
 ##### 0.1.2
 FIX: is.number no longer errors on node es6 modules and other weird objects
+
+##### 0.1.3
+use @magic/deep for is.deep.equal and is.deep.different
