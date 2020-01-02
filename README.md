@@ -177,3 +177,11 @@ FIX: is.number no longer errors on node es6 modules and other weird objects
 
 ##### 0.1.3
 use @magic/deep for is.deep.equal and is.deep.different
+
+##### 0.1.4
+is.deep uses @magic/deep now. 
+this means that is.deep.equal(null, undefined) is returning a function now, 
+because it expects currying.
+
+##### 0.1.5 - unreleased
+...
