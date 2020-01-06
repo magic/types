@@ -186,5 +186,8 @@ because it expects currying.
 ##### 0.1.5
 minimum node version is 13.5.0
 
-##### 0.1.6 - unreleased
+##### 0.1.6
+remove @magic/deep dependency
+
+##### 0.1.7 - unreleased
 ...
