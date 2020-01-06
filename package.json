@@ -32,9 +32,6 @@
     "src"
   ],
   "homepage": "https://github.com/magic/types",
-  "dependencies": {
-    "@magic/deep": "0.1.1"
-  },
   "devDependencies": {
     "@magic-modules/gdpr": "0.0.12",
     "@magic-modules/git-badges": "0.0.3",

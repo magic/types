@@ -1,4 +1,4 @@
-import deep from '@magic/deep'
+import deep from './deep/index.mjs'
 
 export const isArray = e => Array.isArray(e)
 
@@ -388,15 +388,23 @@ export const is = {
   isFalsy,
   falsy: isFalsy,
 
-  isDeepEqual: deep.eq,
-  deepEqual: deep.eq,
-  deepEq: deep.eq,
+  isDeepEqual: deep.equal,
+  deepEqual: deep.equal,
+  deepEq: deep.equal,
 
-  isDeepDifferent: deep.diff,
-  deepDifferent: deep.diff,
-  deepDiff: deep.diff,
+  isDeepDifferent: deep.different,
+  deepDifferent: deep.different,
+  deepDiff: deep.different,
 
-  deep,
+  deep: {
+    isDifferent: deep.different,
+    different: deep.different,
+    diff: deep.different,
+
+    isEqual: deep.equal,
+    equal: deep.equal,
+    eq: deep.equal,
+  },
 
   isLengthGreater,
   isLengthGreaterOrEqual,
@@ -441,13 +449,5 @@ const ln = {
 
 const lenKeys = ['count', 'length', 'len', 'ln']
 Object.entries(ln).forEach(([k, v]) => lenKeys.forEach(key => (is[key][k] = v)))
-
-is.deep.isDifferent = deep.diff
-is.deep.different = deep.diff
-is.deep.diff = deep.diff
-
-is.deep.isEqual = deep.eq
-is.deep.equal = deep.eq
-is.deep.eq = deep.eq
 
 export default is
