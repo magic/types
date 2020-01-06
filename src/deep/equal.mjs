@@ -1,6 +1,6 @@
 // Written by Substack <3
 
-import is from '@magic/types'
+import is from '../index.mjs'
 
 export const equal = (a, b) => {
   // curry

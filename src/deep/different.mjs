@@ -1,4 +1,4 @@
-import is from '@magic/types'
+import is from '../index.mjs'
 
 import equal from './equal.mjs'
 
