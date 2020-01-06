@@ -17,9 +17,10 @@
     "format:check": "f --exclude docs",
     "calls": "calls"
   },
-  "engine": {
+  "engines": {
     "node": ">=12.13.0"
   },
+  "engineStrict": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/magic/types"
