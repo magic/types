@@ -189,5 +189,8 @@ minimum node version is 13.5.0
 ##### 0.1.6
 remove @magic/deep dependency
 
-##### 0.1.7 - unreleased
+##### 0.1.7
+fix erroneous '@magic/types' import in src/deep/equal.mjs
+
+##### 0.1.8 - unreleased
 ...
