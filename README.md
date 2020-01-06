@@ -183,5 +183,8 @@ is.deep uses @magic/deep now.
 this means that is.deep.equal(null, undefined) is returning a function now, 
 because it expects currying.
 
-##### 0.1.5 - unreleased
+##### 0.1.5
+minimum node version is 13.5.0
+
+##### 0.1.6 - unreleased
 ...
