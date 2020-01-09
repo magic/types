@@ -158,6 +158,19 @@ isDeepEqual([1, 2, 3], [1, 2, 3]) // true
 // alias is.deep.eq, is.deep.equal
 isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
+
+isEvery([1, 2, 3], 'number') // true
+isEvery([1, 2, 3], is.number) // true
+// alias is.every, is.all
+
+isSome([1, 'str', {}], 'number') // true
+isSome([1, 'str', {}], is.number) // true
+// alias is.some
+
+isNone([1, 2, 3], 'string') // true
+isNone([1, 2, 3], is.number) // false
+// alias is.none
+
 ```
 
 
@@ -179,8 +192,9 @@ FIX: is.number no longer errors on node es6 modules and other weird objects
 use @magic/deep for is.deep.equal and is.deep.different
 
 ##### 0.1.4
-is.deep uses @magic/deep now. 
-this means that is.deep.equal(null, undefined) is returning a function now, 
+is.deep uses @magic/deep now.
+
+this means that is.deep.equal(null, undefined) is returning a function now,
 because it expects currying.
 
 ##### 0.1.5
@@ -192,5 +206,10 @@ remove @magic/deep dependency
 ##### 0.1.7
 fix erroneous '@magic/types' import in src/deep/equal.mjs
 
-##### 0.1.8 - unreleased
+##### 0.1.8
+* is.every added
+* is.some added
+* is.none added
+
+##### 0.1.9
 ...

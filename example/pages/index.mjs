@@ -208,6 +208,27 @@ test('42', ['string', 'object']) // true`),
   Pre('isWeakSet(new WeakSet()) //true'),
   p({ class: 'alias' }, 'alias is.weakSet'),
 
+  h3({ id: 'functions-isevery' }, 'isEvery'),
+  Pre(`
+isEvery([1, 2, 3], 'number') // true
+isEvery([1, 2, 3], is.number) // true
+  `),
+  p({ class: 'alias'}, 'alias is.every, is.all'),
+
+  h3({ id: 'functions-issome' }, 'isSome'),
+  Pre(`
+isSome([1, 'str', {}], 'number') // true
+isSome([1, 'str', {}], is.number) // true
+  `),
+  p({ class: 'alias' } , 'alias is.some'),
+
+  h3({ id: 'functions-isnone' }, 'isNone'),
+  Pre(`
+isNone([1, 2, 3], 'string') // true
+isNone([1, 2, 3], is.number) // false
+  `),
+  p({ class: 'alias' }, 'alias is.none'),
+
   h2({ id: 'source' }, 'source'),
   p([
     'the source for this page is in the ',

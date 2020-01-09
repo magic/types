@@ -57,6 +57,9 @@ export const state = {
         { to: '-isset', text: 'isSet' },
         { to: '-isweakmap', text: 'isWeakMap' },
         { to: '-isweakset', text: 'isWeakSet' },
+        { to: '-isevery', text: 'isEvery' },
+        { to: '-issome', text: 'isSome' },
+        { to: '-isnone', text: 'isNone' },
       ],
     },
 
