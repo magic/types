@@ -185,6 +185,16 @@ export const isSet = a => a instanceof Set
 export const isWeakMap = a => a instanceof WeakMap
 export const isWeakSet = a => a instanceof WeakSet
 
+const isElementCheck = (e, t) => (isFunction(t) ? t(e) : typeof e === t)
+
+export const isEvery = (arr, t) =>
+  !isArray(arr) ? isElementCheck(arr, t) : arr.every(e => isElementCheck(e, t))
+
+export const isSome = (arr, t) =>
+  !isArray(arr) ? isElementCheck(arr, t) : arr.some(e => isElementCheck(e, t))
+
+export const isNone = (arr, t) => !isSome(arr, t)
+
 export const is = {
   count: getLength,
   length: getLength,
@@ -423,6 +433,11 @@ export const is = {
 
   isWeakSet,
   weakSet: isWeakSet,
+
+  every: isEvery,
+  all: isEvery,
+  some: isSome,
+  none: isNone,
 }
 
 // assign ln as properties of the getLength function

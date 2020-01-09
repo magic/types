@@ -238,6 +238,11 @@ const spec = {
   weakMap: is.fn,
   isWeakSet: is.fn,
   weakSet: is.fn,
+
+  every: is.fn,
+  all: is.fn,
+  some: is.fn,
+  none: is.fn,
 }
 
 const fns = [
