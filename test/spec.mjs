@@ -243,6 +243,10 @@ const spec = {
   all: is.fn,
   some: is.fn,
   none: is.fn,
+
+  instance: is.fn,
+  instanceof: is.fn,
+  instanceOf: is.fn,
 }
 
 const fns = [

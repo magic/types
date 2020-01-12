@@ -336,4 +336,9 @@ export default {
     { fn: is.none('', is.str), expect: false },
     { fn: is.none('', 'string'), expect: false },
   ],
+
+  instanceof: [
+    { fn: is.instance(new Date(), Date), expect: true, info: 'is.instance returns true for Date' },
+    { fn: is.instance(new Date(), RegExp), expect: false, info: 'is.instance returns false for new Date() compared to RegExp' },
+  ],
 }
