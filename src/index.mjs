@@ -48,10 +48,6 @@ export const isHexAlphaColor8 = e => /#\b([a-f0-9]{8})\b/i.test(e)
 
 export const isColor = e => isRGBAObject(e) || isRGBObject(e) || isHexColor(e) || isHexAlphaColor(e)
 
-export const isDate = e => e instanceof Date
-
-export const isRegExp = e => e instanceof RegExp
-
 export const isTruthy = e => !!e
 
 export const isFalsy = e => !e || isEmpty(e)
@@ -112,8 +108,6 @@ export const isLengthSmaller = (a, b) =>
 
 export const isLengthSmallerOrEqual = (a, b) =>
   isDefined(b) ? getLength(a) <= getLength(b) : c => isLengthSmallerOrEqual(a, c)
-
-export const isError = e => e instanceof Error
 
 export const isIterable = e => isDefined(e) && !isNull(e) && isFunction(e.forEach)
 
@@ -180,11 +174,6 @@ export const isNot = (e, ...types) => !isTypes(e, ...types)
 
 export const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
 
-export const isMap = a => a instanceof Map
-export const isSet = a => a instanceof Set
-export const isWeakMap = a => a instanceof WeakMap
-export const isWeakSet = a => a instanceof WeakSet
-
 const isElementCheck = (e, t) => (isFunction(t) ? t(e) : typeof e === t)
 
 export const isEvery = (arr, t) =>
@@ -194,6 +183,16 @@ export const isSome = (arr, t) =>
   !isArray(arr) ? isElementCheck(arr, t) : arr.some(e => isElementCheck(e, t))
 
 export const isNone = (arr, t) => !isSome(arr, t)
+
+export const isInstanceOf = (e, t) => e instanceof t
+
+export const isError = e => isInstanceOf(e, Error)
+export const isDate = e => isInstanceOf(e, Date)
+export const isRegExp = e => isInstanceOf(e, RegExp)
+export const isMap = a => isInstanceOf(a, Map)
+export const isSet = a => isInstanceOf(a, Set)
+export const isWeakMap = a => isInstanceOf(a, WeakMap)
+export const isWeakSet = a => isInstanceOf(a, WeakSet)
 
 export const is = {
   count: getLength,
@@ -438,6 +437,10 @@ export const is = {
   all: isEvery,
   some: isSome,
   none: isNone,
+
+  instance: isInstanceOf,
+  instanceof: isInstanceOf,
+  instanceOf: isInstanceOf,
 }
 
 // assign ln as properties of the getLength function
