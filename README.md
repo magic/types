@@ -171,6 +171,9 @@ isNone([1, 2, 3], 'string') // true
 isNone([1, 2, 3], is.number) // false
 // alias is.none
 
+isInstanceOf(new Date(), Date) // true
+// alias is.instance, is.instanceof, is.instanceOf
+
 ```
 
 
@@ -212,4 +215,8 @@ fix erroneous '@magic/types' import in src/deep/equal.mjs
 * is.none added
 
 ##### 0.1.9
+* is.instanceOf added
+
+
+##### 0.1.10 - unreleased
 ...
