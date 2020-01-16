@@ -213,14 +213,14 @@ test('42', ['string', 'object']) // true`),
 isEvery([1, 2, 3], 'number') // true
 isEvery([1, 2, 3], is.number) // true
   `),
-  p({ class: 'alias'}, 'alias is.every, is.all'),
+  p({ class: 'alias' }, 'alias is.every, is.all'),
 
   h3({ id: 'functions-issome' }, 'isSome'),
   Pre(`
 isSome([1, 'str', {}], 'number') // true
 isSome([1, 'str', {}], is.number) // true
   `),
-  p({ class: 'alias' } , 'alias is.some'),
+  p({ class: 'alias' }, 'alias is.some'),
 
   h3({ id: 'functions-isnone' }, 'isNone'),
   Pre(`
@@ -228,6 +228,27 @@ isNone([1, 2, 3], 'string') // true
 isNone([1, 2, 3], is.number) // false
   `),
   p({ class: 'alias' }, 'alias is.none'),
+
+  h3({ id: 'functions-iscase' }, 'isCase'),
+  Pre(`
+isCase('UPPERCASE', 'up') // true
+isCase('lowercase', 'low') // true
+  `),
+  p({ class: 'alias' }, 'alias is.case'),
+
+  h3({ id: 'functions-isuppercase' }, 'isUpperCase'),
+  Pre(`
+isUpperCase('UPPERCASE') // true
+isUpperCase(23) // false
+`),
+  p({ class: 'alias' }, 'alias is.case.upper, isCase.upper'),
+
+  h3({ id: 'functions-islowercase' }, 'isLowerCase'),
+  Pre(`
+isLowerCase('lowercase') // true
+isLowerCase(23) // false
+`),
+  p({ class: 'alias' }, 'alias is.case.lower, isCase.lower'),
 
   h2({ id: 'source' }, 'source'),
   p([

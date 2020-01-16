@@ -174,6 +174,16 @@ isNone([1, 2, 3], is.number) // false
 isInstanceOf(new Date(), Date) // true
 // alias is.instance, is.instanceof, is.instanceOf
 
+isCase('UPPERCASE', 'up') // true
+isCase('lowercase', 'low') // true
+// alias is.case
+
+isUpperCase('UPPERCASE') // true
+// alias is.case.upper, is.isCase.upper
+
+isLowerCase('lowercase') // true
+// alias is.case.lower, is.isCase.lower
+
 ```
 
 

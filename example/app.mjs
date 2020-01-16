@@ -60,6 +60,9 @@ export const state = {
         { to: '-isevery', text: 'isEvery' },
         { to: '-issome', text: 'isSome' },
         { to: '-isnone', text: 'isNone' },
+        { to: '-iscase', text: 'isCase' },
+        { to: '-isuppercase', text: 'isUpperCase' },
+        { to: '-islowercase', text: 'isLowerCase' },
       ],
     },
 
