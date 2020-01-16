@@ -247,6 +247,28 @@ const spec = {
   instance: is.fn,
   instanceof: is.fn,
   instanceOf: is.fn,
+
+  isUpperCase: is.fn,
+  isLowerCase: is.fn,
+
+  upperCase: is.fn,
+  lowerCase: is.fn,
+
+  isCase: [
+    is.fn,
+    {
+      upper: is.fn,
+      lower: is.fn,
+    },
+  ],
+
+  case: [
+    is.fn,
+    {
+      upper: is.fn,
+      lower: is.fn,
+    },
+  ],
 }
 
 const fns = [
