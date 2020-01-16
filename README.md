@@ -220,13 +220,16 @@ remove @magic/deep dependency
 fix erroneous '@magic/types' import in src/deep/equal.mjs
 
 ##### 0.1.8
-* is.every added
-* is.some added
-* is.none added
+add
+* is.every
+* is.some
+* is.none
 
 ##### 0.1.9
-* is.instanceOf added
+add is.instanceOf
 
+##### 0.1.10
+add isCase, isUpperCase, isLowerCase
 
-##### 0.1.10 - unreleased
+##### 0.1.11 - unreleased
 ...
