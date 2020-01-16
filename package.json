@@ -1,9 +1,10 @@
 {
   "name": "@magic/types",
   "version": "0.1.9",
-  "description": "typechecking library",
-  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
+  "author": "Wizards & Witches",
+  "homepage": "https://github.com/magic/types",
   "license": "AGPL-3.0",
+  "description": "typechecking library",
   "main": "src/index.mjs",
   "scripts": {
     "start": "t",
@@ -31,7 +32,6 @@
   "files": [
     "src"
   ],
-  "homepage": "https://github.com/magic/types",
   "devDependencies": {
     "@magic-modules/gdpr": "0.0.13",
     "@magic-modules/git-badges": "0.0.3",
@@ -41,5 +41,16 @@
     "@magic/core": "0.0.19",
     "@magic/format": "0.0.7",
     "@magic/test": "0.1.33"
-  }
+  },
+  "keywords": [
+    "magic",
+    "types",
+    "typechecking"
+  ],
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
+  ]
 }
