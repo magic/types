@@ -1,0 +1,93 @@
+import is from '../../src/index.mjs'
+
+export default {
+  ident: [
+    { fn: () => is.length([]), expect: 0, info: 'is.length' },
+    { fn: () => is.count([1]), expect: 1, info: 'is.count' },
+    { fn: () => is.len([1, 2]), expect: 2, info: 'is.len' },
+    { fn: () => is.len(new Map([[1, '1']])), expect: 1, info: 'is.len Map' },
+    { fn: () => is.len(new Set([1, 2])), expect: 2, info: 'is.len Set' },
+    { fn: () => is.len(new Set('123')), expect: 3, info: 'Set(string)' },
+    { fn: () => is.len('123'), expect: 3, info: 'is.len String' },
+    { fn: () => is.len({ t: 't' }), expect: 1, info: 'is.len Object' },
+  ],
+  equal: [
+    { fn: () => is.length.equal(3)('123'), info: 'is.length.equal' },
+    { fn: () => is.length.eq(3)('123'), info: 'is.length.eq' },
+    { fn: () => is.count.equal(5)('12345'), info: 'is.count.equal' },
+    { fn: () => is.count.eq(5)('12345'), info: 'is.count.eq' },
+    { fn: () => is.len.equal(4)('1234'), info: 'is.len.equal' },
+    { fn: () => is.len.eq(4)('1234'), info: 'is.len.eq' },
+    { fn: () => is.len.eq(3)(new Set([1, 2, 3])), info: 'Number and Set' },
+    { fn: () => is.len.eq(5)(new Set([1, 2, 3])), expect: false, info: 'Set and Number' },
+    { fn: () => is.len.eq([1, 2, 3], new Set([1, 2, 3])), info: 'Array and Set' },
+    {
+      fn: () =>
+        is.len.eq(
+          new Map([
+            ['1', 1],
+            ['2', 2],
+          ]),
+          new Set([1, 2]),
+        ),
+      info: 'Map and Set',
+    },
+    {
+      fn: () =>
+        is.len.eq(
+          [1, 2],
+          new Map([
+            ['1', 1],
+            ['2', 2],
+          ]),
+        ),
+      info: 'Array and Map',
+    },
+    { fn: () => is.len.eq(new Map([['1', 1]]), new Map([['1', 1]])), info: 'Map and Map' },
+    { fn: () => is.len.eq('123', '123'), info: 'compare strings' },
+    { fn: () => is.len.eq(0)({}), info: 'empty objects' },
+    { fn: () => is.len.eq(0)([]), info: 'empty arrays' },
+    { fn: () => is.len.eq(0)(''), info: 'empty strings' },
+    { fn: () => is.len.eq('')(''), info: 'empty strings' },
+    { fn: () => is.len.eq(3)([1, 2, 3]), info: 'compare arrays' },
+    { fn: () => is.len.eq(1)({ test: 'true ' }), info: 'compare objects' },
+    { fn: () => is.len.eq(1, '1'), info: 'compare uncurried' },
+    { fn: () => is.len.eq(1, { t: 't' }), info: 'compare objects uncurried' },
+    { fn: () => is.len.eq({ t: 1 }, { t: 1 }), info: 'compare objects uncurried' },
+    { fn: () => is.len.eq(3, [1, 2, 3]), info: 'compare  arrays uncurried' },
+    { fn: () => is.len.eq('123', '123'), info: 'compare strings' },
+    { fn: () => is.len.eq(5, '12345'), info: 'compare strings uncurried' },
+    { fn: () => is.len.eq(4, 1234), expect: false, info: 'numbers never count' },
+  ],
+  greater: [
+    // currying
+    { fn: () => is.len.greater, expect: is.function },
+    { fn: () => is.len.gt, expect: is.function },
+    { fn: () => is.len.bigger, expect: is.function },
+    { fn: () => is.len.gt(10), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.gt(10)(5), expect: true, info: 'can compare numbers' },
+    { fn: () => is.len.gt(5)(10), expect: false, info: 'can compare numbers' },
+    { fn: () => is.len.gt([1])([]), expect: true, info: 'can compare arrays' },
+    { fn: () => is.len.gt([])([1]), expect: false, info: 'can compare arrays' },
+    { fn: () => is.len.gt({})({ t: 1 }), expect: false, info: 'can compare objects' },
+    { fn: () => is.len.gt({ t: 1 }, {}), expect: true, info: 'can compare objects' },
+    { fn: () => is.len.gt('12')('1'), expect: true },
+    { fn: () => is.len.gt('1')('12'), expect: false },
+    { fn: () => is.len.gt([1], [1]), expect: false },
+  ],
+  smaller: [
+    { fn: () => is.len.lower, expect: is.function },
+    { fn: () => is.len.lt, expect: is.function },
+    { fn: () => is.len.smaller, expect: is.function },
+    { fn: () => is.len.lt(10), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.lt(10)(5), expect: false, info: 'can compare numbers' },
+    { fn: () => is.len.lt(5)(10), expect: true, info: 'can compare numbers' },
+    { fn: () => is.len.lt([1])([]), expect: false, info: 'can compare arrays' },
+    { fn: () => is.len.lt([])([1]), expect: true, info: 'can compare arrays' },
+    { fn: () => is.len.lt({})({ t: 1 }), expect: true, info: 'can compare objects' },
+    { fn: () => is.len.lt({ t: 1 }, {}), expect: false, info: 'can compare objects' },
+    { fn: () => is.len.lt('12')('1'), expect: false },
+    { fn: () => is.len.lt('1')('12'), expect: true },
+    { fn: () => is.len.lt([1], [1]), expect: false },
+  ],
+}

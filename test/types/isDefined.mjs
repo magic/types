@@ -1,0 +1,26 @@
+import is from '../../src/index.mjs'
+
+export default [
+  { fn: () => is.isDefined([1, 2, 3]), expect: true },
+  { fn: () => is.isDef([1, 2, 3]), expect: true },
+  { fn: () => is.defined([1, 2, 3]), expect: true },
+  { fn: () => is.def([1, 2, 3]), expect: true },
+  { fn: () => is.def(true), expect: true },
+  { fn: () => is.def(false), expect: true },
+  { fn: () => is.def('true'), expect: true },
+  { fn: () => is.def(0), expect: true },
+  { fn: () => is.def(''), expect: true },
+  { fn: () => is.def([]), expect: true },
+  { fn: () => is.def(() => {}), expect: true },
+  { fn: () => is.def(1.1), expect: true },
+  { fn: () => is.def(0), expect: true },
+  { fn: () => is.def({ t: 't' }), expect: true },
+  { fn: () => is.def('string'), expect: true },
+  { fn: () => is.def('m@m.m'), expect: true },
+  { fn: () => is.def(/test/), expect: true },
+  { fn: () => is.def(null), expect: true },
+  { fn: () => is.def(new Date()), expect: true },
+  { fn: () => is.def(new Error('test')), expect: true },
+  { fn: () => is.def(), expect: false },
+  { fn: () => is.def(undefined), expect: false },
+]
