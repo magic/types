@@ -194,6 +194,14 @@ export const isSet = a => isInstanceOf(a, Set)
 export const isWeakMap = a => isInstanceOf(a, WeakMap)
 export const isWeakSet = a => isInstanceOf(a, WeakSet)
 
+export const isUpperCase = s => (isString(s) ? s === s.toUpperCase() : false)
+export const isLowerCase = s => (isString(s) ? s === s.toLowerCase() : false)
+
+export const isCase = (s, c = 'up') => (c === 'up' ? isUpperCase(s) : isLowerCase(s))
+
+isCase.upper = isUpperCase
+isCase.lower = isLowerCase
+
 export const is = {
   count: getLength,
   length: getLength,
@@ -441,6 +449,14 @@ export const is = {
   instance: isInstanceOf,
   instanceof: isInstanceOf,
   instanceOf: isInstanceOf,
+
+  isCase,
+  case: isCase,
+
+  isUpperCase,
+  upperCase: isUpperCase,
+  isLowerCase,
+  lowerCase: isLowerCase,
 }
 
 // assign ln as properties of the getLength function
