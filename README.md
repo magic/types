@@ -231,5 +231,8 @@ add is.instanceOf
 ##### 0.1.10
 add isCase, isUpperCase, isLowerCase
 
-##### 0.1.11 - unreleased
+##### 0.1.11
+add isObjectNative
+
+##### 0.1.12 - unreleased
 ...
