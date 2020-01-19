@@ -18,6 +18,8 @@ export const isFloat = e => e === +e
 
 export const isObject = e => typeof e === 'object' && !isNull(e)
 
+export const isObjectNative = e => Object.prototype.toString.call(e) === '[object Object]'
+
 export const isMergeableObject = e => isObject(e) && !isDate(e) && !isRegExp(e)
 
 export const isString = e => typeof e === 'string'
@@ -318,6 +320,9 @@ export const is = {
   isObj: isObject,
   object: isObject,
   obj: isObject,
+
+  isObjectNative,
+  objectNative: isObjectNative,
 
   isMergeableObject,
   mergeableObject: isMergeableObject,
