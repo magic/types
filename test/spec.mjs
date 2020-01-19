@@ -52,6 +52,9 @@ const spec = {
   isObj: is.fn,
   isObject: is.fn,
 
+  isObjectNative: is.fn,
+  objectNative: is.fn,
+
   str: is.fn,
   string: is.fn,
   isStr: is.fn,
@@ -271,9 +274,7 @@ const spec = {
   ],
 }
 
-const fns = [
+export default [
   { fn: () => version.lib(is, spec), expect: is.len.eq(0) },
   { fn: () => version.spec(spec, is), expect: is.len.eq(0) },
 ]
-
-export default fns
