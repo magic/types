@@ -234,5 +234,8 @@ add isCase, isUpperCase, isLowerCase
 ##### 0.1.11
 add isObjectNative
 
-##### 0.1.12 - unreleased
+##### 0.1.12 
+bump required node version to 14.2.0
+
+##### 0.0.13 - unreleased
 ...
