@@ -25,6 +25,7 @@ export const state = {
         { to: '-defined', text: 'isDefined' },
         { to: '-undefined', text: 'isUndefined' },
         { to: '-function', text: 'isFunction' },
+        { to: '-asyncfunction', text: 'isAsyncFunction' },
         { to: '-number', text: 'isNumber' },
         { to: '-integer', text: 'isInteger' },
         { to: '-float', text: 'isFloat' },

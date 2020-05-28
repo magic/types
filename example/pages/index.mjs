@@ -77,6 +77,10 @@ test('42', ['string', 'object']) // true`),
   Pre('isFunction(() => {}) // true'),
   p({ class: 'alias' }, 'alias isFunc, isFn, is.function, is.func, is.fn'),
 
+  h3({ id: 'functions-asyncfunction' }, 'isAsyncFunction'),
+  Pre('isAsyncFunction(async () => {}) // true'),
+  p({ class: 'alias' }, 'alias isAsyncFunc, isAsyncFn, is.asyncFunction, is.asyncFunc, is.asyncFn'),
+
   h3({ id: 'functions-number' }, 'isNumber'),
   Pre('isNumber(1) // true'),
   p({ class: 'alias' }, 'alias isNum, is.number, is.num'),

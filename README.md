@@ -69,6 +69,9 @@ isUndefined(undefined) //false
 isFunction(() => {}) // true
 // alias isFunc, isFn, is.function, is.func, is.fn
 
+isAsyncFunction(async () => {}) // true
+// alias isAsyncFunc, isAsyncFn, is.asyncFunction, is.asyncFunc, is.asyncFn
+
 isNumber(1) // true
 // alias isNum, is.number, is.num
 
