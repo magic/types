@@ -56,7 +56,7 @@ const fns = [
   { fn: () => is.deep.different(0, 1), expect: true },
   { fn: () => is.deep.different(otherObject, differentObject), expect: true },
   // functions do not compare as different if their toString results are different
-  { fn: () => is.deep.different({ t: () => {} }, { t: function() {} }), expect: true },
+  { fn: () => is.deep.different({ t: () => {} }, { t: function () {} }), expect: true },
   { fn: () => is.deep.different({ t: () => {} }, { t: () => {} }), expect: false },
   { fn: () => is.deep.different({ t: (a, b) => a + b }, { t: (a, b) => a + b }), expect: false },
   { fn: () => is.deep.different({ t: (a, b) => [a, b] }, { t: (a, b) => [a, b] }), expect: false },

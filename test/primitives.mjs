@@ -29,7 +29,7 @@ const fns = {
     { fn: () => is.function(() => {}), expect: true },
     { fn: () => is.func(() => {}), expect: true },
     { fn: () => is.fn(() => {}), expect: true },
-    { fn: () => is.fn(function() {}), expect: true },
+    { fn: () => is.fn(function () {}), expect: true },
     { fn: () => is.fn(0), expect: false },
     { fn: () => is.fn(true), expect: false },
     { fn: () => is.fn([1, 2, 3]), expect: false },

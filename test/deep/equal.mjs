@@ -58,7 +58,7 @@ const fns = [
   { fn: () => is.deep.equal('string', 1), expect: false },
   { fn: () => is.deep.equal(otherObject, differentObject), expect: false },
   // functions do not compare as equal if their toString results are different
-  { fn: () => is.deep.equal({ t: () => {} }, { t: function() {} }), expect: false },
+  { fn: () => is.deep.equal({ t: () => {} }, { t: function () {} }), expect: false },
   { fn: () => is.deep.equal({ t: () => {} }, { t: () => {} }), expect: true },
   { fn: () => is.deep.equal({ t: (a, b) => a + b }, { t: (a, b) => a + b }), expect: true },
   { fn: () => is.deep.equal({ t: (a, b) => [a, b] }, { t: (a, b) => [a, b] }), expect: true },
