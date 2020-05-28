@@ -35,6 +35,13 @@ const fns = {
     { fn: () => is.fn([1, 2, 3]), expect: false },
     { fn: () => is.fn({ t: 't' }), expect: false },
   ],
+  isAsyncFunction: [
+    { fn: is.isAsyncFunction(async () => {}), expect: true },
+    { fn: is.isAsyncFunction(async function () {}), expect: true },
+    { fn: is.isAsyncFunction(function () {}), expect: false },
+    { fn: is.isAsyncFunction(() => {}), expect: false },
+    { fn: is.isAsyncFunction(new Promise(() => {})), expect: false },
+  ],
   isNumber: [
     { fn: () => is.isNumber(1), expect: true },
     { fn: () => is.isNum(1), expect: true },

@@ -29,6 +29,13 @@ const spec = {
   isFunc: is.fn,
   isFunction: is.fn,
 
+  asyncFn: is.fn,
+  asyncFunc: is.fn,
+  asyncFunction: is.fn,
+  isAsyncFn: is.fn,
+  isAsyncFunc: is.fn,
+  isAsyncFunction: is.fn,
+
   num: is.fn,
   number: is.fn,
   isNum: is.fn,

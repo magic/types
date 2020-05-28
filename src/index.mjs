@@ -10,6 +10,8 @@ export const isUndefined = e => !isDefined(e)
 
 export const isFunction = e => typeof e === 'function'
 
+export const isAsyncFunction = e => Object.prototype.toString.call(e) === '[object AsyncFunction]'
+
 export const isNumber = e => typeof e !== 'object' && e === +e
 
 export const isInteger = e => e === +e && e === (e | 0)
@@ -302,6 +304,13 @@ export const is = {
   function: isFunction,
   func: isFunction,
   fn: isFunction,
+
+  isAsyncFunction,
+  isAsyncFunc: isAsyncFunction,
+  isAsyncFn: isAsyncFunction,
+  asyncFunction: isAsyncFunction,
+  asyncFunc: isAsyncFunction,
+  asyncFn: isAsyncFunction,
 
   isNumber,
   isNum: isNumber,
