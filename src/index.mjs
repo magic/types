@@ -495,7 +495,14 @@ const ln = {
   lteq: isLengthSmallerOrEqual,
 }
 
-const lenKeys = ['count', 'length', 'len', 'ln']
-Object.entries(ln).forEach(([k, v]) => lenKeys.forEach(key => (is[key][k] = v)))
+// count, length, len and ln are functions, returning the length.
+// the code below assigns all keys in the ln object to each of those functions,
+// allowing users of this library to call is.length.equal and other subfunctions.
+
+const applyLenKey = (k, fn) => key => (is[key][k] = fn)
+
+const applyLenKeys = ([k, fn]) => ['count', 'length', 'len', 'ln'].forEach(applyLenKey(k, fn))
+
+Object.entries(ln).forEach(applyLenKeys)
 
 export default is
