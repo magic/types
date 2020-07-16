@@ -12,6 +12,8 @@ export const isFunction = e => typeof e === 'function'
 
 export const isAsyncFunction = e => Object.prototype.toString.call(e) === '[object AsyncFunction]'
 
+export const isGeneratorFunction = e => Object.prototype.toString.call(e) === '[object GeneratorFunction]'
+
 export const isNumber = e => typeof e !== 'object' && e === +e
 
 export const isInteger = e => e === +e && e === (e | 0)
@@ -311,6 +313,16 @@ export const is = {
   asyncFunction: isAsyncFunction,
   asyncFunc: isAsyncFunction,
   asyncFn: isAsyncFunction,
+
+  isGeneratorFunction,
+  isGeneratorFn: isGeneratorFunction,
+  isGeneratorFunc: isGeneratorFunction,
+  isGeneratorFn: isGeneratorFunction,
+  generator: isGeneratorFunction,
+  isGenerator: isGeneratorFunction,
+  generatorFn: isGeneratorFunction,
+  generatorFunc: isGeneratorFunction,
+  generatorFunction: isGeneratorFunction,
 
   isNumber,
   isNum: isNumber,
