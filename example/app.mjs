@@ -26,6 +26,7 @@ export const state = {
         { to: '-undefined', text: 'isUndefined' },
         { to: '-function', text: 'isFunction' },
         { to: '-asyncfunction', text: 'isAsyncFunction' },
+        { to: '-generatorfunction', text: 'isGeneratorFunction' },
         { to: '-number', text: 'isNumber' },
         { to: '-integer', text: 'isInteger' },
         { to: '-float', text: 'isFloat' },

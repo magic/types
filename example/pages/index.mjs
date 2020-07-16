@@ -81,6 +81,10 @@ test('42', ['string', 'object']) // true`),
   Pre('isAsyncFunction(async () => {}) // true'),
   p({ class: 'alias' }, 'alias isAsyncFunc, isAsyncFn, is.asyncFunction, is.asyncFunc, is.asyncFn'),
 
+  h3({ id: 'functions-generatorfunction' }, 'isGeneratorFunction'),
+  Pre('isGeneratorFunction(function * () {}) // true'),
+  p({ class: 'alias' }, 'alias isGeneratorFunc, isGeneratorFn, is.generatorFunction, is.generator, is.generatorFunc, is.generatorFn'),
+
   h3({ id: 'functions-number' }, 'isNumber'),
   Pre('isNumber(1) // true'),
   p({ class: 'alias' }, 'alias isNum, is.number, is.num'),
