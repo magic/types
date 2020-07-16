@@ -244,10 +244,8 @@ add isObjectNative
 bump required node version to 14.2.0
 
 ##### 0.1.13
-add isAsyncFunction
+* add isAsyncFunction
+* add isGeneratorFunction
 
-##### 0.1.14
-add isGeneratorFunction
-
-##### 0.1.15 - unreleased
+##### 0.1.14 - unreleased
 ...
