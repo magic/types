@@ -72,6 +72,9 @@ isFunction(() => {}) // true
 isAsyncFunction(async () => {}) // true
 // alias isAsyncFunc, isAsyncFn, is.asyncFunction, is.asyncFunc, is.asyncFn
 
+isGeneratorFunction(* () => {}) // true
+// alias isGeneratorFunc, isGeneratorFunc, is.generatorFunction, is.generatorFunc, is.generatorFn
+
 isNumber(1) // true
 // alias isNum, is.number, is.num
 
@@ -243,5 +246,8 @@ bump required node version to 14.2.0
 ##### 0.1.13
 add isAsyncFunction
 
-##### 0.1.14 - unreleased
+##### 0.1.14
+add isGeneratorFunction
+
+##### 0.1.15 - unreleased
 ...
