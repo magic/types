@@ -36,6 +36,16 @@ const spec = {
   isAsyncFunc: is.fn,
   isAsyncFunction: is.fn,
 
+  isGeneratorFunction: is.fn,
+  isGeneratorFn: is.fn,
+  isGeneratorFunc: is.fn,
+  isGeneratorFn: is.fn,
+  generator: is.fn,
+  isGenerator: is.fn,
+  generatorFn: is.fn,
+  generatorFunc: is.fn,
+  generatorFunction: is.fn,
+
   num: is.fn,
   number: is.fn,
   isNum: is.fn,

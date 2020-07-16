@@ -42,6 +42,12 @@ const fns = {
     { fn: is.isAsyncFunction(() => {}), expect: false },
     { fn: is.isAsyncFunction(new Promise(() => {})), expect: false },
   ],
+  isGeneratorFunction: [
+    { fn: is.isGeneratorFunction(function * () {}), expect: true, info: 'generator function' },
+    { fn: is.isGeneratorFunction(function () {}), expect: false, info: 'non generator function' },
+    { fn: is.isGeneratorFunction(() => {}), expect: false, info: 'arrow function' },
+    { fn: is.isGeneratorFunction(new Promise(() => {})), expect: false, info: 'promise' },
+  ],
   isNumber: [
     { fn: () => is.isNumber(1), expect: true },
     { fn: () => is.isNum(1), expect: true },
