@@ -247,5 +247,9 @@ bump required node version to 14.2.0
 * add isAsyncFunction
 * add isGeneratorFunction
 
-##### 0.1.14 - unreleased
+##### 0.1.14
+* bump required node version to 14.15.4
+* update dependencies
+
+##### 0.1.15 - unreleased
 ...
