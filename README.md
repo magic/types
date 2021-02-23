@@ -251,5 +251,8 @@ bump required node version to 14.2.0
 * bump required node version to 14.15.4
 * update dependencies
 
-##### 0.1.15 - unreleased
+##### 0.1.15
+deep.equal now does return true for objects that have undefined property values
+
+##### 0.1.16 - unreleased
 ...
