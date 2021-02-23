@@ -83,7 +83,10 @@ test('42', ['string', 'object']) // true`),
 
   h3({ id: 'functions-generatorfunction' }, 'isGeneratorFunction'),
   Pre('isGeneratorFunction(function * () {}) // true'),
-  p({ class: 'alias' }, 'alias isGeneratorFunc, isGeneratorFn, is.generatorFunction, is.generator, is.generatorFunc, is.generatorFn'),
+  p(
+    { class: 'alias' },
+    'alias isGeneratorFunc, isGeneratorFn, is.generatorFunction, is.generator, is.generatorFunc, is.generatorFn',
+  ),
 
   h3({ id: 'functions-number' }, 'isNumber'),
   Pre('isNumber(1) // true'),
