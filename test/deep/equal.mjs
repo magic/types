@@ -98,6 +98,7 @@ const fns = [
   { fn: () => is.deep.equal(() => {})(a => a), expect: false },
   { fn: () => is.deep.equal([])('test'), expect: false },
   { fn: () => is.deep.equal({ t: 't' })(['test']), expect: false },
+  { fn: () => is.deep.equal({ a: undefined }, { a: undefined }) },
 ]
 
 export default fns
