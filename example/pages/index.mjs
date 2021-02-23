@@ -4,7 +4,7 @@ export const View = state => [
 
   h3('v0.1.0 uses esmodules without compilation.'),
 
-  GitBadges('magic/types'),
+  GitBadges('@magic/types'),
 
   h2({ id: 'install' }, ' install'),
   Pre('npm install @magic/types'),
