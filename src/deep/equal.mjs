@@ -90,6 +90,13 @@ export const equal = (a, b) => {
   let key
   for (let i = ka.length - 1; i >= 0; i--) {
     key = ka[i]
+
+    // in the first line of this function we assume that two undefined values are a bug.
+    // here we have to assume that two undefined properties in an object are intentional.
+    if (is.undefined(a[key])) {
+      return a[key] === b[key]
+    }
+
     if (!equal(a[key], b[key])) {
       return false
     }
