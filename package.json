@@ -6,6 +6,7 @@
   "license": "AGPL-3.0",
   "description": "typechecking library",
   "main": "src/index.mjs",
+  "type": "module",
   "scripts": {
     "start": "t",
     "build": "NODE_ENV=production magic build",
@@ -38,9 +39,9 @@
     "@magic-modules/no-spy": "0.0.6",
     "@magic-modules/pre": "0.0.10",
     "@magic-themes/docs": "0.0.13",
-    "@magic/core": "0.0.109",
+    "@magic/core": "0.0.119",
     "@magic/format": "0.0.22",
-    "@magic/test": "0.1.64"
+    "@magic/test": "0.1.66"
   },
   "keywords": [
     "magic",
