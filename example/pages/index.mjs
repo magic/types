@@ -261,6 +261,14 @@ isLowerCase(23) // false
 `),
   p({ class: 'alias' }, 'alias is.case.lower, isCase.lower'),
 
+  h3({ id: 'functions-ismergeableobject' }, 'isMergeableObject'),
+  Pre(`
+isMergeableObject({}) // true
+isMergeableObject(23) // false
+`),
+
+  p({ class: 'alias' }, 'alias is.mergeable, isMergeable, is.isMergeable, is.mergeableObject'),
+
   h2({ id: 'source' }, 'source'),
   p([
     'the source for this page is in the ',
