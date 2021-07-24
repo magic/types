@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isEmpty } from '../../src/index.mjs'
 
 export default [
+  { fn: () => isEmpty(''), expect: true },
   { fn: () => is.isEmpty(''), expect: true },
   { fn: () => is.isEmpty(null), expect: true },
   { fn: () => is.isEmpty(), expect: true },

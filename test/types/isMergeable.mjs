@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isMergeableObject } from '../../src/index.mjs'
 
 export default [
+  { fn: () => isMergeableObject({}), expect: true },
   { fn: () => is.isMergeable({}), expect: true },
   { fn: () => is.isMergeableObject({}), expect: true },
   { fn: () => is.mergeableObject({}), expect: true },

@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isNone } from '../../src/index.mjs'
 
 export default [
+  { fn: isNone(['', ''], 'number'), expect: true },
   { fn: is.none(['', ''], 'number'), expect: true },
   { fn: is.none(['', ''], 'string'), expect: false },
   { fn: is.none(['', ''], is.str), expect: false },

@@ -1,4 +1,10 @@
-import is from '../../src/index.mjs'
+import is, {
+  isLengthEqual,
+  isLengthGreater,
+  isLengthGreaterOrEqual,
+  isLengthSmaller,
+  isLengthSmallerOrEqual,
+} from '../../src/index.mjs'
 
 export default {
   ident: [
@@ -12,6 +18,7 @@ export default {
     { fn: () => is.len({ t: 't' }), expect: 1, info: 'is.len Object' },
   ],
   equal: [
+    { fn: () => isLengthEqual(3)('123'), info: 'is.length.equal' },
     { fn: () => is.length.equal(3)('123'), info: 'is.length.equal' },
     { fn: () => is.length.eq(3)('123'), info: 'is.length.eq' },
     { fn: () => is.count.equal(5)('12345'), info: 'is.count.equal' },
@@ -64,6 +71,7 @@ export default {
     { fn: () => is.len.greater, expect: is.function },
     { fn: () => is.len.gt, expect: is.function },
     { fn: () => is.len.bigger, expect: is.function },
+    { fn: () => isLengthGreater(10), expect: is.function, info: 'can curry' },
     { fn: () => is.len.gt(10), expect: is.function, info: 'can curry' },
     { fn: () => is.len.gt(10)(5), expect: true, info: 'can compare numbers' },
     { fn: () => is.len.gt(5)(10), expect: false, info: 'can compare numbers' },
@@ -76,9 +84,10 @@ export default {
     { fn: () => is.len.gt([1], [1]), expect: false },
   ],
   smaller: [
-    { fn: () => is.len.lower, expect: is.function },
-    { fn: () => is.len.lt, expect: is.function },
-    { fn: () => is.len.smaller, expect: is.function },
+    { fn: () => is.len.lower(5), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.lt(5), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.smaller(5), expect: is.function, info: 'can curry' },
+    { fn: () => isLengthSmaller(10), expect: is.function, info: 'can curry' },
     { fn: () => is.len.lt(10), expect: is.function, info: 'can curry' },
     { fn: () => is.len.lt(10)(5), expect: false, info: 'can compare numbers' },
     { fn: () => is.len.lt(5)(10), expect: true, info: 'can compare numbers' },
@@ -89,5 +98,11 @@ export default {
     { fn: () => is.len.lt('12')('1'), expect: false },
     { fn: () => is.len.lt('1')('12'), expect: true },
     { fn: () => is.len.lt([1], [1]), expect: false },
+  ],
+  smallerOrEqual: [
+    { fn: () => isLengthSmallerOrEqual(10, 5), expect: false },
+    { fn: () => isLengthSmallerOrEqual(5, 10) },
+    { fn: () => isLengthSmallerOrEqual(10, 10) },
+    { fn: () => is.len.lteq(5, 5) },
   ],
 }

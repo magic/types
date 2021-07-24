@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isSome } from '../../src/index.mjs'
 
 export default [
+  { fn: isSome(['', ''], 'number'), expect: false },
   { fn: is.some(['', ''], 'number'), expect: false },
   { fn: is.some(['', 6], 'string'), expect: true },
   { fn: is.some(['', 6], is.str), expect: true },

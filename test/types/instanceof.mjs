@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isInstanceOf } from '../../src/index.mjs'
 
 export default [
+  { fn: isInstanceOf(new Date(), Date), expect: true, info: 'is.instance returns true for Date' },
   { fn: is.instance(new Date(), Date), expect: true, info: 'is.instance returns true for Date' },
   {
     fn: is.instance(new Date(), RegExp),

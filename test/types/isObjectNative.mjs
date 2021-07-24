@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isObjectNative } from '../../src/index.mjs'
 
 export default [
+  { fn: () => isObjectNative({}), expect: true },
   { fn: () => is.isObjectNative({}), expect: true },
   { fn: () => is.isObjectNative({ key: true }), expect: true },
   { fn: () => is.isObjectNative([1, 2, 3]), expect: false },

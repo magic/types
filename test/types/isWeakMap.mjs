@@ -1,7 +1,8 @@
-import is from '../../src/index.mjs'
+import is, { isWeakMap } from '../../src/index.mjs'
 
 export default [
-  { fn: is.weakMap(new WeakMap()), expect: true },
+  { fn: isWeakMap(new WeakMap()), expect: true },
+  { fn: is.isWeakMap(new WeakMap()), expect: true },
   { fn: is.weakMap({}), expect: false },
   { fn: is.weakMap([]), expect: false },
   { fn: is.weakMap(''), expect: false },

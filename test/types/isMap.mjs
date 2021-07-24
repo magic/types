@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isMap } from '../../src/index.mjs'
 
 export default [
+  { fn: isMap(new Map()), expect: true },
   { fn: is.map(new Map()), expect: true },
   { fn: is.map({}), expect: false },
   { fn: is.map([]), expect: false },

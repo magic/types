@@ -241,6 +241,7 @@ const spec = {
   mergeable: is.fn,
   isMergeable: is.fn,
   mergeableObject: is.fn,
+  isMergeable: is.fn,
   isMergeableObject: is.fn,
 
   isLengthGreater: is.fn,

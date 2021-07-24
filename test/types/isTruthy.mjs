@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isTruthy } from '../../src/index.mjs'
 
 export default [
+  { fn: () => isTruthy('test'), expect: true },
   { fn: () => is.isTruthy('test'), expect: true },
   { fn: () => is.truthy('test'), expect: true },
   { fn: () => is.truthy(1), expect: true },

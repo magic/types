@@ -1,4 +1,4 @@
-import is, { isLowerCase, isUpperCase } from '../../src/index.mjs'
+import is, { isCase, isLowerCase, isUpperCase } from '../../src/index.mjs'
 
 const up = 'UPPERCASE'
 const low = 'lowercase'
@@ -18,6 +18,7 @@ export default [
   { fn: isUpperCase([]), expect: false, info: 'isUpperCase arrays return false' },
   { fn: isUpperCase({}), expect: false, info: 'isUpperCase objects return false' },
 
+  { fn: isCase(low, 'low'), expect: true, info: 'is.case is correct for lowercase strings as up' },
   { fn: is.case(low, 'low'), expect: true, info: 'is.case is correct for lowercase strings as up' },
   {
     fn: is.case(up, 'low'),

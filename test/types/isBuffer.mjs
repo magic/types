@@ -1,6 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isBuffer } from '../../src/index.mjs'
 
 export default [
+  { fn: () => isBuffer(Buffer.from('test', 'utf8')), expect: true },
   { fn: () => is.isBuffer(Buffer.from('test', 'utf8')), expect: true },
   { fn: () => is.buffer(Buffer.from('test', 'utf8')), expect: true },
   { fn: () => is.buff(Buffer.from('test', 'utf8')), expect: true },

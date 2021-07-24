@@ -1,9 +1,7 @@
-import is from '../../src/index.mjs'
+import is, { isComparable } from '../../src/index.mjs'
 
 export default [
-  { fn: () => is.comparable, expect: is.function },
-  { fn: () => is.isComparable, expect: is.function },
-  { fn: () => is.Comparable, expect: is.function },
+  { fn: () => isComparable(''), expect: true },
   { fn: () => is.comparable(''), expect: true },
   { fn: () => is.comparable(9), expect: true },
   { fn: () => is.comparable(true), expect: true },
