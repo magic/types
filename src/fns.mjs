@@ -24,6 +24,7 @@ export const isObject = e => typeof e === 'object' && !isNull(e)
 export const isObjectNative = e => Object.prototype.toString.call(e) === '[object Object]'
 
 export const isMergeableObject = e => isObject(e) && !isDate(e) && !isRegExp(e)
+export const isMergeable = isMergeableObject
 
 export const isString = e => typeof e === 'string'
 
@@ -139,6 +140,7 @@ export const isBuffer = e => {
 }
 
 export const isPromise = e => e && isFunction(e.then)
+export const isThenable = isPromise
 
 export const isArguments = e => Object.prototype.toString.call(e) === '[object Arguments]'
 
