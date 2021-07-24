@@ -190,6 +190,9 @@ isUpperCase('UPPERCASE') // true
 isLowerCase('lowercase') // true
 // alias is.case.lower, is.isCase.lower
 
+isMergeableObject({}) // true
+// alias is.mergeable, is.mergeableObject, isMergeable
+
 ```
 
 
@@ -254,5 +257,8 @@ bump required node version to 14.2.0
 ##### 0.1.15
 deep.equal now does return true for objects that have undefined property values
 
-##### 0.1.16 - unreleased
+##### 0.1.16
+* remove circular dependencies
+
+##### 0.0.17 - unreleased
 ...
