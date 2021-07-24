@@ -1,6 +1,6 @@
 // Written by Substack <3
 
-import is from '../index.mjs'
+import is from '../lib.mjs'
 
 export const equal = (a, b) => {
   // curry

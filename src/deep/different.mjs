@@ -1,4 +1,4 @@
-import is from '../index.mjs'
+import is from '../lib.mjs'
 
 import equal from './equal.mjs'
 
