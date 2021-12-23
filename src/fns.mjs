@@ -79,12 +79,14 @@ export const isEmpty = e => {
 }
 
 export const getLength = arg => {
-  if (isNumber(arg)) {
+  if (arg !== undefined && arg.hasOwnProperty('length') && isNumber(arg.length)) {
+    return arg.length
+  } else if (isNumber(arg)) {
     return arg
-  } else if (isNumber(arg.length)) {
+  } else if (arg && isNumber(arg.length)) {
     // arrays, strings
     return arg.length
-  } else if (isNumber(arg.size)) {
+  } else if (arg && isNumber(arg.size)) {
     // Set, Map, WeakMap etc
     return arg.size
   } else if (isRegExp(arg)) {
@@ -94,10 +96,12 @@ export const getLength = arg => {
     } else {
       return str.length > 2
     }
+  } else if (isObjectNative(arg)) {
+    return Object.keys(arg).length
   }
 
-  // objects
-  return Object.keys(arg).length
+  // unknown things
+  return -1
 }
 
 export const compareCount = (len, e) => getLength(len) === getLength(e)
