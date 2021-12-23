@@ -125,7 +125,7 @@ export const isEmail = e => isString(e) && e.indexOf('@') > -1
 
 export const isNull = e => e === null
 
-export const isUndefinedOrNull = e => e === null || !isDefined(e)
+export const isUndefinedOrNull = e => isNull(e) || !isDefined(e)
 
 export const isBuffer = e => {
   if (!e) {
