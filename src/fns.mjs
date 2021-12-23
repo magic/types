@@ -185,6 +185,8 @@ export const isNot = (e, ...types) => !isTypes(e, ...types)
 
 export const isComparable = a => isBoolean(a) || isString(a) || isNumber(a)
 
+export const isSameType = (a, b) => typeof a === typeof b
+
 const isElementCheck = (e, t) => (isFunction(t) ? t(e) : typeof e === t)
 
 export const isEvery = (arr, t) =>
