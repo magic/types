@@ -197,7 +197,7 @@ export const isSome = (arr, t) =>
 
 export const isNone = (arr, t) => !isSome(arr, t)
 
-export const isInstanceOf = (e, t) => e instanceof t
+export const isInstanceOf = (e, t) => (!t ? false : e instanceof t)
 
 export const isError = e => isInstanceOf(e, Error)
 export const isDate = e => isInstanceOf(e, Date)
