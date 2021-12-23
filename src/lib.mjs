@@ -257,6 +257,11 @@ export const is = {
   upperCase: fns.isUpperCase,
   isLowerCase: fns.isLowerCase,
   lowerCase: fns.isLowerCase,
+
+  same: fns.isSameType,
+  sameType: fns.isSameType,
+  isSameType: fns.isSameType,
+  isSame: fns.isSameType,
 }
 
 // assign ln as properties of the getLength function
