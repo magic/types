@@ -8,4 +8,9 @@ export default [
     expect: false,
     info: 'is.instance returns false for new Date() compared to RegExp',
   },
+  {
+    fn: is.instance(true, undefined),
+    expect: false,
+    info: 'is.instance returns false for undefined instance',
+  },
 ]

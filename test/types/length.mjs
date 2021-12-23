@@ -16,6 +16,7 @@ export default {
     { fn: () => is.len(new Set('123')), expect: 3, info: 'Set(string)' },
     { fn: () => is.len('123'), expect: 3, info: 'is.len String' },
     { fn: () => is.len({ t: 't' }), expect: 1, info: 'is.len Object' },
+    { fn: () => is.len(undefined), expect: -1, info: 'is.len can handle values without length' },
   ],
   equal: [
     { fn: () => isLengthEqual(3)('123'), info: 'is.length.equal' },
@@ -54,7 +55,7 @@ export default {
     { fn: () => is.len.eq('123', '123'), info: 'compare strings' },
     { fn: () => is.len.eq(0)({}), info: 'empty objects' },
     { fn: () => is.len.eq(0)([]), info: 'empty arrays' },
-    { fn: () => is.len.eq(0)(''), info: 'empty strings' },
+    { fn: () => is.len.eq('')(0), info: 'empty strings' },
     { fn: () => is.len.eq('')(''), info: 'empty strings' },
     { fn: () => is.len.eq(3)([1, 2, 3]), info: 'compare arrays' },
     { fn: () => is.len.eq(1)({ test: 'true ' }), info: 'compare objects' },
