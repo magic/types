@@ -45,6 +45,8 @@ is.array([]) // true
 ##### functions
 ```javascript
 
+// comparisons
+
 // test a value for multiple types
 is(ele, ...types)
 // alias is.eq, isEq, test
@@ -53,7 +55,12 @@ is(ele, ...types)
 not(ele, ...types)
 // alias is.neq, isNeq, isNot
 
-type comparisons:
+isSameType('string', 'string')
+// alias isSame, is.same, is.sameType
+
+
+// type comparisons:
+
 isArray([]) // true
 // alias isArr, is.array, is.arr
 
@@ -260,5 +267,9 @@ deep.equal now does return true for objects that have undefined property values
 ##### 0.1.16
 * remove circular dependencies
 
-##### 0.0.17 - unreleased
+##### 0.1.17
+* add isSameType, isSame, same, sameType
+* update dev dependencies
+
+##### 0.1.18 - unreleased
 ...
