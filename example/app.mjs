@@ -20,6 +20,7 @@ export const state = {
         { to: '-not', text: 'not' },
         { to: '-test', text: 'test' },
         { to: '-testtype', text: 'testType' },
+        { to: '-issametype', text: 'isSameType' },
         { to: '-array', text: 'isArray' },
         { to: '-boolean', text: 'isBoolean' },
         { to: '-defined', text: 'isDefined' },

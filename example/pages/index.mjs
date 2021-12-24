@@ -57,6 +57,14 @@ test(42, ['string', 'object']) // false
 test('42', ['string', 'object']) // true`),
   p({ class: 'alias' }, 'alias is.types'),
 
+
+  h3({ id: 'functions-issametype' }, 'isSameType'),
+  p('compare the types of two values.'),
+  Pre(`
+isSameType(42, 'string') // false
+test(42, 23) // true`),
+  p({ class: 'alias' }, 'alias isSame, is.sameType, is.same'),
+
   h3({ id: 'functions-array' }, 'isArray'),
   Pre('isArray([]) // true'),
   p('alias isArr, is.array, is.arr'),
