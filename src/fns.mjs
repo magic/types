@@ -210,7 +210,10 @@ export const isWeakSet = a => isInstanceOf(a, WeakSet)
 export const isUpperCase = s => (isString(s) ? s === s.toUpperCase() : false)
 export const isLowerCase = s => (isString(s) ? s === s.toLowerCase() : false)
 
-export const isCase = (s, c = 'up') => (c === 'up' ? isUpperCase(s) : isLowerCase(s))
+export const isOwnProp = (o, k) => isFunction(o.hasOwnProperty) && o.hasOwnProperty(k)
 
+export const isModule = s => Object.prototype.toString.call(s) === '[object Module]'
+
+export const isCase = (s, c = 'up') => (c === 'up' ? isUpperCase(s) : isLowerCase(s))
 isCase.upper = isUpperCase
 isCase.lower = isLowerCase

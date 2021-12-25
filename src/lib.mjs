@@ -262,6 +262,15 @@ export const is = {
   sameType: fns.isSameType,
   isSameType: fns.isSameType,
   isSame: fns.isSameType,
+
+  ownProp: fns.isOwnProp,
+  prop: fns.isOwnProp,
+  ownProperty: fns.isOwnProp,
+  isOwnProp: fns.isOwnProp,
+  isOwnProperty: fns.isOwnProp,
+
+  isModule: fns.isModule,
+  module: fns.isModule,
 }
 
 // assign ln as properties of the getLength function
