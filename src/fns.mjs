@@ -79,7 +79,7 @@ export const isEmpty = e => {
 }
 
 export const getLength = arg => {
-  if (arg !== undefined && arg.hasOwnProperty('length') && isNumber(arg.length)) {
+  if (isOwnProp(arg, 'length') && isNumber(arg.length)) {
     return arg.length
   } else if (isNumber(arg)) {
     return arg
