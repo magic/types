@@ -295,6 +295,15 @@ const spec = {
   sameType: 'fn',
   isSame: 'fn',
   isSameType: 'fn',
+
+  ownProp: 'fn',
+  prop: 'fn',
+  ownProperty: 'fn',
+  isOwnProp: 'fn',
+  isOwnProperty: 'fn',
+
+  isModule: 'fn',
+  module: 'fn',
 }
 
 export default version(is, spec)
