@@ -66,6 +66,8 @@ export const state = {
         { to: '-iscase', text: 'isCase' },
         { to: '-isuppercase', text: 'isUpperCase' },
         { to: '-islowercase', text: 'isLowerCase' },
+        { to: '-ismodule', text: 'isModule' },
+        { to: '-isownprop', text: 'isOwnProp' },
       ],
     },
 
