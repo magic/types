@@ -213,6 +213,8 @@ export const isLowerCase = s => (isString(s) ? s === s.toLowerCase() : false)
 export const isOwnProp = (o, k) =>
   isDefined(o) && isFunction(o.hasOwnProperty) && o.hasOwnProperty(k)
 
+export const isOwnProperty = isOwnProp
+
 export const isModule = s => Object.prototype.toString.call(s) === '[object Module]'
 
 export const isCase = (s, c = 'up') => (c === 'up' ? isUpperCase(s) : isLowerCase(s))
