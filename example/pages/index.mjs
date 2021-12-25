@@ -273,8 +273,23 @@ isLowerCase(23) // false
 isMergeableObject({}) // true
 isMergeableObject(23) // false
 `),
-
   p({ class: 'alias' }, 'alias is.mergeable, isMergeable, is.isMergeable, is.mergeableObject'),
+
+  h3({ id: 'functions-isOwnProp' }, 'isOwnProp'),
+  Pre(`
+isOwnProp({ test: false }, 'test') // true
+isOwnProp({ test: false }, 'different') // false
+isOwnProp(undefined, 'test) // false
+`),
+  p({ class: 'alias' }, 'alias isOwnProperty, is.ownProperty, is.ownProp, is.prop'),
+
+  h3({ id: 'functions-isModule' }, 'isModule'),
+  Pre(`
+const imported = await import(file)
+isModule(imported) // true
+isModule({ ... anything else }) // false
+`),
+  p({ class: 'alias' }, 'alias is.module'),
 
   h2({ id: 'source' }, 'source'),
   p([
