@@ -200,6 +200,12 @@ isLowerCase('lowercase') // true
 isMergeableObject({}) // true
 // alias is.mergeable, is.mergeableObject, isMergeable
 
+const mod = await import('path/to/file')
+isModule(mod) // true
+// alias is.module
+
+isOwnProp({ test: undefined }, 'test') // true
+// alias isOwnProperty, is.ownProperty, is.ownProp, is.prop
 ```
 
 
