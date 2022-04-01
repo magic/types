@@ -281,5 +281,8 @@ deep.equal now does return true for objects that have undefined property values
 * add isModule and isOwnProperty
 * update dependencies
 
-##### 0.1.19 - unreleased
+##### 0.1.19
+update dependencies
+
+##### 0.1.20 - unreleased
 ...
