@@ -284,5 +284,8 @@ deep.equal now does return true for objects that have undefined property values
 ##### 0.1.19
 update dependencies
 
-##### 0.1.20 - unreleased
+##### 0.1.20
+update dependencies
+
+##### 0.1.21 - unreleased
 ...
