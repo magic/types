@@ -127,21 +127,7 @@ export const isNull = e => e === null
 
 export const isUndefinedOrNull = e => isNull(e) || !isDefined(e)
 
-export const isBuffer = e => {
-  if (!e) {
-    return false
-  } else if (isEmpty(e)) {
-    return false
-  } else if (!isObject(e)) {
-    return false
-  } else if (!isFunction(e.copy)) {
-    return false
-  } else if (!isNumber(e[0])) {
-    return false
-  }
-
-  return true
-}
+export const isBuffer = e => Buffer.isBuffer(e)
 
 export const isPromise = e => e && isFunction(e.then)
 export const isThenable = isPromise
