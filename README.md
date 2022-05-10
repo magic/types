@@ -287,5 +287,10 @@ update dependencies
 ##### 0.1.20
 update dependencies
 
-##### 0.1.21 - unreleased
+##### 0.1.21
+* isBuffer uses Buffer.isBuffer.
+* update dependencies
+* getLength does not use .length or .size property for unknown types. instead we test for is.array, is.string, is.map etc.
+
+##### 0.1.22 - unreleased
 ...
