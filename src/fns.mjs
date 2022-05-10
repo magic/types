@@ -79,14 +79,11 @@ export const isEmpty = e => {
 }
 
 export const getLength = arg => {
-  if (isOwnProp(arg, 'length') && isNumber(arg.length)) {
+  if (isArray(arg) || isString(arg)) {
     return arg.length
-  } else if (isNumber(arg)) {
+  } else if (isInteger(arg)) {
     return arg
-  } else if (arg && isNumber(arg.length)) {
-    // arrays, strings
-    return arg.length
-  } else if (arg && isNumber(arg.size)) {
+  } else if (isMap(arg) || isWeakMap(arg) || isSet(arg) || isWeakSet(arg)) {
     // Set, Map, WeakMap etc
     return arg.size
   } else if (isRegExp(arg)) {
