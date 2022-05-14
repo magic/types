@@ -292,5 +292,9 @@ update dependencies
 * update dependencies
 * getLength does not use .length or .size property for unknown types. instead we test for is.array, is.string, is.map etc.
 
-##### 0.1.22 - unreleased
+##### 0.1.22
+* update getLength to correctly return the length of buffers (regressed in 0.1.21).
+* add a test case for buffer length
+
+##### 0.1.23 - unreleased
 ...
