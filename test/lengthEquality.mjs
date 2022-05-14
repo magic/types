@@ -110,4 +110,8 @@ export default [
     expect: is.isLengthSmallerOrEqual.toString(),
     info: 'is.ln.lteq === is.isLengthSmallerOrEqual',
   },
+  {
+    fn: is.ln.eq(Buffer.from('test'), 'test'),
+    info: 'Buffer and string containing "test" should have the same length',
+  },
 ]
