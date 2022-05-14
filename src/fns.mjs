@@ -79,7 +79,7 @@ export const isEmpty = e => {
 }
 
 export const getLength = arg => {
-  if (isArray(arg) || isString(arg)) {
+  if (isArray(arg) || isString(arg) || isBuffer(arg)) {
     return arg.length
   } else if (isInteger(arg)) {
     return arg
