@@ -23,11 +23,13 @@ typechecking utilities
 [snyk-url]: https://snyk.io/test/github/magic/types
 
 ##### install
+
 ```javascript
 npm install @magic/types
 ```
 
 ##### import single function
+
 ```js
 // single function import
 import { isArray } from '@magic/types'
@@ -36,6 +38,7 @@ isArray([]) // true
 ```
 
 ##### import all functions
+
 ```javascript
 import is from '@magic/types'
 
@@ -43,6 +46,7 @@ is.array([]) // true
 ```
 
 ##### functions
+
 ```javascript
 
 // comparisons
@@ -208,93 +212,123 @@ isOwnProp({ test: undefined }, 'test') // true
 // alias isOwnProperty, is.ownProperty, is.ownProp, is.prop
 ```
 
-
 #### Changelog
 
 ##### 0.0.5
+
 added Map, WeakMap, Set and WeakSet
 
 ##### 0.1.0
+
 use es6 modules
 
 ##### 0.1.1
+
 FIX: add module field to package.json
 
 ##### 0.1.2
+
 FIX: is.number no longer errors on node es6 modules and other weird objects
 
 ##### 0.1.3
+
 use @magic/deep for is.deep.equal and is.deep.different
 
 ##### 0.1.4
+
 is.deep uses @magic/deep now.
 
 this means that is.deep.equal(null, undefined) is returning a function now,
 because it expects currying.
 
 ##### 0.1.5
+
 minimum node version is 13.5.0
 
 ##### 0.1.6
+
 remove @magic/deep dependency
 
 ##### 0.1.7
+
 fix erroneous '@magic/types' import in src/deep/equal.mjs
 
 ##### 0.1.8
+
 add
-* is.every
-* is.some
-* is.none
+
+- is.every
+- is.some
+- is.none
 
 ##### 0.1.9
+
 add is.instanceOf
 
 ##### 0.1.10
+
 add isCase, isUpperCase, isLowerCase
 
 ##### 0.1.11
+
 add isObjectNative
 
 ##### 0.1.12
+
 bump required node version to 14.2.0
 
 ##### 0.1.13
-* add isAsyncFunction
-* add isGeneratorFunction
+
+- add isAsyncFunction
+- add isGeneratorFunction
 
 ##### 0.1.14
-* bump required node version to 14.15.4
-* update dependencies
+
+- bump required node version to 14.15.4
+- update dependencies
 
 ##### 0.1.15
+
 deep.equal now does return true for objects that have undefined property values
 
 ##### 0.1.16
-* remove circular dependencies
+
+- remove circular dependencies
 
 ##### 0.1.17
-* add isSameType, isSame, same, sameType
-* update dev dependencies
+
+- add isSameType, isSame, same, sameType
+- update dev dependencies
 
 ##### 0.1.18
-* add isModule and isOwnProperty
-* update dependencies
+
+- add isModule and isOwnProperty
+- update dependencies
 
 ##### 0.1.19
+
 update dependencies
 
 ##### 0.1.20
+
 update dependencies
 
 ##### 0.1.21
-* isBuffer uses Buffer.isBuffer.
-* update dependencies
-* getLength does not use .length or .size property for unknown types. instead we test for is.array, is.string, is.map etc.
+
+- isBuffer uses Buffer.isBuffer.
+- update dependencies
+- getLength does not use .length or .size property for unknown types. instead we test for is.array, is.string, is.map etc.
 
 ##### 0.1.22
-* update getLength to correctly return the length of buffers (regressed in 0.1.21).
-* add a test case for buffer length
 
-##### 0.1.23 - unreleased
+- update getLength to correctly return the length of buffers (regressed in 0.1.21).
+- add a test case for buffer length
+
+##### 0.1.23
+
+- update dev dependencies
+- update docs
+
+##### 0.1.24 - unreleased
+
 ...
