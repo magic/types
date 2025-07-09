@@ -329,6 +329,10 @@ update dependencies
 - update dev dependencies
 - update docs
 
-##### 0.1.24 - unreleased
+##### 0.1.24
+
+- update dependencies
+
+##### 0.1.25 - unreleased
 
 ...
