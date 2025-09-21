@@ -99,14 +99,13 @@ export const equal = (a, b) => {
       if (!is.array(b)) {
         return false
       }
-    
-      return !a.some((v, i) => v !== b[i])  
+
+      return !a.some((v, i) => v !== b[i])
     }
 
     if (!is.objectNative(b)) {
       return false
     }
-
 
     const aObj = a
     const bObj = b
