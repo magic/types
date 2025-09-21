@@ -1,4 +1,4 @@
-import is, { isEmail } from '../../src/index.mjs'
+import is, { isEmail } from '../../src/index.js'
 
 export default [
   { fn: () => isEmail('test@example.com'), expect: true },

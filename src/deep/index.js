@@ -1,5 +1,5 @@
-import { equal } from './equal.mjs'
-import { different } from './different.mjs'
+import { equal } from './equal.js'
+import { different } from './different.js'
 
 export const isDeepEqual = equal
 export const deepEqual = equal

@@ -1,4 +1,4 @@
-import is, { isUndefined } from '../../src/index.mjs'
+import is, { isUndefined } from '../../src/index.js'
 
 export default [
   { fn: () => isUndefined(undefined), expect: true },

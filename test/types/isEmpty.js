@@ -1,4 +1,4 @@
-import is, { isEmpty } from '../../src/index.mjs'
+import is, { isEmpty } from '../../src/index.js'
 
 export default [
   { fn: () => isEmpty(''), expect: true },

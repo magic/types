@@ -1,4 +1,4 @@
-import is, { isDefined } from '../../src/index.mjs'
+import is, { isDefined } from '../../src/index.js'
 
 export default [
   { fn: () => isDefined([1, 2, 3]), expect: true },

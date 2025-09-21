@@ -4,7 +4,7 @@ import is, {
   isLengthGreaterOrEqual,
   isLengthSmaller,
   isLengthSmallerOrEqual,
-} from '../../src/index.mjs'
+} from '../../src/index.js'
 
 export default {
   ident: [
@@ -83,6 +83,21 @@ export default {
     { fn: () => is.len.gt('12')('1'), expect: true },
     { fn: () => is.len.gt('1')('12'), expect: false },
     { fn: () => is.len.gt([1], [1]), expect: false },
+  ],
+  greaterOrEqual: [
+    { fn: () => isLengthGreaterOrEqual, expect: is.function, info: 'greaterOrEqual can curry' },
+    { fn: () => is.len.gte, expect: is.function, info: 'gte can curry' },
+    { fn: () => isLengthGreaterOrEqual(10), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.gte(10), expect: is.function, info: 'can curry' },
+    { fn: () => is.len.gte(10)(5), expect: true, info: 'can compare numbers' },
+    { fn: () => is.len.gte(5)(10), expect: false, info: 'can compare numbers' },
+    { fn: () => is.len.gte([1])([]), expect: true, info: 'can compare arrays' },
+    { fn: () => is.len.gte([])([1]), expect: false, info: 'can compare arrays' },
+    { fn: () => is.len.gte({})({ t: 1 }), expect: false, info: 'can compare objects' },
+    { fn: () => is.len.gte({ t: 1 }, {}), expect: true, info: 'can compare objects' },
+    { fn: () => is.len.gte('12')('1'), expect: true, info: 'can compare strings to true' },
+    { fn: () => is.len.gte('1')('12'), expect: false, info: 'can compare strings to false' },
+    { fn: () => is.len.gte([1], [1]), expect: true, info: 'can compare arrays to equal' },
   ],
   smaller: [
     { fn: () => is.len.lower(5), expect: is.function, info: 'can curry' },

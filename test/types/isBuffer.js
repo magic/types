@@ -1,4 +1,4 @@
-import is, { isBuffer } from '../../src/index.mjs'
+import is, { isBuffer } from '../../src/index.js'
 
 export default [
   {

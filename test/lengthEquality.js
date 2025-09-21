@@ -1,4 +1,4 @@
-import is from '../src/index.mjs'
+import is from '../src/index.js'
 
 export default [
   { fn: is.length.equal(0, []), expect: true, info: 'empty arrays have length 0' },

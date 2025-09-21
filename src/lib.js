@@ -1,4 +1,4 @@
-import * as fns from './fns.mjs'
+import * as fns from './fns.js'
 
 export const is = {
   count: fns.getLength,
@@ -109,7 +109,6 @@ export const is = {
   isGeneratorFunction: fns.isGeneratorFunction,
   isGeneratorFn: fns.isGeneratorFunction,
   isGeneratorFunc: fns.isGeneratorFunction,
-  isGeneratorFn: fns.isGeneratorFunction,
   generator: fns.isGeneratorFunction,
   isGenerator: fns.isGeneratorFunction,
   generatorFn: fns.isGeneratorFunction,
@@ -277,7 +276,6 @@ export const is = {
 const ln = {
   eq: fns.isLengthEqual,
   equal: fns.isLengthEqual,
-  greater: fns.isLengthGreater,
   gt: fns.isLengthGreater,
   bigger: fns.isLengthGreater,
   biggerequal: fns.isLengthGreaterOrEqual,
@@ -295,14 +293,34 @@ const ln = {
   lteq: fns.isLengthSmallerOrEqual,
 }
 
-// count, length, len and ln are functions, returning the length.
-// the code below assigns all keys in the ln object to each of those functions,
-// allowing users of this library to call is.length.equal and other subfunctions.
+// count, length, len and ln are functions that return the length,
+// but they also have comparison methods attached as properties.
+// This creates enhanced length functions with comparison capabilities.
 
-const applyLenKey = (k, fn) => key => (is[key][k] = fn)
+// Create enhanced length functions with comparison methods
+const lengthFunctions = {
+  eq: fns.isLengthEqual,
+  equal: fns.isLengthEqual,
+  gt: fns.isLengthGreater,
+  bigger: fns.isLengthGreater,
+  biggerequal: fns.isLengthGreaterOrEqual,
+  greater: fns.isLengthGreater,
+  greaterequal: fns.isLengthGreaterOrEqual,
+  gte: fns.isLengthGreaterOrEqual,
+  gteq: fns.isLengthGreaterOrEqual,
+  lower: fns.isLengthSmaller,
+  smaller: fns.isLengthSmaller,
+  lt: fns.isLengthSmaller,
+  lowerequal: fns.isLengthSmallerOrEqual,
+  smallerequal: fns.isLengthSmallerOrEqual,
+  lte: fns.isLengthSmallerOrEqual,
+  lteq: fns.isLengthSmallerOrEqual,
+}
 
-const applyLenKeys = ([k, fn]) => ['count', 'length', 'len', 'ln'].forEach(applyLenKey(k, fn))
+// Replace the original length functions with enhanced versions
+is.ln = fns.getLength
+Object.assign(is.ln, lengthFunctions)
 
-Object.entries(ln).forEach(applyLenKeys)
+is.length = is.len = is.count = is.ln
 
 export default is

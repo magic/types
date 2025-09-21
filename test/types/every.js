@@ -1,4 +1,4 @@
-import is, { isEvery } from '../../src/index.mjs'
+import is, { isEvery } from '../../src/index.js'
 
 export default [
   { fn: isEvery(['', ''], 'string'), expect: true },

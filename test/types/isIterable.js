@@ -1,4 +1,4 @@
-import is, { isIterable } from '../../src/index.mjs'
+import is, { isIterable } from '../../src/index.js'
 
 export default [
   { fn: () => isIterable({ forEach: () => {} }), expect: true },

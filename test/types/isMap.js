@@ -1,4 +1,4 @@
-import is, { isMap } from '../../src/index.mjs'
+import is, { isMap } from '../../src/index.js'
 
 export default [
   { fn: isMap(new Map()), expect: true },

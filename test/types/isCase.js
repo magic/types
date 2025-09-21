@@ -1,4 +1,4 @@
-import is, { isCase, isLowerCase, isUpperCase } from '../../src/index.mjs'
+import is, { isCase, isLowerCase, isUpperCase } from '../../src/index.js'
 
 const up = 'UPPERCASE'
 const low = 'lowercase'

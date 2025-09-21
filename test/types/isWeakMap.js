@@ -1,4 +1,4 @@
-import is, { isWeakMap } from '../../src/index.mjs'
+import is, { isWeakMap } from '../../src/index.js'
 
 export default [
   { fn: isWeakMap(new WeakMap()), expect: true },

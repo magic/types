@@ -1,4 +1,4 @@
-import { isModule } from '../../src/fns.mjs'
+import { isModule } from '../../src/fns.js'
 
 export default [
   { fn: isModule(), expect: false, info: 'isModule without argument returns false' },
@@ -6,7 +6,7 @@ export default [
   { fn: isModule(() => {}), expect: false, info: 'isModule with function argument returns false' },
   {
     fn: async () => {
-      const mod = await import('../../src/fns.mjs')
+      const mod = await import('../../src/fns.js')
 
       return isModule(mod)
     },

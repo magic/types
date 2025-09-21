@@ -1,4 +1,4 @@
-import is, { isWeakSet } from '../../src/index.mjs'
+import is, { isWeakSet } from '../../src/index.js'
 
 export default [
   { fn: isWeakSet(new WeakSet()), expect: true },

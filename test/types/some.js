@@ -1,4 +1,4 @@
-import is, { isSome } from '../../src/index.mjs'
+import is, { isSome } from '../../src/index.js'
 
 export default [
   { fn: isSome(['', ''], 'number'), expect: false },

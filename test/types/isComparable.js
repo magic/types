@@ -1,4 +1,4 @@
-import is, { isComparable } from '../../src/index.mjs'
+import is, { isComparable } from '../../src/index.js'
 
 export default [
   { fn: () => isComparable(''), expect: true },

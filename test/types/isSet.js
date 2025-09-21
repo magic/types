@@ -1,4 +1,4 @@
-import is, { isSet } from '../../src/index.mjs'
+import is, { isSet } from '../../src/index.js'
 
 export default [
   { fn: isSet(new Set()), expect: true },

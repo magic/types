@@ -1,8 +1,8 @@
-import def from './lib.mjs'
+import def from './lib.js'
 
-import * as deep from './deep/index.mjs'
+import * as deep from './deep/index.js'
 
-export * from './fns.mjs'
+export * from './fns.js'
 
 export const is = {
   ...deep,

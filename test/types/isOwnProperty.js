@@ -1,4 +1,4 @@
-import { isOwnProp, isOwnProperty } from '../../src/fns.mjs'
+import { isOwnProp, isOwnProperty } from '../../src/fns.js'
 
 export default [
   {

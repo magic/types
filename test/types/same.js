@@ -1,4 +1,4 @@
-import is, { isSameType } from '../../src/index.mjs'
+import is, { isSameType } from '../../src/index.js'
 
 export default [
   { fn: isSameType('', ''), info: 'isSame can compare two strings' },

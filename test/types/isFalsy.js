@@ -1,4 +1,4 @@
-import is, { isFalsy } from '../../src/index.mjs'
+import is, { isFalsy } from '../../src/index.js'
 
 export default [
   { fn: () => isFalsy(''), expect: true },

@@ -1,4 +1,4 @@
-import is from '../src/index.mjs'
+import is from '../src/index.js'
 
 const fns = {
   isArray: [

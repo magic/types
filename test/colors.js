@@ -1,4 +1,4 @@
-import types from '../src/index.mjs'
+import types from '../src/index.js'
 
 const fns = {
   isRGBAObject: [
