@@ -42,10 +42,10 @@ export const is = {
   thenable: fns.isPromise,
   then: fns.isPromise,
 
-  // isArguments: fns.isArguments,
-  // isArgs: fns.isArguments,
-  // arguments: fns.isArguments,
-  // args: fns.isArguments,
+  isArguments: fns.isArguments,
+  isArgs: fns.isArguments,
+  arguments: fns.isArguments,
+  args: fns.isArguments,
 
   isUUID: fns.isUUID,
   uuid: fns.isUUID,
@@ -265,27 +265,6 @@ export const is = {
 
   isModule: fns.isModule,
   module: fns.isModule,
-}
-
-// assign ln as properties of the getLength function
-const ln = {
-  eq: fns.isLengthEqual,
-  equal: fns.isLengthEqual,
-  gt: fns.isLengthGreater,
-  bigger: fns.isLengthGreater,
-  biggerequal: fns.isLengthGreaterOrEqual,
-  greater: fns.isLengthGreater,
-  greaterequal: fns.isLengthGreaterOrEqual,
-  gte: fns.isLengthGreaterOrEqual,
-  gteq: fns.isLengthGreaterOrEqual,
-
-  lower: fns.isLengthSmaller,
-  smaller: fns.isLengthSmaller,
-  lt: fns.isLengthSmaller,
-  lowerequal: fns.isLengthSmallerOrEqual,
-  smallerequal: fns.isLengthSmallerOrEqual,
-  lte: fns.isLengthSmallerOrEqual,
-  lteq: fns.isLengthSmallerOrEqual,
 }
 
 // count, length, len and ln are functions that return the length,

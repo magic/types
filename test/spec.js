@@ -1,4 +1,5 @@
 import is from '../src/index.js'
+
 import { version } from '@magic/test'
 
 const spec = {
@@ -188,10 +189,10 @@ const spec = {
   isThen: 'fn',
   isThenable: 'fn',
 
-  // args: 'fn',
-  // arguments: 'fn',
-  // isArgs: 'fn',
-  // isArguments: 'fn',
+  args: 'fn',
+  arguments: 'fn',
+  isArgs: 'fn',
+  isArguments: 'fn',
 
   uuid: 'fn',
   isUUID: 'fn',
