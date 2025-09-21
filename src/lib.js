@@ -1,4 +1,5 @@
 import * as fns from './fns.js'
+import * as deep from './deep/index.js'
 
 export const is = {
   count: fns.getLength,
@@ -265,6 +266,7 @@ export const is = {
 
   isModule: fns.isModule,
   module: fns.isModule,
+  ...deep,
 }
 
 // count, length, len and ln are functions that return the length,
