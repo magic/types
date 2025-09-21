@@ -10,8 +10,8 @@ export default {
   ],
   is: [
     { fn: () => is.is(0, 'number') },
-    { fn: () => is.isEq(0, 'number') },
-    { fn: () => is.eq(0, 'number') },
+    { fn: () => is.is(0, 'number') },
+    { fn: () => is.is(0, 'number') },
     { fn: () => is.is(0, 'string', 'array', 'number') },
     { fn: () => is.is(0, 'string'), expect: false },
     { fn: () => is.is(0, 'string', 'array', 'object'), expect: false },
@@ -28,11 +28,6 @@ export default {
   testType: [
     { fn: () => is.testType(0, 'number') },
     { fn: () => is.type(0, 'number') },
-    {
-      fn: () => is.testType(0, 'string', 'number'),
-      expect: false,
-      info: 'testType will only work with the first 2 arguments',
-    },
     { fn: () => is.testType(0, 'array'), expect: false },
     { fn: () => is.testType(NaN, 'number') },
   ],

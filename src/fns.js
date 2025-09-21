@@ -292,14 +292,11 @@ export const isUUID = e => {
   return true
 }
 
-/** @type {(e: unknown, type: string) => boolean} */
-export const isType = (e, type) => typeof e === type || Object.prototype.toString.call(e) === type
-
 /** @type {(e: unknown, ...types: string[]) => boolean} */
-export const isTypes = (e, ...types) => types.some(k => isType(e, k))
+export const isType = (e, ...types) =>
+  types.some(type => typeof e === type || Object.prototype.toString.call(e) === type)
 
-/** @type {(e: unknown, ...types: string[]) => boolean} */
-export const isEqual = (e, ...types) => isTypes(e, ...types)
+export const isTypes = isType
 
 /** @type {(e: unknown, ...types: string[]) => boolean} */
 export const isNot = (e, ...types) => !isTypes(e, ...types)

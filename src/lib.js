@@ -57,15 +57,10 @@ export const is = {
   isTypes: fns.isTypes,
   test: fns.isTypes,
   types: fns.isTypes,
+  is: fns.isTypes,
 
   isEmpty: fns.isEmpty,
   empty: fns.isEmpty,
-
-  isEqual: fns.isEqual,
-  isEq: fns.isEqual,
-  equal: fns.isEqual,
-  eq: fns.isEqual,
-  is: fns.isEqual,
 
   isNot: fns.isNot,
   not: fns.isNot,

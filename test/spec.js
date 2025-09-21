@@ -204,10 +204,6 @@ const spec = {
   types: 'fn',
   test: 'fn',
   is: 'fn',
-  eq: 'fn',
-  isEq: 'fn',
-  isEqual: 'fn',
-  equal: 'fn',
 
   neq: 'fn',
   isNeq: 'fn',
