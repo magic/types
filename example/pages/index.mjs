@@ -35,7 +35,6 @@ is(ele, ...types)
 is('astring', 'string', 'object') // true
 is(42, 'string', 'object') // false
 `),
-  p({ class: 'alias' }, 'alias is.eq, isEq, test'),
 
   h3({ id: 'functions-not' }, 'not'),
   p('test if a value is not of a type'),
@@ -196,7 +195,7 @@ test(42, 23) // true`),
 
   h3({ id: 'functions-eq' }, 'isEq'),
   Pre("isEq(42, 'number') // true"),
-  p({ class: 'alias' }, 'alias isEqual isEq is.equal is.eq is.is'),
+  p({ class: 'alias' }, 'alias is.is'),
 
   h3({ id: 'functions-not' }, 'isNot'),
   Pre("isNot(42, 'number') // true"),
