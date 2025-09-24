@@ -5,11 +5,14 @@
   "homepage": "https://github.com/magic/types",
   "license": "AGPL-3.0",
   "description": "typechecking library",
-  "main": "src/index.mjs",
+  "main": "src/index.js",
+  "types": "./types/index.d.ts",
   "type": "module",
   "scripts": {
     "start": "t",
-    "build": "NODE_ENV=production magic build",
+    "build": "tsc && node scripts/strip-js-extension.js && npm run format && echo 'Types generated in dist/*'",
+    "prepublishOnly": "npm run build",
+    "build:docs": "NODE_ENV=production magic build",
     "prod": "NODE_ENV=production magic build serve",
     "clean": "magic clean",
     "serve": "magic serve",
@@ -20,7 +23,7 @@
     "calls": "calls"
   },
   "engines": {
-    "node": ">=14.15.4"
+    "node": ">=18"
   },
   "engineStrict": true,
   "repository": {
@@ -31,7 +34,8 @@
     "url": "https://github.com/magic/types/issues"
   },
   "files": [
-    "src"
+    "src",
+    "types"
   ],
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -40,8 +44,11 @@
     "@magic-modules/pre": "0.0.12",
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.156",
-    "@magic/format": "0.0.67",
-    "@magic/test": "0.2.20"
+    "@magic/format": "0.0.68",
+    "@magic/fs": "0.0.31",
+    "@magic/test": "0.2.20",
+    "@types/node": "24.5.2",
+    "typescript": "5.9.2"
   },
   "keywords": [
     "magic",
