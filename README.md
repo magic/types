@@ -333,6 +333,12 @@ update dependencies
 
 - update dependencies
 
-##### 0.1.25 - unreleased
+##### 0.1.25
+
+- add typescript types
+- coverage is 100%
+- update dependencies
+
+##### 0.1.26 - unreleased
 
 ...
