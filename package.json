@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "start": "t",
-    "build": "tsc && node scripts/strip-js-extension.js && npm run format && echo 'Types generated in dist/*'",
+    "build": "tsc && npm run format && echo 'Types generated in dist/*'",
     "prepublishOnly": "npm run build",
     "build:docs": "NODE_ENV=production magic build",
     "prod": "NODE_ENV=production magic build serve",

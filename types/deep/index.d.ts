@@ -96,5 +96,5 @@ export namespace deep {
   export { equal }
   export { equal as eq }
 }
-import { different } from './different'
-import { equal } from './equal'
+import { different } from './different.js'
+import { equal } from './equal.js'

@@ -500,8 +500,11 @@ export const is: {
   ownProperty: <K extends string | number | symbol>(o: unknown, k: K) => o is Record<K, unknown>
   isOwnProp: <K extends string | number | symbol>(o: unknown, k: K) => o is Record<K, unknown>
   isOwnProperty: <K extends string | number | symbol>(o: unknown, k: K) => o is Record<K, unknown>
-  isModule: (s: unknown) => s is ModuleLike
-  module: (s: unknown) => s is ModuleLike
+  isModule: (s: unknown) => s is object & {
+    [Symbol.toStringTag]: 'Module'
+  }
+  module: (s: unknown) => s is object & {
+    [Symbol.toStringTag]: 'Module'
+  }
 }
 export default is
-import * as fns from './fns'

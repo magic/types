@@ -158,7 +158,9 @@ export function isOwnProperty<K extends string | number | symbol>(
   o: unknown,
   k: K,
 ): o is Record<K, unknown>
-export function isModule(s: unknown): s is ModuleLike
+export function isModule(s: unknown): s is object & {
+  [Symbol.toStringTag]: 'Module'
+}
 /**
  * Check if a string is upper or lower case depending on mode
  * @type {((s: unknown, c?: 'up' | 'down') => boolean) & {
@@ -169,10 +171,4 @@ export function isModule(s: unknown): s is ModuleLike
 export const isCase: ((s: unknown, c?: 'up' | 'down') => boolean) & {
   upper: (s: unknown) => boolean
   lower: (s: unknown) => boolean
-}
-/**
- * A type representing a Module-like object
- */
-export type ModuleLike = object & {
-  [Symbol.toStringTag]: 'Module'
 }
