@@ -607,14 +607,9 @@ export const isOwnProp = (o, k) => isObjectNative(o) && k in o
 export const isOwnProperty = isOwnProp
 
 /**
- * A type representing a Module-like object
- * @typedef {object & { [Symbol.toStringTag]: 'Module' }} ModuleLike
- */
-
-/**
  * Check if a value is a Module-like object
  * @param {unknown} s - value to check
- * @returns {s is ModuleLike} - true if value is a Module-like object
+ * @returns {s is object & { [Symbol.toStringTag]: 'Module' }} - true if value is a Module-like object
  */
 export const isModule = s => Object.prototype.toString.call(s) === '[object Module]'
 
