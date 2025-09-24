@@ -339,6 +339,10 @@ update dependencies
 - coverage is 100%
 - update dependencies
 
-##### 0.1.26 - unreleased
+##### 0.1.26
+
+- fix typescript d.ts files
+
+##### 0.0.27 - unreleased
 
 ...
