@@ -343,6 +343,11 @@ update dependencies
 
 - fix typescript d.ts files
 
-##### 0.0.27 - unreleased
+##### 0.1.27
+
+- @types/node is a dependency, not devDependency
+- update dependencies
+
+##### 0.1.28 - unreleased
 
 ...
