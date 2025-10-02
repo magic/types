@@ -47,7 +47,6 @@
     "@magic/format": "0.0.68",
     "@magic/fs": "0.0.31",
     "@magic/test": "0.2.20",
-    "@types/node": "24.6.2",
     "typescript": "5.9.3"
   },
   "keywords": [
@@ -60,5 +59,8 @@
       "name": "jascha ehrenreich",
       "github": "jaeh"
     }
-  ]
+  ],
+  "dependencies": {
+    "@types/node": "24.6.2"
+  }
 }
