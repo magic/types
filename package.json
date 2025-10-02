@@ -47,8 +47,8 @@
     "@magic/format": "0.0.68",
     "@magic/fs": "0.0.31",
     "@magic/test": "0.2.20",
-    "@types/node": "24.5.2",
-    "typescript": "5.9.2"
+    "@types/node": "24.6.2",
+    "typescript": "5.9.3"
   },
   "keywords": [
     "magic",
