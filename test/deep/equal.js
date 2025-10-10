@@ -72,7 +72,13 @@ const fns = [
     expect: false,
     info: 'objects with different values are not equal',
   },
-  // functions do not compare as equal if their toString results are different
+
+  {
+    fn: () => is.deep.equal([1,2,3], [3,2,1]),
+    expect: true,
+    info: 'Arrays with different value order but same values are equal',
+  },
+
   {
     fn: () => is.deep.equal({ t: arrowFn }, { t: function () {} }),
     expect: false,
@@ -220,8 +226,8 @@ const fns = [
   },
   {
     fn: () => is.deep.equal([1, 2], [2, 1]),
-    expect: false,
-    info: 'arrays with same elements in different order are not equal',
+    expect: true,
+    info: 'arrays with same elements in different order are also equal',
   },
 
   // Test objects with different prototypes
@@ -231,7 +237,6 @@ const fns = [
     info: 'objects with null prototype are equal',
   },
 
-  // Test nested objects
   {
     fn: () => is.deep.equal({ a: { b: 1 } }, { a: { b: 1 } }),
     expect: true,
@@ -243,14 +248,12 @@ const fns = [
     info: 'nested objects with different values are not equal',
   },
 
-  // Test with different types that have same toString
   {
     fn: () => is.deep.equal('1', 1),
     expect: false,
     info: 'string and number with same value are not equal',
   },
 
-  // Test buffer edge cases
   {
     fn: () => is.deep.equal(Buffer.from(''), Buffer.from('')),
     expect: true,
@@ -261,17 +264,11 @@ const fns = [
     expect: false,
     info: 'single character buffers with different content are not equal',
   },
-
-  // Additional tests to cover uncovered lines 81-82, 100-101, 107-108
-
-  // Test array vs non-array comparison (line 81-82)
   {
     fn: () => is.deep.equal([1, 2], { 0: 1, 1: 2, length: 2 }),
     expect: false,
     info: 'array vs object with numeric properties are not equal',
   },
-
-  // Test buffer vs non-buffer comparison (line 100-101)
   {
     fn: () => is.deep.equal(Buffer.from('test'), 'test'),
     expect: false,
@@ -283,7 +280,6 @@ const fns = [
     info: 'buffer vs object with numeric properties are not equal',
   },
 
-  // Test object vs non-native object comparison (line 107-108)
   { fn: () => is.deep.equal({}, []), expect: false, info: 'plain object vs array are not equal' },
   {
     fn: () => is.deep.equal({}, new Date()),
@@ -296,35 +292,30 @@ const fns = [
     info: 'plain object vs RegExp are not equal',
   },
 
-  // Test objects without prototype property
   {
     fn: () => is.deep.equal({ a: 1 }, { a: 1 }),
     expect: true,
     info: 'objects without prototype property are equal',
   },
 
-  // Test objects with different key orders
   {
     fn: () => is.deep.equal({ a: 1, b: 2 }, { b: 2, a: 1 }),
     expect: true,
     info: 'objects with same keys in different order are equal',
   },
 
-  // Test objects with missing keys
   {
     fn: () => is.deep.equal({ a: 1, b: 2 }, { a: 1 }),
     expect: false,
     info: 'objects with different number of keys are not equal',
   },
 
-  // Test objects with undefined values that are actually properties
   {
     fn: () => is.deep.equal({ a: undefined }, { b: undefined }),
     expect: false,
     info: 'objects with different undefined properties are not equal',
   },
 
-  // Additional array tests to cover array comparison branch
   {
     fn: () => is.deep.equal([1, 2, 3], [1, 2, 3]),
     expect: true,

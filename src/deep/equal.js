@@ -46,7 +46,6 @@ export const equal = (a, b) => {
   //  return is.length.eq(a, b)
   // }
 
-  // Check if both are objects before accessing prototype
   if (!is.object(a) || !is.object(b)) {
     return a === b
   }
@@ -99,6 +98,9 @@ export const equal = (a, b) => {
       if (!is.array(b)) {
         return false
       }
+
+      a.sort()
+      b.sort()
 
       return !a.some((v, i) => v !== b[i])
     }

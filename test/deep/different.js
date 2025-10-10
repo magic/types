@@ -255,8 +255,8 @@ const fns = [
   },
   {
     fn: () => is.deep.different([1, 2], [2, 1]),
-    expect: true,
-    info: 'arrays with same elements in different order are different',
+    expect: false,
+    info: 'arrays with same elements in different order are not different',
   },
   {
     fn: () => is.deep.different({ a: { b: 1 } }, { a: { b: 1 } }),
