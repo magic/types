@@ -56,6 +56,25 @@ const fns = [
     expect: true,
     info: 'objects with same structure and values are equal',
   },
+  {
+    fn: () => is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }),
+    info: 'objects are equal even if keys are in different order',
+  },
+  {
+    fn: () => is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }),
+    expect: false,
+    info: 'objects are NOT equal if keys are in different order and options.strict is true',
+  },
+  {
+    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1]),
+    info: 'Arrays with the same values are equal even if order is different',
+  },
+  {
+    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
+    expect: false,
+    info: 'Arrays with the same values are different if order is different and options.strict is true',
+  },
+
   { fn: () => is.deep.equal(1, 1), expect: true, info: 'same numbers are equal' },
   { fn: () => is.deep.equal('string', 'string'), expect: true, info: 'same strings are equal' },
   { fn: () => is.deep.equal({}, ''), expect: false, info: 'object and string are not equal' },
@@ -74,8 +93,14 @@ const fns = [
   },
 
   {
-    fn: () => is.deep.equal([1,2,3], [3,2,1]),
+    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1]),
     expect: true,
+    info: 'Arrays with different value order but same values are equal',
+  },
+
+  {
+    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
+    expect: false,
     info: 'Arrays with different value order but same values are equal',
   },
 
@@ -134,7 +159,13 @@ const fns = [
     expect: false,
     info: 'buffer and string are not equal',
   },
-  //   { fn: () => is.deep.equal(arguments, arguments), expect: true },
+  {
+    fn: function () {
+      return is.deep.equal(arguments, arguments)
+    },
+    expect: true,
+    info: 'works for function arguments.',
+  },
   {
     fn: () => is.deep.equal(prot1, prot1),
     expect: true,

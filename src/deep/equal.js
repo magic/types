@@ -16,9 +16,11 @@ import is from '../lib.js'
 /**
  * @param {unknown} a
  * @param {unknown} [b]
+ * @param {object} [options]
+ * @param {boolean} [options.strict=false]
  * @returns {boolean | ((c: unknown) => boolean)}
  */
-export const equal = (a, b) => {
+export const equal = (a, b, options = { strict: false }) => {
   // curry
   if (is.undefined(b)) {
     if (is.undefined(a)) {
@@ -99,8 +101,10 @@ export const equal = (a, b) => {
         return false
       }
 
-      a.sort()
-      b.sort()
+      if (!options.strict) {
+        a.sort()
+        b.sort()
+      }
 
       return !a.some((v, i) => v !== b[i])
     }
@@ -120,8 +124,10 @@ export const equal = (a, b) => {
       return false
     }
 
-    ka.sort()
-    kb.sort()
+    if (!options.strict) {
+      ka.sort()
+      kb.sort()
+    }
 
     // ~~~cheap key test
     for (let i = 0; i < ka.length; i++) {
