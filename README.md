@@ -176,6 +176,12 @@ isDeepEqual([1, 2, 3], [1, 2, 3]) // true
 isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
 
+isDeepEqual([1, 2, 3], [3, 2, 1]) // true
+isDeepEqual([1, 2, 3], [3, 2, 1], { strict: true }) // false
+
+isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }) // true
+isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }) // false
+
 isEvery([1, 2, 3], 'number') // true
 isEvery([1, 2, 3], is.number) // true
 // alias is.every, is.all
@@ -210,6 +216,7 @@ isModule(mod) // true
 
 isOwnProp({ test: undefined }, 'test') // true
 // alias isOwnProperty, is.ownProperty, is.ownProp, is.prop
+
 ```
 
 #### Changelog
@@ -348,6 +355,11 @@ update dependencies
 - @types/node is a dependency, not devDependency
 - update dependencies
 
-##### 0.1.28 - unreleased
+##### 0.1.28
+
+- options.strict makes the tests include sort order of objects and array, [1, 2] is [2, 1] if options.strict = true
+- update dependencies
+
+##### 0.1.29 - unreleased
 
 ...
