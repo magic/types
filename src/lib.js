@@ -1,11 +1,68 @@
 import * as fns from './fns.js'
 import * as deep from './deep/index.js'
 
-export const is = {
-  count: fns.getLength,
-  length: fns.getLength,
-  len: fns.getLength,
-  ln: fns.getLength,
+// count, length, len and ln are functions that return the length,
+// but they also have comparison methods attached as properties.
+// This creates enhanced length functions with comparison capabilities.
+
+/**
+ * @typedef {typeof fns.isLengthEqual} LengthComparison
+ */
+
+/**
+ * @typedef {typeof fns.getLength & {
+ *   eq: LengthComparison,
+ *   equal: LengthComparison,
+ *   gt: LengthComparison,
+ *   bigger: LengthComparison,
+ *   biggerequal: LengthComparison,
+ *   greater: LengthComparison,
+ *   greaterequal: LengthComparison,
+ *   gte: LengthComparison,
+ *   gteq: LengthComparison,
+ *   lower: LengthComparison,
+ *   smaller: LengthComparison,
+ *   lt: LengthComparison,
+ *   lowerequal: LengthComparison,
+ *   smallerequal: LengthComparison,
+ *   lte: LengthComparison,
+ *   lteq: LengthComparison
+ * }} EnhancedLengthFunction
+ */
+
+// Create enhanced length functions with comparison methods
+const lengthFunctions = {
+  eq: fns.isLengthEqual,
+  equal: fns.isLengthEqual,
+  gt: fns.isLengthGreater,
+  bigger: fns.isLengthGreater,
+  biggerequal: fns.isLengthGreaterOrEqual,
+  greater: fns.isLengthGreater,
+  greaterequal: fns.isLengthGreaterOrEqual,
+  gte: fns.isLengthGreaterOrEqual,
+  gteq: fns.isLengthGreaterOrEqual,
+  lower: fns.isLengthSmaller,
+  smaller: fns.isLengthSmaller,
+  lt: fns.isLengthSmaller,
+  lowerequal: fns.isLengthSmallerOrEqual,
+  smallerequal: fns.isLengthSmallerOrEqual,
+  lte: fns.isLengthSmallerOrEqual,
+  lteq: fns.isLengthSmallerOrEqual,
+}
+
+// Replace the original length functions with enhanced versions
+const ln = /** @type {EnhancedLengthFunction} */ (fns.getLength)
+Object.assign(ln, lengthFunctions)
+
+const length = ln
+const len = ln
+const count = ln
+
+export const is = /** @type {const} */ {
+  count,
+  length,
+  len,
+  ln,
 
   isError: fns.isError,
   error: fns.isError,
@@ -268,35 +325,5 @@ export const is = {
   module: fns.isModule,
   ...deep,
 }
-
-// count, length, len and ln are functions that return the length,
-// but they also have comparison methods attached as properties.
-// This creates enhanced length functions with comparison capabilities.
-
-// Create enhanced length functions with comparison methods
-const lengthFunctions = {
-  eq: fns.isLengthEqual,
-  equal: fns.isLengthEqual,
-  gt: fns.isLengthGreater,
-  bigger: fns.isLengthGreater,
-  biggerequal: fns.isLengthGreaterOrEqual,
-  greater: fns.isLengthGreater,
-  greaterequal: fns.isLengthGreaterOrEqual,
-  gte: fns.isLengthGreaterOrEqual,
-  gteq: fns.isLengthGreaterOrEqual,
-  lower: fns.isLengthSmaller,
-  smaller: fns.isLengthSmaller,
-  lt: fns.isLengthSmaller,
-  lowerequal: fns.isLengthSmallerOrEqual,
-  smallerequal: fns.isLengthSmallerOrEqual,
-  lte: fns.isLengthSmallerOrEqual,
-  lteq: fns.isLengthSmallerOrEqual,
-}
-
-// Replace the original length functions with enhanced versions
-is.ln = fns.getLength
-Object.assign(is.ln, lengthFunctions)
-
-is.length = is.len = is.count = is.ln
 
 export default is
