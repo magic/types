@@ -183,10 +183,10 @@ export const is: {
       (a: unknown): (c: unknown) => boolean
     }
   }
-  count: (arg: unknown) => number
-  length: (arg: unknown) => number
-  len: (arg: unknown) => number
-  ln: (arg: unknown) => number
+  count: import('./lib.js').EnhancedLengthFunction
+  length: import('./lib.js').EnhancedLengthFunction
+  len: import('./lib.js').EnhancedLengthFunction
+  ln: import('./lib.js').EnhancedLengthFunction
   isError: (e: unknown) => e is Error
   error: (e: unknown) => e is Error
   err: (e: unknown) => e is Error

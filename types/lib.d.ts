@@ -181,10 +181,10 @@ export const is: {
       (a: unknown): (c: unknown) => boolean
     }
   }
-  count: (arg: unknown) => number
-  length: (arg: unknown) => number
-  len: (arg: unknown) => number
-  ln: (arg: unknown) => number
+  count: EnhancedLengthFunction
+  length: EnhancedLengthFunction
+  len: EnhancedLengthFunction
+  ln: EnhancedLengthFunction
   isError: (e: unknown) => e is Error
   error: (e: unknown) => e is Error
   err: (e: unknown) => e is Error
@@ -508,3 +508,23 @@ export const is: {
   }
 }
 export default is
+export type LengthComparison = typeof fns.isLengthEqual
+export type EnhancedLengthFunction = typeof fns.getLength & {
+  eq: LengthComparison
+  equal: LengthComparison
+  gt: LengthComparison
+  bigger: LengthComparison
+  biggerequal: LengthComparison
+  greater: LengthComparison
+  greaterequal: LengthComparison
+  gte: LengthComparison
+  gteq: LengthComparison
+  lower: LengthComparison
+  smaller: LengthComparison
+  lt: LengthComparison
+  lowerequal: LengthComparison
+  smallerequal: LengthComparison
+  lte: LengthComparison
+  lteq: LengthComparison
+}
+import * as fns from './fns.js'
