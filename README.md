@@ -360,6 +360,10 @@ update dependencies
 - options.strict makes the tests include sort order of objects and array, [1, 2] is [2, 1] if options.strict = true
 - update dependencies
 
-##### 0.1.29 - unreleased
+##### 0.1.29
+
+- change types of is.ln, is.len, is.length and is.count to reflect their type as function with subfunctions
+
+##### 0.1.30 - unreleased
 
 ...
