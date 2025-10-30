@@ -20,7 +20,8 @@
     "test": "t",
     "format": "f -w --exclude docs",
     "format:check": "f --exclude docs",
-    "calls": "calls"
+    "calls": "calls",
+    "lint": "tsc --noEmit"
   },
   "engines": {
     "node": ">=18"
@@ -45,7 +46,6 @@
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.156",
     "@magic/format": "0.0.68",
-    "@magic/fs": "0.0.34",
     "@magic/test": "0.2.24",
     "typescript": "5.9.3"
   },
@@ -61,6 +61,6 @@
     }
   ],
   "dependencies": {
-    "@types/node": "24.8.1"
+    "@types/node": "24.9.2"
   }
 }
