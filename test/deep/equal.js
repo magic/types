@@ -44,8 +44,6 @@ prot2.prototype = Date
 
 const date = new Date()
 
-const arrowFn = () => {}
-const arrowFnWithArguments = (a, b) => a + b
 const arrowFnReturningArray = (a, b) => [a, b]
 
 export default [
