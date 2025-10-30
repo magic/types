@@ -340,7 +340,7 @@ export const isLengthSmallerOrEqual = (a, b) =>
  * - null/undefined → true
  * - arrays, objects, regex → empty if size < 1
  * - errors/dates → never empty
- * - numbers, strings → falsy or 0/""
+ * - numbers, strings → falsy or 0, ""
  * @param {unknown} e
  * @returns {boolean}
  */
