@@ -47,7 +47,7 @@ const arrowFn = () => {}
 const arrowFnWithArguments = (a, b) => a + b
 const arrowFnReturningArray = (a, b) => [a, b]
 
-const fns = [
+export default [
   { fn: () => is.deep.different({}, {}), expect: false, info: 'empty objects are not different' },
   {
     fn: () => is.deep.different({}, {}),
@@ -159,7 +159,7 @@ const fns = [
     info: 'same date reference is not different',
   },
   {
-    fn: () => is.deep.different(date, new Date()),
+    fn: () => is.deep.different(new Date(-1000), new Date()),
     expect: true,
     info: 'different date instances are different',
   },
@@ -301,5 +301,3 @@ const fns = [
     info: 'curried function with different numbers returns true',
   },
 ]
-
-export default fns

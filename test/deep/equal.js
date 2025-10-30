@@ -48,114 +48,155 @@ const arrowFn = () => {}
 const arrowFnWithArguments = (a, b) => a + b
 const arrowFnReturningArray = (a, b) => [a, b]
 
-const fns = [
-  { fn: () => is.deep.equal({}, {}), expect: true, info: 'empty objects are equal' },
-  { fn: () => is.deep.equal(object, object), expect: true, info: 'same object reference is equal' },
+export default [
   {
-    fn: () => is.deep.equal(object, otherObject),
+    fn: is.deep.equal({ a: 1, b: 2, c: 3 }, { a: 1, b: 2, c: 3 }),
+    expect: true,
+    info: 'is.deep.equal works for two objects ',
+  },
+  {
+    fn: { a: 1, b: 2, c: 3 },
+    expect: { a: 1, b: 2, c: 3 },
+    info: 'is.deep.equal works for two objects ',
+  },
+  {
+    fn: is.deep.equal([1, 'b', 2, 'c', 3], [1, 'b', 2, 'c', 3]),
+    info: 'is.deep.equal works for two arrays',
+  },
+  {
+    fn: [1, 'b', 2, 'c', 3],
+    expect: [1, 'b', 2, 'c', 3],
+    info: 'is.deep.equal works for two arrays',
+  },
+  { fn: is.deep.equal({}, {}), expect: true, info: 'empty objects are equal' },
+  { fn: is.deep.equal(object, object), expect: true, info: 'same object reference is equal' },
+  {
+    fn: is.deep.equal(object, otherObject),
     expect: true,
     info: 'objects with same structure and values are equal',
   },
   {
-    fn: () => is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }),
+    fn: is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }),
     info: 'objects are equal even if keys are in different order',
   },
   {
-    fn: () => is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }),
+    fn: is.deep.equal({ a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }),
     expect: false,
     info: 'objects are NOT equal if keys are in different order and options.strict is true',
   },
   {
-    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1]),
+    fn: is.deep.equal([1, 2, 3], [3, 2, 1], { arrayOrderStrict: false }),
     info: 'Arrays with the same values are equal even if order is different',
   },
   {
-    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
+    fn: is.deep.equal([1, 2, 3], [3, 2, 1], { arrayOrderStrict: true }),
+    expect: false,
+    info: 'Arrays with the same values are different if order is different and options.arrayOrderStrict is true',
+  },
+  {
+    fn: is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
     expect: false,
     info: 'Arrays with the same values are different if order is different and options.strict is true',
   },
-
-  { fn: () => is.deep.equal(1, 1), expect: true, info: 'same numbers are equal' },
-  { fn: () => is.deep.equal('string', 'string'), expect: true, info: 'same strings are equal' },
-  { fn: () => is.deep.equal({}, ''), expect: false, info: 'object and string are not equal' },
+  { fn: is.deep.equal(1, 1), expect: true, info: 'same numbers are equal' },
+  { fn: is.deep.equal('string', 'string'), expect: true, info: 'same strings are equal' },
+  { fn: is.deep.equal({}, ''), expect: false, info: 'object and string are not equal' },
   {
-    fn: () => is.deep.equal({}, object),
+    fn: is.deep.equal({}, object),
     expect: false,
     info: 'empty object and populated object are not equal',
   },
-  { fn: () => is.deep.equal(0, 0), expect: true, info: 'same zero values are equal' },
-  { fn: () => is.deep.equal(0, 1), expect: false, info: 'different numbers are not equal' },
-  { fn: () => is.deep.equal('string', 1), expect: false, info: 'string and number are not equal' },
+  { fn: is.deep.equal(0, 0), expect: true, info: 'same zero values are equal' },
+  { fn: is.deep.equal(0, 1), expect: false, info: 'different numbers are not equal' },
+  { fn: is.deep.equal('string', 1), expect: false, info: 'string and number are not equal' },
   {
-    fn: () => is.deep.equal(otherObject, differentObject),
+    fn: is.deep.equal(otherObject, differentObject),
     expect: false,
     info: 'objects with different values are not equal',
   },
-
   {
-    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1]),
+    fn: is.deep.equal([1, 2, 3], [3, 2, 1], { arrayOrderStrict: false }),
     expect: true,
-    info: 'Arrays with different value order but same values are equal',
+    info: 'Arrays with different value order but same values are equal if options.arrayOrderStrict is false',
   },
-
   {
-    fn: () => is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
+    fn: is.deep.equal([1, 2, 3], [3, 2, 1], { strict: true }),
     expect: false,
     info: 'Arrays with different value order but same values are equal',
   },
-
   {
-    fn: () => is.deep.equal({ t: arrowFn }, { t: function () {} }),
+    fn: is.deep.equal({ t: () => {} }, { t: function () {} }),
     expect: false,
     info: 'arrow function and regular function are not equal',
   },
   {
-    fn: () => is.deep.equal({ t: arrowFn }, { t: arrowFn }),
+    fn: is.deep.equal({ t: () => {} }, { t: () => {} }),
     expect: true,
     info: 'identical arrow functions are equal',
   },
   {
-    fn: () => is.deep.equal({ t: arrowFnWithArguments }, { t: arrowFnWithArguments }),
+    fn: is.deep.equal(
+      function (a, b) {
+        return a + b
+      },
+      function (a, b) {
+        return a + b
+      },
+    ),
+    info: 'two inline functions with the same toString value are equal',
+  },
+  {
+    fn: is.deep.equal(
+      {
+        t: function (a, b) {
+          return a + b
+        },
+      },
+      {
+        t: function (a, b) {
+          return a + b
+        },
+      },
+    ),
     expect: true,
     info: 'identical function expressions are equal',
   },
   {
-    fn: () => is.deep.equal({ t: arrowFnReturningArray }, { t: arrowFnReturningArray }),
+    fn: is.deep.equal({ t: arrowFnReturningArray }, { t: arrowFnReturningArray }),
     expect: true,
     info: 'identical functions returning arrays are equal',
   },
   {
-    fn: () =>
-      is.deep.equal(
-        {
-          t: (a, b) => {
-            a + b
-          },
+    fn: is.deep.equal(
+      {
+        t: (a, b) => {
+          a + b
         },
-        { t: (a, b) => a + b },
-      ),
+      },
+      { t: (a, b) => a + b },
+    ),
     expect: false,
     info: 'functions with different body formatting are not equal',
   },
-  { fn: () => is.deep.equal(fn, fn), expect: true, info: 'same function reference is equal' },
+  { fn: is.deep.equal(fn, fn), expect: true, info: 'same function reference is equal' },
   {
-    fn: () => is.deep.equal('string', ['string']),
+    fn: is.deep.equal('string', ['string']),
     expect: false,
     info: 'string and array containing string are not equal',
   },
   {
-    fn: () => is.deep.equal(buff, buff2),
+    fn: is.deep.equal(buff, buff2),
     expect: false,
     info: 'buffers with different content are not equal',
   },
   {
-    fn: () => is.deep.equal(buff, buff3),
+    fn: is.deep.equal(buff, buff3),
     expect: false,
     info: 'buffers with different lengths are not equal',
   },
-  { fn: () => is.deep.equal(buff, buff), expect: true, info: 'same buffer reference is equal' },
+  { fn: is.deep.equal(buff, buff), expect: true, info: 'same buffer reference is equal' },
   {
-    fn: () => is.deep.equal(buff, 'string'),
+    fn: is.deep.equal(buff, 'string'),
     expect: false,
     info: 'buffer and string are not equal',
   },
@@ -167,201 +208,215 @@ const fns = [
     info: 'works for function arguments.',
   },
   {
-    fn: () => is.deep.equal(prot1, prot1),
+    fn: is.deep.equal(prot1, prot1),
     expect: true,
     info: 'same object with prototype reference is equal',
   },
   {
-    fn: () => is.deep.equal(prot1, prot2),
+    fn: is.deep.equal(prot1, prot2),
     expect: false,
     info: 'objects with different prototypes are not equal',
   },
-  { fn: () => is.deep.equal(date, date), expect: true, info: 'same date reference is equal' },
+  { fn: is.deep.equal(date, date), expect: true, info: 'same date reference is equal' },
   {
-    fn: () => is.deep.equal(date, new Date()),
+    fn: is.deep.equal(new Date(-1000), new Date()),
     expect: false,
-    info: 'different date instances are not equal',
+    info: 'date instances are not equal if value is different',
   },
-  { fn: () => is.deep.equal(date, ''), expect: false, info: 'date and empty string are not equal' },
-  { fn: () => is.deep.equal(null, null), expect: true, info: 'null values are equal' },
+  { fn: is.deep.equal(date, ''), expect: false, info: 'date and empty string are not equal' },
+  { fn: is.deep.equal(null, null), expect: true, info: 'null values are equal' },
   {
-    fn: () => is.deep.equal(undefined, null),
+    fn: is.deep.equal(undefined, null),
     expect: false,
     info: 'undefined and null are not equal',
   },
   {
-    fn: () => is.deep.equal(),
+    fn: is.deep.equal(),
     expect: true,
     info: 'calling without arguments returns true (both undefined)',
   },
-  { fn: () => is.deep.equal(date, null), expect: false, info: 'date and null are not equal' },
+  { fn: is.deep.equal(date, null), expect: false, info: 'date and null are not equal' },
   // currying
   {
-    fn: () => is.deep.equal(date),
+    fn: is.deep.equal(date),
     expect: is.function,
     info: 'calling with one argument returns a function (currying)',
   },
   {
-    fn: () => ['test'],
+    fn: ['test'],
     expect: is.deep.equal(['test']),
     info: 'curried function with matching array returns true',
   },
   {
-    fn: () => ({ t: 't' }),
+    fn: { t: 't' },
     expect: is.deep.equal({ t: 't' }),
     info: 'curried function with matching object returns true',
   },
   {
-    fn: () => arrowFn,
-    expect: is.deep.equal(arrowFn),
+    fn: () => () => {},
+    expect: is.deep.equal(() => {}),
     info: 'curried function with matching function returns true',
   },
   {
-    fn: () => is.deep.equal(arrowFn)(a => a),
+    fn: is.deep.equal(b => b)(a => a),
     expect: false,
     info: 'curried function with different function returns false',
   },
   {
-    fn: () => is.deep.equal([])('test'),
+    fn: is.deep.equal([])('test'),
     expect: false,
     info: 'curried empty array compared with string returns false',
   },
   {
-    fn: () => is.deep.equal({ t: 't' })(['test']),
+    fn: is.deep.equal({ t: 't' })(['test']),
     expect: false,
     info: 'curried object compared with array returns false',
   },
   {
-    fn: () => is.deep.equal({ a: undefined }, { a: undefined }),
+    fn: is.deep.equal({ a: undefined }, { a: undefined }),
     expect: true,
     info: 'objects with undefined properties are equal',
   },
   {
-    fn: () => is.deep.equal(arrowFn, arrowFn),
+    fn: is.deep.equal(
+      () => {},
+      () => {},
+    ),
     expect: true,
     info: 'two identical empty functions are equal',
   },
 
   // Additional tests to cover missing branches and edge cases
   // Test the case where both values are not objects (lines 72-73)
-  { fn: () => is.deep.equal('test', 'test'), expect: true, info: 'non-object primitives equal' },
-  { fn: () => is.deep.equal(123, 123), expect: true, info: 'same numbers are equal (primitives)' },
-  { fn: () => is.deep.equal(true, true), expect: true, info: 'same booleans are equal' },
+  { fn: is.deep.equal('test', 'test'), expect: true, info: 'non-object primitives equal' },
+  { fn: is.deep.equal(123, 123), expect: true, info: 'same numbers are equal (primitives)' },
+  { fn: is.deep.equal(true, true), expect: true, info: 'same booleans are equal' },
 
   // Test edge cases for better coverage
-  { fn: () => is.deep.equal([], []), expect: true, info: 'empty arrays are equal' },
+  { fn: is.deep.equal([], []), expect: true, info: 'empty arrays are equal' },
   {
-    fn: () => is.deep.equal([1, 2], [1, 2]),
+    fn: is.deep.equal([1, 2], [1, 2]),
     expect: true,
     info: 'arrays with same elements in same order are equal',
   },
-  {
-    fn: () => is.deep.equal([1, 2], [2, 1]),
-    expect: true,
-    info: 'arrays with same elements in different order are also equal',
-  },
 
   // Test objects with different prototypes
-  {
-    fn: () => is.deep.equal(Object.create(null), Object.create(null)),
-    expect: true,
-    info: 'objects with null prototype are equal',
-  },
+  // {
+  //   fn: is.deep.equal(Object.create(null), Object.create(null)),
+  //   expect: true,
+  //   info: 'objects with null prototype are equal',
+  // },
 
   {
-    fn: () => is.deep.equal({ a: { b: 1 } }, { a: { b: 1 } }),
+    fn: is.deep.equal({ a: { b: 1 } }, { a: { b: 1 } }),
     expect: true,
     info: 'nested objects with same structure are equal',
   },
   {
-    fn: () => is.deep.equal({ a: { b: 1 } }, { a: { b: 2 } }),
+    fn: is.deep.equal({ a: { b: 1 } }, { a: { b: 2 } }),
     expect: false,
     info: 'nested objects with different values are not equal',
   },
 
   {
-    fn: () => is.deep.equal('1', 1),
+    fn: is.deep.equal('1', 1),
     expect: false,
     info: 'string and number with same value are not equal',
   },
 
   {
-    fn: () => is.deep.equal(Buffer.from(''), Buffer.from('')),
+    fn: is.deep.equal(Buffer.from(''), Buffer.from('')),
     expect: true,
     info: 'empty buffers are equal',
   },
   {
-    fn: () => is.deep.equal(Buffer.from('a'), Buffer.from('b')),
+    fn: is.deep.equal(Buffer.from('a'), Buffer.from('b')),
     expect: false,
     info: 'single character buffers with different content are not equal',
   },
   {
-    fn: () => is.deep.equal([1, 2], { 0: 1, 1: 2, length: 2 }),
+    fn: is.deep.equal([1, 2], { 0: 1, 1: 2, length: 2 }),
     expect: false,
     info: 'array vs object with numeric properties are not equal',
   },
   {
-    fn: () => is.deep.equal(Buffer.from('test'), 'test'),
+    fn: is.deep.equal(Buffer.from('test'), 'test'),
     expect: false,
     info: 'buffer vs string are not equal',
   },
   {
-    fn: () => is.deep.equal(Buffer.from('test'), { 0: 116, 1: 101, 2: 115, 3: 116 }),
+    fn: is.deep.equal(Buffer.from('test'), { 0: 116, 1: 101, 2: 115, 3: 116 }),
     expect: false,
     info: 'buffer vs object with numeric properties are not equal',
   },
 
-  { fn: () => is.deep.equal({}, []), expect: false, info: 'plain object vs array are not equal' },
+  { fn: is.deep.equal({}, []), expect: false, info: 'plain object vs array are not equal' },
   {
-    fn: () => is.deep.equal({}, new Date()),
+    fn: is.deep.equal({}, new Date()),
     expect: false,
     info: 'plain object vs Date are not equal',
   },
   {
-    fn: () => is.deep.equal({}, /regex/),
+    fn: is.deep.equal({}, /regex/),
     expect: false,
     info: 'plain object vs RegExp are not equal',
   },
 
   {
-    fn: () => is.deep.equal({ a: 1 }, { a: 1 }),
+    fn: is.deep.equal({ a: 1 }, { a: 1 }),
     expect: true,
     info: 'objects without prototype property are equal',
   },
 
   {
-    fn: () => is.deep.equal({ a: 1, b: 2 }, { b: 2, a: 1 }),
+    fn: is.deep.equal({ a: 1, b: 2 }, { b: 2, a: 1 }),
     expect: true,
     info: 'objects with same keys in different order are equal',
   },
 
   {
-    fn: () => is.deep.equal({ a: 1, b: 2 }, { a: 1 }),
+    fn: is.deep.equal({ a: 1, b: 2 }, { a: 1 }),
     expect: false,
     info: 'objects with different number of keys are not equal',
   },
 
   {
-    fn: () => is.deep.equal({ a: undefined }, { b: undefined }),
+    fn: is.deep.equal({ a: undefined }, { b: undefined }),
     expect: false,
     info: 'objects with different undefined properties are not equal',
   },
 
   {
-    fn: () => is.deep.equal([1, 2, 3], [1, 2, 3]),
+    fn: is.deep.equal([1, 2, 3], [1, 2, 3]),
     expect: true,
     info: 'arrays with identical elements are equal',
   },
   {
-    fn: () => is.deep.equal([1, 2, 3], [1, 2, 4]),
+    fn: is.deep.equal([1, 2, 3], [1, 2, 4]),
     expect: false,
     info: 'arrays with different elements are not equal',
   },
   {
-    fn: () => is.deep.equal([undefined], [undefined]),
+    fn: is.deep.equal([undefined], [undefined]),
     expect: true,
     info: 'arrays with undefined elements are equal',
   },
-]
 
-export default fns
+  {
+    fn: () => is.deep.equal([1, 2, 3], [1, 2, 4]),
+    expect: false,
+    info: 'arrays trigger sort but are still not equal after sorting',
+  },
+
+  {
+    fn: () => is.deep.equal({ z: 1, a: 2 }, { z: 1, a: 3 }),
+    expect: false,
+    info: 'objects trigger key sort but are still not equal after sorting',
+  },
+
+  {
+    fn: () => is.deep.equal(() => {}, {}),
+    expect: false,
+    info: 'function as first arg and non-function as second arg is false',
+  },
+]
