@@ -369,6 +369,10 @@ update dependencies
 - fix deep.equal and deep.different implementations and tests
 - update dependencies
 
-##### 0.1.31 - unreleased
+##### 0.1.31
+
+- update dependencies
+
+##### 0.1.32 - unreleased
 
 ...
