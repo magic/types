@@ -364,6 +364,11 @@ update dependencies
 
 - change types of is.ln, is.len, is.length and is.count to reflect their type as function with subfunctions
 
-##### 0.1.30 - unreleased
+##### 0.1.30
+
+- fix deep.equal and deep.different implementations and tests
+- update dependencies
+
+##### 0.1.31 - unreleased
 
 ...
