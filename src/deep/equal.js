@@ -18,9 +18,12 @@ import is from '../lib.js'
  * @param {unknown} [b]
  * @param {object} [options]
  * @param {boolean} [options.strict=false]
+ * @param {boolean} [options.arrayOrderStrict=true]
  * @returns {boolean | ((c: unknown) => boolean)}
  */
-export const equal = (a, b, options = { strict: false }) => {
+export const equal = (a, b, options = {}) => {
+  const { strict = false, arrayOrderStrict = false } = options
+
   // curry
   if (is.undefined(b)) {
     if (is.undefined(a)) {
@@ -39,14 +42,10 @@ export const equal = (a, b, options = { strict: false }) => {
     return false
   }
 
-  // bool, string, number, falsy values
-  if (is.comparable(a) || is.comparable(b)) {
-    return a === b
+  /* functions are handled by their toString value */
+  if (is.function(a) && is.function(b)) {
+    return a.toString() === b.toString()
   }
-
-  // if (is.arguments(a)) {
-  //  return is.length.eq(a, b)
-  // }
 
   if (!is.object(a) || !is.object(b)) {
     return a === b
@@ -58,30 +57,17 @@ export const equal = (a, b, options = { strict: false }) => {
   }
 
   // real types must match too
-  // if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
-  //   return false
-  // }
+  if (Object.prototype.toString.call(a) !== Object.prototype.toString.call(b)) {
+    return false
+  }
 
   // dates
   if (is.date(a)) {
-    return a === b
+    return a.toString() === b.toString()
   }
 
-  /* functions are handled by prototype comparison above */
-  // if (is.function(a)) {
-  //   if (!is.function(b)) {
-  //     return false
-  //   }
-
-  //   return a.toString() === b.toString()
-  // }
-
   // buffers
-  if (is.buffer(a)) {
-    if (!is.buffer(b)) {
-      return false
-    }
-
+  if (is.buffer(a) && is.buffer(b)) {
     if (a.length !== b.length) {
       return false
     }
@@ -95,24 +81,17 @@ export const equal = (a, b, options = { strict: false }) => {
     return true
   }
 
-  if (is.objectNative(a) || is.array(a)) {
-    if (is.array(a)) {
-      if (!is.array(b)) {
-        return false
-      }
-
-      if (!options.strict) {
-        a.sort()
-        b.sort()
-      }
-
-      return !a.some((v, i) => v !== b[i])
+  if (is.array(a) && is.array(b)) {
+    if (!strict && !arrayOrderStrict) {
+      a.sort()
+      b.sort()
     }
 
-    if (!is.objectNative(b)) {
-      return false
-    }
+    const allEqual = !a.some((v, i) => !equal(v, b[i]))
+    return allEqual
+  }
 
+  if (is.objectNative(a) && is.objectNative(b)) {
     const aObj = a
     const bObj = b
 
@@ -124,7 +103,7 @@ export const equal = (a, b, options = { strict: false }) => {
       return false
     }
 
-    if (!options.strict) {
+    if (!strict) {
       ka.sort()
       kb.sort()
     }
@@ -137,15 +116,8 @@ export const equal = (a, b, options = { strict: false }) => {
     }
 
     // equivalent values for every corresponding key, and
-    // ~~~possibly expensive deep test
-    let key
-    for (let i = ka.length - 1; i >= 0; i--) {
-      key = ka[i]
-
-      if (!equal(aObj[key], bObj[key])) {
-        return false
-      }
-    }
+    // ~~~ possibly expensive deep test
+    return !ka.some(key => !equal(aObj[key], bObj[key]))
   }
 
   return typeof a === typeof b
