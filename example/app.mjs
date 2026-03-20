@@ -50,6 +50,7 @@ export const state = {
         { to: '-undefinedornull', text: 'isUndefinedOrNull' },
         { to: '-buffer', text: 'isBuffer' },
         { to: '-promise', text: 'isPromise' },
+        { to: '-symbol', text: 'isSymbol' },
         // { to: '-arguments', text: 'isArguments' },
         { to: '-uuid', text: 'isUUID' },
         { to: '-eq', text: 'isEq' },

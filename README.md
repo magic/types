@@ -190,6 +190,9 @@ isSome([1, 'str', {}], 'number') // true
 isSome([1, 'str', {}], is.number) // true
 // alias is.some
 
+isSymbol(Symbol('testing)) // true
+// alias is.symbol, is.sym
+
 isNone([1, 2, 3], 'string') // true
 isNone([1, 2, 3], is.number) // false
 // alias is.none
@@ -373,6 +376,10 @@ update dependencies
 
 - update dependencies
 
-##### 0.1.32 - unreleased
+##### 0.1.32
+
+- add is.symbol, is.sym and isSymbol functions
+
+##### 0.1.33 - unreleased
 
 ...

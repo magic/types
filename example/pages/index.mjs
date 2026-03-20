@@ -267,6 +267,13 @@ isLowerCase(23) // false
 `),
   p({ class: 'alias' }, 'alias is.case.lower, isCase.lower'),
 
+  h3({ id: 'functions-issymbol' }, 'isSymbol'),
+  Pre(`
+isSymbol(Symbol('testing')) // true
+isSymbol(23) // false
+`),
+  p({ class: 'alias' }, 'alias is.symbol, is.sym'),
+
   h3({ id: 'functions-ismergeableobject' }, 'isMergeableObject'),
   Pre(`
 isMergeableObject({}) // true
