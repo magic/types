@@ -267,7 +267,7 @@ isLowerCase(23) // false
 `),
   p({ class: 'alias' }, 'alias is.case.lower, isCase.lower'),
 
-  h3({ id: 'functions-issymbol' }, 'isSymbol'),
+  h3({ id: 'functions-symbol' }, 'isSymbol'),
   Pre(`
 isSymbol(Symbol('testing')) // true
 isSymbol(23) // false
