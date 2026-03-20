@@ -145,6 +145,7 @@ export function isError(e: unknown): e is Error
 export function isDate(e: unknown): e is Date
 export function isRegExp(e: unknown): e is RegExp
 export function isMap(a: unknown): a is Map<unknown, unknown>
+export function isSymbol(a: unknown): a is Symbol
 export function isSet(a: unknown): a is Set<unknown>
 export function isWeakMap(a: unknown): a is WeakMap<any, unknown>
 export function isWeakSet(a: unknown): a is WeakSet<any>

@@ -202,6 +202,8 @@ export const is: {
   isNil: (e: unknown) => e is null
   null: (e: unknown) => e is null
   nil: (e: unknown) => e is null
+  sym: (a: unknown) => a is Symbol
+  symbol: (a: unknown) => a is Symbol
   isUndefinedOrNull: (e: unknown) => e is null | undefined
   undefinedOrNull: (e: unknown) => e is null | undefined
   undefinedOrNil: (e: unknown) => e is null | undefined
