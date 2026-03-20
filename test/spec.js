@@ -65,6 +65,9 @@ const spec = {
   ln: () => true,
   length: () => true,
 
+  sym: 'fn',
+  symbol: 'fn',
+
   obj: 'fn',
   object: 'fn',
   isObj: 'fn',

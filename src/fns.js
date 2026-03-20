@@ -555,6 +555,13 @@ export const isRegExp = e => isInstanceOf(e, RegExp)
 export const isMap = a => isInstanceOf(a, Map)
 
 /**
+ * Check if a value is a Symbol
+ * @param {unknown} a - value to check
+ * @returns {a is Symbol} - true if value is a Symbol
+ */
+export const isSymbol = a => typeof a === 'symbol'
+
+/**
  * Check if a value is a Set
  * @param {unknown} a - value to check
  * @returns {a is Set<unknown>} - true if value is a Set

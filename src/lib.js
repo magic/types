@@ -83,6 +83,9 @@ export const is = /** @type {const} */ {
   null: fns.isNull,
   nil: fns.isNull,
 
+  sym: fns.isSymbol,
+  symbol: fns.isSymbol,
+
   isUndefinedOrNull: fns.isUndefinedOrNull,
   undefinedOrNull: fns.isUndefinedOrNull,
   undefinedOrNil: fns.isUndefinedOrNull,
