@@ -520,9 +520,10 @@ export const isNone = (arr, t) => !isSome(arr, t)
 
 /**
  * Check if a value is an instance of a given constructor
+ * @template T
  * @param {unknown} e - value to check
- * @param {new (...args: any[]) => any} t - constructor function
- * @returns {boolean} - true if value is an instance of constructor
+ * @param {new (...args: any[]) => T} t - constructor function
+ * @returns {e is T} - true if value is an instance of constructor
  */
 export const isInstanceOf = (e, t) => (!t ? false : e instanceof t)
 
