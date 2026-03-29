@@ -380,6 +380,10 @@ update dependencies
 
 - add is.symbol, is.sym and isSymbol functions
 
-##### 0.1.33 - unreleased
+##### 0.1.33
+
+- is.instance now typeguards
+
+##### 0.1.34 - unreleased
 
 ...
