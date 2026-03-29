@@ -140,7 +140,7 @@ export function isComparable(a: unknown): a is string | number | boolean
 export function isEvery<T>(arr: T | T[], t: ((v: T) => boolean) | string): boolean
 export function isSome<T>(arr: T | T[], t: ((v: T) => boolean) | string): boolean
 export function isNone<T>(arr: T | T[], t: ((v: T) => boolean) | string): boolean
-export function isInstanceOf(e: unknown, t: new (...args: any[]) => any): boolean
+export function isInstanceOf<T>(e: unknown, t: new (...args: any[]) => T): e is T
 export function isError(e: unknown): e is Error
 export function isDate(e: unknown): e is Date
 export function isRegExp(e: unknown): e is RegExp

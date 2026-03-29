@@ -480,9 +480,9 @@ export const is: {
   all: <T>(arr: T | T[], t: ((v: T) => boolean) | string) => boolean
   some: <T>(arr: T | T[], t: ((v: T) => boolean) | string) => boolean
   none: <T>(arr: T | T[], t: ((v: T) => boolean) | string) => boolean
-  instance: (e: unknown, t: new (...args: any[]) => any) => boolean
-  instanceof: (e: unknown, t: new (...args: any[]) => any) => boolean
-  instanceOf: (e: unknown, t: new (...args: any[]) => any) => boolean
+  instance: <T>(e: unknown, t: new (...args: any[]) => T) => e is T
+  instanceof: <T>(e: unknown, t: new (...args: any[]) => T) => e is T
+  instanceOf: <T>(e: unknown, t: new (...args: any[]) => T) => e is T
   isCase: ((s: unknown, c?: 'up' | 'down') => boolean) & {
     upper: (s: unknown) => boolean
     lower: (s: unknown) => boolean
