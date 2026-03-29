@@ -383,6 +383,7 @@ update dependencies
 ##### 0.1.33
 
 - is.instance now typeguards
+- update dependencies
 
 ##### 0.1.34 - unreleased
 
