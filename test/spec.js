@@ -2,6 +2,25 @@ import is from '../src/index.js'
 
 import { version } from '@magic/test'
 
+const lengths = {
+  eq: 'fn',
+  equal: 'fn',
+  'gt': 'fn',
+  bigger: 'fn',
+  biggerequal: 'fn',
+  greater: 'fn',
+  greaterequal: 'fn',
+  gte: 'fn',
+  gteq: 'fn',
+  lower: 'fn',
+  smaller: 'fn',
+  lt: 'fn',
+  lowerequal: 'fn',
+  smallerequal: 'fn',
+  lte: 'fn',
+  lteq: 'fn'
+}
+
 const spec = {
   arr: 'fn',
   array: 'fn',
@@ -60,10 +79,12 @@ const spec = {
   float: 'fn',
   isFloat: 'fn',
 
-  count: () => true,
-  len: () => true,
-  ln: () => true,
-  length: () => true,
+  count: ['fn', lengths],
+  len: ['fn', lengths],
+  ln: ['fn', lengths],
+  length: ['fn', lengths],
+  
+  ...lengths,
 
   sym: 'fn',
   symbol: 'fn',

@@ -59,6 +59,8 @@ const len = ln
 const count = ln
 
 export const is = /** @type {const} */ {
+  ...lengthFunctions,
+
   count,
   length,
   len,
