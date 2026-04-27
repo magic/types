@@ -5,7 +5,7 @@ import { version } from '@magic/test'
 const lengths = {
   eq: 'fn',
   equal: 'fn',
-  'gt': 'fn',
+  gt: 'fn',
   bigger: 'fn',
   biggerequal: 'fn',
   greater: 'fn',
@@ -18,7 +18,7 @@ const lengths = {
   lowerequal: 'fn',
   smallerequal: 'fn',
   lte: 'fn',
-  lteq: 'fn'
+  lteq: 'fn',
 }
 
 const spec = {
@@ -83,7 +83,7 @@ const spec = {
   len: ['fn', lengths],
   ln: ['fn', lengths],
   length: ['fn', lengths],
-  
+
   ...lengths,
 
   sym: 'fn',
