@@ -45,9 +45,9 @@
     "@magic-modules/pre": "0.0.12",
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.156",
-    "@magic/format": "0.0.72",
+    "@magic/format": "0.0.73",
     "@magic/test": "0.2.30",
-    "typescript": "6.0.2"
+    "typescript": "6.0.3"
   },
   "keywords": [
     "magic",
@@ -61,6 +61,6 @@
     }
   ],
   "dependencies": {
-    "@types/node": "25.5.0"
+    "@types/node": "25.6.0"
   }
 }
