@@ -390,6 +390,10 @@ update dependencies
 - add gt, gte, lt, lte and all other numerical value comparators into root, is.gt, is.lt etc.
 - update dependencies
 
-##### 0.1.35 - unreleased
+##### 0.1.35
+
+- update types for 0.1.34
+
+##### 0.1.36 - unreleased
 
 ...
