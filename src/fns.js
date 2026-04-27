@@ -209,16 +209,16 @@ export const isFalsy = e => !e || isEmpty(e)
  * @returns {number} - length/size or -1 if unknown
  */
 export const getLength = arg => {
-  if (Array.isArray(arg) || typeof arg === 'string' || isBuffer(arg)) {
+  if (isArray(arg) || isString(arg) || isBuffer(arg)) {
     return arg.length
   }
-  if (isInteger(arg)) {
+  if (isNumber(arg)) {
     return arg
   }
-  if (arg instanceof Map || arg instanceof Set) {
+  if (isInstanceOf(arg, Map) || isInstanceOf(arg, Set)) {
     return arg.size
   }
-  if (arg instanceof RegExp) {
+  if (isInstanceOf(arg, RegExp)) {
     const str = arg.toString()
     return str === '/(?:)/' ? 0 : str.length - 2 // length of pattern without slashes
   }
