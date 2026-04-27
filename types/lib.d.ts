@@ -508,6 +508,246 @@ export const is: {
   module: (s: unknown) => s is object & {
     [Symbol.toStringTag]: 'Module'
   }
+  eq: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  equal: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  gt: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  bigger: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  biggerequal: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  greater: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  greaterequal: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  gte: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  gteq: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  lower: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  smaller: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  lt: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  lowerequal: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  smallerequal: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  lte: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
+  lteq: {
+    /**
+     * @overload
+     * @param {unknown} a
+     * @param {unknown} b
+     * @returns {boolean}
+     */
+    (a: unknown, b: unknown): boolean
+    /**
+     * @overload
+     * @param {unknown} a
+     * @returns {(c: unknown) => boolean}
+     */
+    (a: unknown): (c: unknown) => boolean
+  }
 }
 export default is
 export type LengthComparison = typeof fns.isLengthEqual
