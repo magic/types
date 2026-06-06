@@ -394,6 +394,10 @@ update dependencies
 
 - update types for 0.1.34
 
-##### 0.1.36 - unreleased
+##### 0.1.36
+
+- update dependencies
+
+##### 0.1.37 - unreleased
 
 ...
