@@ -398,6 +398,10 @@ update dependencies
 
 - update dependencies
 
-##### 0.1.37 - unreleased
+##### 0.1.37
+
+- update @magic/test
+
+##### 0.1.38 - unreleased
 
 ...
