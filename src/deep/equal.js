@@ -1,6 +1,15 @@
 // Written by Substack <3
 
-import is from '../lib.js'
+import {
+  isArray,
+  isBuffer,
+  isDate,
+  isFunction,
+  isNull,
+  isObject,
+  isObjectNative,
+  isUndefined,
+} from '../fns.js'
 
 /**
  * @overload
@@ -25,15 +34,15 @@ export const equal = (a, b, options = {}) => {
   const { strict = false, arrayOrderStrict = false } = options
 
   // curry
-  if (is.undefined(b)) {
-    if (is.undefined(a)) {
+  if (isUndefined(b)) {
+    if (isUndefined(a)) {
       return true
     }
 
     return c => equal(a, c)
   }
 
-  if (is.null(b)) {
+  if (isNull(b)) {
     return a === b
   }
 
@@ -43,11 +52,11 @@ export const equal = (a, b, options = {}) => {
   }
 
   /* functions are handled by their toString value */
-  if (is.function(a) && is.function(b)) {
+  if (isFunction(a) && isFunction(b)) {
     return a.toString() === b.toString()
   }
 
-  if (!is.object(a) || !is.object(b)) {
+  if (!isObject(a) || !isObject(b)) {
     return a === b
   }
 
@@ -62,12 +71,12 @@ export const equal = (a, b, options = {}) => {
   }
 
   // dates
-  if (is.date(a)) {
+  if (isDate(a)) {
     return a.toString() === b.toString()
   }
 
   // buffers
-  if (is.buffer(a) && is.buffer(b)) {
+  if (isBuffer(a) && isBuffer(b)) {
     if (a.length !== b.length) {
       return false
     }
@@ -81,7 +90,7 @@ export const equal = (a, b, options = {}) => {
     return true
   }
 
-  if (is.array(a) && is.array(b)) {
+  if (isArray(a) && isArray(b)) {
     if (!strict && !arrayOrderStrict) {
       a.sort()
       b.sort()
@@ -91,7 +100,7 @@ export const equal = (a, b, options = {}) => {
     return allEqual
   }
 
-  if (is.objectNative(a) && is.objectNative(b)) {
+  if (isObjectNative(a) && isObjectNative(b)) {
     const aObj = a
     const bObj = b
 

@@ -1,4 +1,4 @@
-import is from '../lib.js'
+import { isUndefined } from '../fns.js'
 
 import equal from './equal.js'
 
@@ -19,8 +19,8 @@ import equal from './equal.js'
  * @returns {boolean | ((c: unknown) => boolean)}
  */
 export const different = (a, b) => {
-  if (is.undefined(b)) {
-    if (is.undefined(a)) {
+  if (isUndefined(b)) {
+    if (isUndefined(a)) {
       return false
     }
 
