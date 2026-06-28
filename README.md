@@ -402,6 +402,11 @@ update dependencies
 
 - update @magic/test
 
-##### 0.1.38 - unreleased
+##### 0.1.38
+
+- remove recursive dependencies
+- update dependencies
+
+##### 0.1.39 - unreleased
 
 ...
