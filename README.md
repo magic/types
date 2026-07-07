@@ -140,6 +140,10 @@ isIterable([]) // true
 isEmail('a@b.c') // true
 // alias isMail, is.email, is.mail
 
+isIp('192.168.1.1') // true
+isIp('::1') // true
+// alias ip, is.ip, ipV4, ipV6, isIPv4, isIPv6
+
 isNull(null) // true
 // alias isNil, is.nil, is.null
 
