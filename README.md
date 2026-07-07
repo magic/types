@@ -411,6 +411,10 @@ update dependencies
 - remove recursive dependencies
 - update dependencies
 
-##### 0.1.39 - unreleased
+##### 0.1.39
+
+- add isIp and variants to allow ip v4 and v6 checks
+
+##### 0.1.40 - unreleased
 
 ...
