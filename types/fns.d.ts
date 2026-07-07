@@ -173,3 +173,12 @@ export const isCase: ((s: unknown, c?: 'up' | 'down') => boolean) & {
   upper: (s: unknown) => boolean
   lower: (s: unknown) => boolean
 }
+export function isIPv4(a: unknown): boolean
+export function isIPv6(a: unknown): boolean
+export function isIp(a: unknown): boolean
+export namespace isIp {
+  export { isIPv4 as v4 }
+  export { isIPv6 as v6 }
+}
+export function ipV4(a: unknown): boolean
+export function ipV6(a: unknown): boolean

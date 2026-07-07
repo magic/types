@@ -315,6 +315,18 @@ export const is = /** @type {const} */ {
   isLowerCase: fns.isLowerCase,
   lowerCase: fns.isLowerCase,
 
+  isIp: fns.isIp,
+  ip: fns.isIp,
+  isIPv4: fns.isIPv4,
+  ipv4: fns.isIPv4,
+  v4: fns.isIPv4,
+  isIPv6: fns.isIPv6,
+  ipv6: fns.isIPv6,
+  v6: fns.isIPv6,
+
+  ipV4: fns.ipV4,
+  ipV6: fns.ipV6,
+
   same: fns.isSameType,
   sameType: fns.isSameType,
   isSameType: fns.isSameType,

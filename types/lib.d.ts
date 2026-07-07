@@ -493,6 +493,24 @@ export const is: {
   upperCase: (s: unknown) => s is string
   isLowerCase: (s: unknown) => s is string
   lowerCase: (s: unknown) => s is string
+  isIp: {
+    (a: unknown): boolean
+    v4: (a: unknown) => boolean
+    v6: (a: unknown) => boolean
+  }
+  ip: {
+    (a: unknown): boolean
+    v4: (a: unknown) => boolean
+    v6: (a: unknown) => boolean
+  }
+  isIPv4: (a: unknown) => boolean
+  ipv4: (a: unknown) => boolean
+  v4: (a: unknown) => boolean
+  isIPv6: (a: unknown) => boolean
+  ipv6: (a: unknown) => boolean
+  v6: (a: unknown) => boolean
+  ipV4: (a: unknown) => boolean
+  ipV6: (a: unknown) => boolean
   same: (a: unknown, b: unknown) => boolean
   sameType: (a: unknown, b: unknown) => boolean
   isSameType: (a: unknown, b: unknown) => boolean

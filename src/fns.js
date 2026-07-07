@@ -631,3 +631,86 @@ export const isModule = s => Object.prototype.toString.call(s) === '[object Modu
 export const isCase = (s, c = 'up') => (c === 'up' ? isUpperCase(s) : isLowerCase(s))
 isCase.upper = isUpperCase
 isCase.lower = isLowerCase
+
+/**
+ * Check if a value is a valid IPv4 address
+ * @param {unknown} a - value to check
+ * @returns {boolean} - true if value is an IPv4 address
+ */
+export const isIPv4 = a => {
+  if (!isString(a)) return false
+  const parts = a.split('.')
+  if (parts.length !== 4) return false
+  return parts.every(part => {
+    const num = Number(part)
+    return /^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$/.test(part) && String(num) === part
+  })
+}
+
+/**
+ * Check if a value is a valid IPv6 address
+ * @param {unknown} a - value to check
+ * @returns {boolean} - true if value is an IPv6 address
+ */
+export const isIPv6 = a => {
+  if (!isString(a)) {
+    return false
+  }
+
+  const str = a.toLowerCase()
+
+  // Handle IPv4-mapped IPv6 (::ffff:192.168.1.1)
+  if (str.includes('.')) {
+    const lastColon = str.lastIndexOf(':')
+    const ipv4Part = str.slice(lastColon + 1)
+    if (!isIPv4(ipv4Part)) {
+      return false
+    }
+    const beforeIpv4 = str.slice(0, lastColon)
+    // Should be ::ffff: or similar, and rest should be empty or valid hex
+    const colonCount = beforeIpv4.split(':').length - 1
+    return colonCount <= 2 && (beforeIpv4 === '::ffff' || beforeIpv4 === ':' || beforeIpv4 === '')
+  }
+
+  // Handle :: compression
+  const doubleColon = str.indexOf('::')
+  if (doubleColon !== -1) {
+    const parts = str.split('::')
+    if (parts.length !== 2) {
+      return false
+    }
+    const leftParts = parts[0] ? parts[0].split(':') : []
+    const rightParts = parts[1] ? parts[1].split(':') : []
+    const totalGroups = leftParts.length + rightParts.length
+    if (totalGroups > 7) {
+      return false
+    }
+    const emptyParts =
+      leftParts.filter(p => p === '').length + rightParts.filter(p => p === '').length
+    if (emptyParts > 1) {
+      return false
+    }
+    const allValid = [...leftParts, ...rightParts].every(p => p === '' || /^[0-9a-f]{1,4}$/.test(p))
+    return allValid
+  }
+
+  // Full form: 8 groups of 1-4 hex digits
+  const parts = str.split(':')
+  if (parts.length !== 8) {
+    return false
+  }
+  return parts.every(part => /^[0-9a-f]{1,4}$/.test(part))
+}
+
+/**
+ * Check if a value is a valid IP address (v4 or v6)
+ * @param {unknown} a - value to check
+ * @returns {boolean} - true if value is an IP address
+ */
+export const isIp = a => isIPv4(a) || isIPv6(a)
+isIp.v4 = isIPv4
+isIp.v6 = isIPv6
+
+export const ipV4 = isIPv4
+
+export const ipV6 = isIPv6
