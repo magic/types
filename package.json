@@ -50,10 +50,10 @@
     "@magic-modules/no-spy": "0.0.9",
     "@magic-modules/pre": "0.0.12",
     "@magic-themes/docs": "0.0.15",
-    "@magic/core": "0.0.159",
+    "@magic/core": "0.0.160",
     "@magic/format": "0.0.75",
-    "@magic/test": "0.3.23",
-    "typescript": "6.0.3"
+    "@magic/test": "0.3.32",
+    "typescript": "npm:@typescript/typescript6"
   },
   "keywords": [
     "magic",
@@ -67,10 +67,10 @@
     }
   ],
   "dependencies": {
-    "@types/node": "26.1.0"
+    "@types/node": "26.6.3"
   },
   "allowScripts": {
-    "@swc/core@1.3.41": true,
-    "canvas@3.2.3": true
+    "canvas@3.2.3": true,
+    "@swc/core@1.15.46": true
   }
 }
