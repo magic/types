@@ -30,6 +30,16 @@ import * as deep from './deep/index.js'
  * }} EnhancedLengthFunction
  */
 
+/**
+ * The `is.not` namespace: the original `isNot` check function, extended at
+ * runtime (by `addNotFunctions`) with a negated version of every `is.*` check
+ * and their nested sub-checks (e.g. `.upper`, `.eq`, `.v4`, `deep`). Each
+ * added property is either a negated check function or an object of them.
+ * @typedef {((e: unknown, ...types: string[]) => boolean) & {
+ *   [key: string]: any
+ * }} NotNamespace
+ */
+
 // Create enhanced length functions with comparison methods
 const lengthFunctions = {
   eq: fns.isLengthEqual,
@@ -126,7 +136,7 @@ export const is = /** @type {const} */ {
   empty: fns.isEmpty,
 
   isNot: fns.isNot,
-  not: fns.isNot,
+  not: /** @type {NotNamespace} */ (fns.isNot),
   isNeq: fns.isNot,
   neq: fns.isNot,
 
@@ -342,5 +352,99 @@ export const is = /** @type {const} */ {
   module: fns.isModule,
   ...deep,
 }
+
+/**
+ * Negation helper: creates a function that returns the logical NOT of fn
+ * @param {any} fn - function to negate
+ * @returns {(...args: any[]) => boolean} - negated function
+ */
+const negate =
+  fn =>
+  (...args) =>
+    !fn(...args)
+
+/**
+ * Add negated functions to the existing is.not namespace
+ * @param {any} obj - source object (the is namespace)
+ * @param {any} target - target object (the is.not namespace)
+ */
+const addNotFunctions = (obj, target) => {
+  // Skip certain properties that shouldn't be copied
+  const skipKeys = new Set(['length', 'name', 'prototype', 'caller', 'callee', 'arguments'])
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key === 'not' || skipKeys.has(key)) continue
+    if (fns.isFunction(value)) {
+      target[key] = negate(value)
+      // Handle function sub-properties (e.g., isCase.upper, isIp.v4)
+      if (value.upper) {
+        target[key].upper = negate(value.upper)
+      }
+      if (value.lower) {
+        target[key].lower = negate(value.lower)
+      }
+      if (value.v4) {
+        target[key].v4 = negate(value.v4)
+      }
+      if (value.v6) {
+        target[key].v6 = negate(value.v6)
+      }
+      // Handle all length comparison functions
+      if (value.eq) {
+        target[key].eq = negate(value.eq)
+      }
+      if (value.equal) {
+        target[key].equal = negate(value.equal)
+      }
+      if (value.gt) {
+        target[key].gt = negate(value.gt)
+      }
+      if (value.bigger) {
+        target[key].bigger = negate(value.bigger)
+      }
+      if (value.biggerequal) {
+        target[key].biggerequal = negate(value.biggerequal)
+      }
+      if (value.greater) {
+        target[key].greater = negate(value.greater)
+      }
+      if (value.greaterequal) {
+        target[key].greaterequal = negate(value.greaterequal)
+      }
+      if (value.gte) {
+        target[key].gte = negate(value.gte)
+      }
+      if (value.gteq) {
+        target[key].gteq = negate(value.gteq)
+      }
+      if (value.lower) {
+        target[key].lower = negate(value.lower)
+      }
+      if (value.smaller) {
+        target[key].smaller = negate(value.smaller)
+      }
+      if (value.lt) {
+        target[key].lt = negate(value.lt)
+      }
+      if (value.lowerequal) {
+        target[key].lowerequal = negate(value.lowerequal)
+      }
+      if (value.smallerequal) {
+        target[key].smallerequal = negate(value.smallerequal)
+      }
+      if (value.lte) {
+        target[key].lte = negate(value.lte)
+      }
+      if (value.lteq) {
+        target[key].lteq = negate(value.lteq)
+      }
+    } else if (fns.isObjectNative(value)) {
+      target[key] = {}
+      addNotFunctions(value, target[key])
+    }
+  }
+}
+
+addNotFunctions(is, is.not)
 
 export default is
