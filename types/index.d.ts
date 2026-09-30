@@ -234,7 +234,7 @@ export const is: {
   isEmpty: (e: unknown) => boolean
   empty: (e: unknown) => boolean
   isNot: (e: unknown, ...types: string[]) => boolean
-  not: (e: unknown, ...types: string[]) => boolean
+  not: import('./lib.js').NotNamespace
   isNeq: (e: unknown, ...types: string[]) => boolean
   neq: (e: unknown, ...types: string[]) => boolean
   isArray: (e: unknown) => e is unknown[]
@@ -769,4 +769,5 @@ export const is: {
     (a: unknown): (c: unknown) => boolean
   }
 }
+export const not: import('./lib.js').NotNamespace
 export default is

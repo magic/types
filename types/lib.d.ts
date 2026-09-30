@@ -232,7 +232,7 @@ export const is: {
   isEmpty: (e: unknown) => boolean
   empty: (e: unknown) => boolean
   isNot: (e: unknown, ...types: string[]) => boolean
-  not: (e: unknown, ...types: string[]) => boolean
+  not: NotNamespace
   isNeq: (e: unknown, ...types: string[]) => boolean
   neq: (e: unknown, ...types: string[]) => boolean
   isArray: (e: unknown) => e is unknown[]
@@ -786,5 +786,14 @@ export type EnhancedLengthFunction = typeof fns.getLength & {
   smallerequal: LengthComparison
   lte: LengthComparison
   lteq: LengthComparison
+}
+/**
+ * The `is.not` namespace: the original `isNot` check function, extended at
+ * runtime (by `addNotFunctions`) with a negated version of every `is.*` check
+ * and their nested sub-checks (e.g. `.upper`, `.eq`, `.v4`, `deep`). Each
+ * added property is either a negated check function or an object of them.
+ */
+export type NotNamespace = ((e: unknown, ...types: string[]) => boolean) & {
+  [key: string]: any
 }
 import * as fns from './fns.js'
