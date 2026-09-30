@@ -11,10 +11,10 @@ export const deepDiff = different
 
 export const deep = {
   isDifferent: different,
-  different: different,
+  different,
   diff: different,
 
   isEqual: equal,
-  equal: equal,
+  equal,
   eq: equal,
 }
