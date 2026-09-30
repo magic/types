@@ -527,6 +527,12 @@ update dependencies
 - add isIp and variants to allow ip v4 and v6 checks
 - update dependencies
 
-##### 0.1.40 - unreleased
+##### 0.1.40
+
+- add is.not negations of all type functions
+- update docs
+- update dependencies
+
+##### 0.1.41 - unreleased
 
 ...
