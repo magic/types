@@ -2,8 +2,6 @@ export const View = state => [
   h1(state.title),
   p(state.description),
 
-  h3('v0.1.0 uses esmodules without compilation.'),
-
   GitBadges('@magic/types'),
 
   h2({ id: 'install' }, ' install'),
@@ -30,10 +28,10 @@ is.array([]) // true`),
   h3({ id: 'functions-is' }, 'is'),
   p('test a value for multiple types'),
   Pre(`
-is(ele, ...types)
+is.is(ele, ...types)
 
-is('astring', 'string', 'object') // true
-is(42, 'string', 'object') // false
+is.is('astring', 'string', 'object') // true
+is.is(42, 'string', 'object') // false
 `),
 
   h3({ id: 'functions-not' }, 'not'),
@@ -44,23 +42,30 @@ not(ele, ...types)
 not('astring', 'string', 'object') // false
 not(42, 'string', 'object') // true`),
   p({ class: 'alias' }, 'alias is.neq, isNeq, isNot'),
+  p('not (and is.not) is also a namespace with negated versions of every check:'),
+  Pre(`
+is.not.array([]) // false
+is.not.len.eq('abc', 'def') // false
+is.not.case.upper('lowercase') // true
+is.not.deep.eq([1], [1]) // false
+is.not.ip.v4('192.168.1.1') // false`),
 
-  h3({ id: 'functions-testtype' }, 'testType'),
-  Pre("testType(42, 'number') // true"),
-  p({ class: 'alias' }, 'alias is.type'),
+  h3({ id: 'functions-istype' }, 'isType'),
+  Pre("isType(42, 'number') // true"),
+  p({ class: 'alias' }, 'alias is.type, is.testType'),
 
   h3({ id: 'functions-test' }, 'test'),
   p('test if a value is one of the provided types'),
   Pre(`
-test(42, ['string', 'object']) // false
-test('42', ['string', 'object']) // true`),
+is.test(42, ['string', 'object']) // false
+is.test('42', 'string', 'object') // true`),
   p({ class: 'alias' }, 'alias is.types'),
 
   h3({ id: 'functions-issametype' }, 'isSameType'),
   p('compare the types of two values.'),
   Pre(`
 isSameType(42, 'string') // false
-test(42, 23) // true`),
+isSameType(42, 23) // true`),
   p({ class: 'alias' }, 'alias isSame, is.sameType, is.same'),
 
   h3({ id: 'functions-array' }, 'isArray'),
@@ -76,7 +81,7 @@ test(42, 23) // true`),
   p({ class: 'alias' }, 'alias isDef, is.defined, is.def'),
 
   h3({ id: 'functions-undefined' }, 'isUndefined'),
-  Pre('isUndefined(undefined) //false'),
+  Pre('isUndefined(undefined) //true'),
   p({ class: 'alias' }, 'alias isUndef, is.undefined, is.undef'),
 
   h3({ id: 'functions-function' }, 'isFunction'),
@@ -110,6 +115,13 @@ test(42, 23) // true`),
   Pre('isObject({}) // true'),
   p({ class: 'alias' }, 'alias isObj, is.object, is.obj'),
 
+  h3({ id: 'functions-isobjectnative' }, 'isObjectNative'),
+  Pre(`
+isObjectNative({}) // true
+isObjectNative([]) // false
+`),
+  p({ class: 'alias' }, 'alias is.objectNative'),
+
   h3({ id: 'functions-string' }, 'isString'),
   Pre("isString('') // true"),
   p({ class: 'alias' }, 'alias isStr, is.string, is.str'),
@@ -119,16 +131,27 @@ test(42, 23) // true`),
   p({ class: 'alias' }, 'alias isRGBA, is.rgbaObject, is.rgba'),
 
   h3({ id: 'functions-rgbobject' }, 'isRGBObject'),
-  Pre('isRGBObject({ r: 1, g: 1, b: 1 }) // true'),
-  p({ class: 'alias' }, 'alias isRGB, is.rgbObject, is.rgb'),
+  Pre(`
+isRGBObject({ r: 1, g: 1, b: 1 }) // true
+isRGBValue({ r: 1, g: 1, b: 1 }) // true
+isRGBAValue({ r: 1, g: 1, b: 1, a: 1 }) // true`),
+  p({ class: 'alias' }, 'alias isRGB, is.rgbObject, is.rgb, isRGBValue, isRGBAValue'),
 
   h3({ id: 'functions-hexcolor' }, 'isHexColor'),
-  Pre("isHexColor('#333') // true"),
-  p({ class: 'alias' }, 'alias isHex, is.hex, is.hexColor'),
+  Pre(`
+isHexColor('#333') // true
+isHexColor3('#333') // true
+isHexColor4('#3333') // true
+isHexColor6('#333333') // true
+isHexColor8('#33333333') // true`),
+  p({ class: 'alias' }, 'alias isHex, is.hex, is.hexColor, is.hex3, is.hex4, is.hex6, is.hex8'),
 
   h3({ id: 'functions-hexalphacolor' }, 'isHexAlphaColor'),
-  Pre("isHexAlphaColor('#3333') // true"),
-  p({ class: 'alias' }, 'alias isHexa, is.hexa, is.hexAlphaColor'),
+  Pre(`
+isHexAlphaColor('#3333') // true
+isHexAlphaColor4('#3333') // true
+isHexAlphaColor8('#33333333') // true`),
+  p({ class: 'alias' }, 'alias isHexa, is.hexa, is.hexAlphaColor, is.hexa4, is.hexa8'),
 
   h3({ id: 'functions-color' }, 'isColor'),
   Pre("isColor('#444') // true"),
@@ -178,36 +201,46 @@ test(42, 23) // true`),
   ]),
 
   h3({ id: 'functions-buffer' }, 'isBuffer'),
-  Pre("isBuffer(new Buffer('test')) // true"),
+  Pre("isBuffer(Buffer.from('test')) // true"),
   p({ class: 'alias' }, 'alias isBuff, is.buffer, is.buff'),
 
   h3({ id: 'functions-promise' }, 'isPromise'),
-  Pre('isPromise(new Promise()) // true'),
+  Pre('isPromise(new Promise(r => r())) // true'),
   p({ class: 'alias' }, 'alias is.promise, isThenable, isThen, is.thenable, is.then'),
 
-  // h3({ id: 'functions-arguments' }, 'isArguments'),
-  // Pre('isArguments(() => return arguments) // true'),
-  // p({ class: 'alias' }, 'alias isArgs, is.arguments, is.args'),
+  h3({ id: 'functions-arguments' }, 'isArguments'),
+  Pre(`
+(function () {
+  isArguments(arguments) // true
+})()`),
+  p({ class: 'alias' }, 'alias isArgs, is.arguments, is.args'),
 
   h3({ id: 'functions-uuid' }, 'isUUID'),
   Pre('isUUID(uuid) // true'),
   p({ class: 'alias' }, 'alias is.uuid'),
 
   h3({ id: 'functions-eq' }, 'isEq'),
-  Pre("isEq(42, 'number') // true"),
+  Pre("is.eq('abc', 'def') // true"),
   p({ class: 'alias' }, 'alias is.is'),
+  p('is.eq compares lengths, see the "length" section'),
 
   h3({ id: 'functions-not' }, 'isNot'),
-  Pre("isNot(42, 'number') // true"),
+  Pre("isNot(42, 'string') // true"),
   p({ class: 'alias' }, 'alias is.neq, isNeq, is.not'),
 
   h3({ id: 'functions-deepequal' }, 'isDeepEqual'),
-  Pre('isDeepEqual([1, 2, 3], [1, 2, 3]) // true'),
-  p({ class: 'alias' }, 'alias is.deep.eq, is.deep.equal'),
+  Pre('deep.isDeepEqual([1, 2, 3], [1, 2, 3]) // true'),
+  p(
+    { class: 'alias' },
+    'alias is.deep.eq, is.deep.equal, deep.deepEqual, deep.deepEq, is.isDeepEqual',
+  ),
 
   h3({ id: 'functions-deepdifferent' }, 'isDeepDifferent'),
-  Pre('isDeepDifferent([1, 2, 3], [1, 2, 3]) // false'),
-  p({ class: 'alias' }, 'alias is.deep.diff, is.deep.different'),
+  Pre('deep.isDeepDifferent([1, 2, 3], [1, 2, 3]) // false'),
+  p(
+    { class: 'alias' },
+    'alias is.deep.diff, is.deep.different, deep.deepDifferent, deep.deepDiff, is.isDeepDifferent',
+  ),
 
   h3({ id: 'functions-ismap' }, 'isMap'),
   Pre('isMap(new Map()) //true'),
@@ -285,7 +318,7 @@ isMergeableObject(23) // false
   Pre(`
 isOwnProp({ test: false }, 'test') // true
 isOwnProp({ test: false }, 'different') // false
-isOwnProp(undefined, 'test) // false
+isOwnProp(undefined, 'test') // false
 `),
   p({ class: 'alias' }, 'alias isOwnProperty, is.ownProperty, is.ownProp, is.prop'),
 
@@ -296,6 +329,62 @@ isModule(imported) // true
 isModule({ ... anything else }) // false
 `),
   p({ class: 'alias' }, 'alias is.module'),
+
+  h3({ id: 'functions-iscomparable' }, 'isComparable'),
+  p('test if a value is a boolean, string, or number'),
+  Pre(`
+isComparable(1) // true
+isComparable('str') // true
+isComparable(true) // true
+isComparable({}) // false
+`),
+  p({ class: 'alias' }, 'alias is.comparable, is.Comparable'),
+
+  h3({ id: 'functions-isip' }, 'isIp'),
+  p('test if a value is an IPv4 or IPv6 address'),
+  Pre(`
+isIp('192.168.1.1') // true
+isIp('::1') // true
+isIp.v4('192.168.1.1') // true
+isIp.v6('::1') // true
+`),
+  p({ class: 'alias' }, 'alias is.ip'),
+
+  h3({ id: 'functions-ipv4' }, 'isIPv4'),
+  Pre("isIPv4('192.168.1.1') // true"),
+  p({ class: 'alias' }, 'alias ipV4, is.ipV4, is.ipv4, is.v4'),
+
+  h3({ id: 'functions-ipv6' }, 'isIPv6'),
+  Pre("isIPv6('::1') // true"),
+  p({ class: 'alias' }, 'alias ipV6, is.ipV6, is.ipv6, is.v6'),
+
+  h3({ id: 'functions-getlength' }, 'getLength'),
+  p('get the length of a string, array, map, set, regexp, or object. numbers return themselves.'),
+  Pre(`
+getLength('test') // 4
+getLength([1, 2, 3]) // 3
+getLength(new Set([1, 2])) // 2
+getLength(123) // 123
+`),
+  p({ class: 'alias' }, 'alias is.len, is.count, is.length, is.ln'),
+
+  h3({ id: 'functions-length' }, 'length'),
+  p('compare the lengths of two values. all of these can also be curried.'),
+  Pre(`
+is.eq('abc', 'def') // true
+is.gt('abcd', 'ab') // true
+is.gt('abcd')('ab') // true
+is.gte('abc', 'ab') // true
+is.lt('ab', 'abc') // true
+is.lte('abc', 'abc') // true
+`),
+  p({ class: 'alias' }, [
+    'aliases is.equal, is.greater, is.bigger, is.greaterequal, is.biggerequal,',
+    ' is.gteq, is.lower, is.smaller, is.lowerequal, is.smallerequal, is.lteq',
+  ]),
+  p(
+    'also exported: isLengthEqual, isLengthGreater, isLengthGreaterOrEqual, isLengthSmaller, isLengthSmallerOrEqual, compareCount',
+  ),
 
   h2({ id: 'source' }, 'source'),
   p([

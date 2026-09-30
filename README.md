@@ -45,6 +45,19 @@ import is from '@magic/types'
 is.array([]) // true
 ```
 
+##### import deep
+
+```javascript
+import { deep } from '@magic/types'
+
+deep.isDeepEqual([1, 2, 3], [1, 2, 3]) // true
+// also: deep.deepEqual, deep.deepEq, is.isDeepEqual
+deep.isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
+// also: deep.deepDifferent, deep.deepDiff, is.isDeepDifferent
+deep.isEqual([1, 2, 3], [1, 2, 3]) // true
+// also: is.deep.isEqual, is.deep.equal, is.deep.eq
+```
+
 ##### functions
 
 ```javascript
@@ -52,12 +65,19 @@ is.array([]) // true
 // comparisons
 
 // test a value for multiple types
-is(ele, ...types)
-// alias is.eq, isEq, test
+is.is(ele, ...types)
+// alias is.type, is.testType, is.types, test
 
 // test if a value is not of a type
 not(ele, ...types)
 // alias is.neq, isNeq, isNot
+
+// not (and is.not) is also a namespace with negated versions of every check:
+is.not.array([]) // false
+is.not.len.eq('abc', 'def') // false
+is.not.case.upper('lowercase') // true
+is.not.deep.eq([1], [1]) // false
+is.not.ip.v4('192.168.1.1') // false
 
 isSameType('string', 'string')
 // alias isSame, is.same, is.sameType
@@ -74,7 +94,7 @@ isBoolean(true) // true
 isDefined(undefined) //false
 // alias isDef, is.defined, is.def
 
-isUndefined(undefined) //false
+isUndefined(undefined) //true
 // alias isUndef, is.undefined, is.undef
 
 isFunction(() => {}) // true
@@ -84,7 +104,7 @@ isAsyncFunction(async () => {}) // true
 // alias isAsyncFunc, isAsyncFn, is.asyncFunction, is.asyncFunc, is.asyncFn
 
 isGeneratorFunction(* () => {}) // true
-// alias isGeneratorFunc, isGeneratorFunc, is.generatorFunction, is.generatorFunc, is.generatorFn
+// alias isGeneratorFunc, isGeneratorFn, isGenerator, is.generatorFunction, is.generatorFunc, is.generatorFn, generator, generatorFn, generatorFunc, generatorFunction
 
 isNumber(1) // true
 // alias isNum, is.number, is.num
@@ -98,20 +118,40 @@ isFloat(1.1) // true
 isObject({}) // true
 // alias isObj, is.object, is.obj
 
+isObjectNative({}) // true
+isObjectNative([]) // false
+// alias is.objectNative
+
 isString('') // true
 // alias isStr, is.string, is.str
 
 isRGBAObject({ r: 1, g: 1, b: 1, a: 1 }) // true
 // alias isRGBA, is.rgbaObject, is.rgba
 
-isRGBObject
+isRGBObject({ r: 1, g: 1, b: 1 }) // true
 // alias isRGB, is.rgbObject, is.rgb
+
+isRGBValue({ r: 1, g: 1, b: 1 }) // true
+// alias isRGBObject, is.rgbValue
+
+isRGBAValue({ r: 1, g: 1, b: 1, a: 1 }) // true
+// alias isRGBAObject, is.rgbaValue
 
 isHexColor('#333') // true
 // alias isHex, is.hex, is.hexColor
 
+isHexColor3('#333') // true
+isHexColor4('#3333') // true
+isHexColor6('#333333') // true
+isHexColor8('#33333333') // true
+// aliases is.hex3, is.hexColor3, is.hex4, is.hexColor4, is.hex6, is.hexColor6, is.hex8, is.hexColor8
+
 isHexAlphaColor('#3333') // true
 // alias isHexa, is.hexa, is.hexAlphaColor
+
+isHexAlphaColor4('#3333') // true
+isHexAlphaColor8('#33333333') // true
+// aliases is.hexa4, is.hexAlphaColor4, is.hexa8, is.hexAlphaColor8
 
 isColor('#444') // true
 // alias isCol, is.color, is.col
@@ -135,14 +175,39 @@ isError(new Error('')) // true
 // alias isErr, is.error, is.err
 
 isIterable([]) // true
-// alias is.iterable
+// alias is.iterable, is.iter, isIter
 
 isEmail('a@b.c') // true
 // alias isMail, is.email, is.mail
 
+isIP('192.168.1.1') // true
+isIP('::1') // true
+// alias ip, is.ip, isIp, isIP
+
 isIp('192.168.1.1') // true
 isIp('::1') // true
-// alias ip, is.ip, ipV4, ipV6, isIPv4, isIPv6
+// alias ip, is.ip
+
+isIp.v4('192.168.1.1') // true
+isIp.v6('::1') // true
+
+isIPv4('192.168.1.1') // true
+// aliases ipV4, is.ipV4, is.ipv4, is.v4
+
+isIPv6('::1') // true
+// aliases ipV6, is.ipV6, is.ipv6, is.v6
+
+isMap(new Map()) // true
+// alias is.map, is.map, map
+
+isSet(new Set()) // true
+// alias is.set, is.set, set
+
+isWeakMap(new WeakMap()) // true
+// alias is.weakMap, is.weakMap, weakMap
+
+isWeakSet(new WeakSet()) // true
+// alias is.weakSet, is.weakSet, weakSet
 
 isNull(null) // true
 // alias isNil, is.nil, is.null
@@ -150,41 +215,49 @@ isNull(null) // true
 isUndefinedOrNull(undefined || null) // true
 // alias is.undefinedOrNull, is.undefinedOrNil, is.undefOrNull, is.undefOrNil
 
-isBuffer(new Buffer('test')) // true
+isBuffer(Buffer.from('test')) // true
 // alias isBuff, is.buffer, is.buff
 
-isPromise(new Promise()) // true
+isPromise(new Promise(r => r())) // true
 // alias is.promise, isThenable, isThen, is.thenable, is.then
 
-// removed (for now?)!
-isArguments(() => return arguments) // true
+// (call with a function's arguments object)
+(function () {
+  isArguments(arguments) // true
+})()
 // alias isArgs, is.arguments, is.args
 
 isUUID(uuid) // true
 // alias is.uuid
 
-testType(42, 'number') // true
-// alias is.type
+isType(42, 'number') // true
+// alias is.type, is.testType, isType
 
-test(42, ['string', 'object']) // false
+is.test(42, ['string', 'object']) // false
 // alias is.types
 
-isEq(42, 'number') // true
+is.eq('abc', 'def') // true
 // alias is.eq
+// is.eq compares lengths, see "length" section below
 
-isNot = isNeq = is.not(42, 'number') // true
+isNot = isNeq = is.not(42, 'string') // true
 // alias is.neq
 
-isDeepEqual([1, 2, 3], [1, 2, 3]) // true
+deep.isDeepEqual([1, 2, 3], [1, 2, 3]) // true
 // alias is.deep.eq, is.deep.equal
-isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
+// also deep.deepEqual, deep.deepEq, is.isDeepEqual
+deep.isDeepDifferent([1, 2, 3], [1, 2, 3]) // false
 // alias is.deep.diff, is.deep.different
+// also deep.deepDifferent, deep.deepDiff, is.isDeepDifferent
 
-isDeepEqual([1, 2, 3], [3, 2, 1]) // true
-isDeepEqual([1, 2, 3], [3, 2, 1], { strict: true }) // false
+deep.isDifferent([1, 2, 3], [1, 2, 3]) // false
+// alias is.deep.isDifferent, is.deep.different, is.deep.diff
 
-isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }) // true
-isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }) // false
+deep.isDeepEqual([1, 2, 3], [3, 2, 1]) // true
+deep.isDeepEqual([1, 2, 3], [3, 2, 1], { strict: true }) // false
+
+deep.isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }) // true
+deep.isDeepEqual({a: 1, b: 2, c: 3 }, { c: 3, b: 2, a: 1 }, { strict: true }) // false
 
 isEvery([1, 2, 3], 'number') // true
 isEvery([1, 2, 3], is.number) // true
@@ -194,7 +267,7 @@ isSome([1, 'str', {}], 'number') // true
 isSome([1, 'str', {}], is.number) // true
 // alias is.some
 
-isSymbol(Symbol('testing)) // true
+isSymbol(Symbol('testing')) // true
 // alias is.symbol, is.sym
 
 isNone([1, 2, 3], 'string') // true
@@ -209,10 +282,10 @@ isCase('lowercase', 'low') // true
 // alias is.case
 
 isUpperCase('UPPERCASE') // true
-// alias is.case.upper, is.isCase.upper
+// alias is.case.upper, isCase.upper
 
 isLowerCase('lowercase') // true
-// alias is.case.lower, is.isCase.lower
+// alias is.case.lower, isCase.lower
 
 isMergeableObject({}) // true
 // alias is.mergeable, is.mergeableObject, isMergeable
@@ -221,9 +294,47 @@ const mod = await import('path/to/file')
 isModule(mod) // true
 // alias is.module
 
+isComparable(1) // true
+isComparable('str') // true
+isComparable(true) // true
+isComparable({}) // false
+// aliases is.comparable, is.Comparable
+
 isOwnProp({ test: undefined }, 'test') // true
 // alias isOwnProperty, is.ownProperty, is.ownProp, is.prop
 
+// length
+
+// get the length of a string, array, map, set, regexp, or object
+// numbers return themselves
+getLength('test') // 4
+getLength([1, 2, 3]) // 3
+getLength(new Set([1, 2])) // 2
+getLength(123) // 123
+// aliases is.len, is.count, is.length, is.ln
+
+// compare lengths, both arguments can be anything with a length
+// these can also be curried: is.gt('abcd')('ab') // true
+is.eq('abc', 'def') // true
+is.gt('abcd', 'ab') // true
+is.gte('abc', 'ab') // true
+is.lt('ab', 'abc') // true
+is.lte('abc', 'abc') // true
+// aliases is.equal, is.greater, is.bigger, is.greaterequal, is.biggerequal,
+// is.gteq, is.lower, is.smaller, is.lowerequal, is.smallerequal, is.lteq
+
+isLengthEqual('abc', 3) // true
+isLengthGreater('abc', 2) // true
+isLengthGreaterOrEqual('ab', 2) // true
+isLengthSmaller('ab', 3) // true
+isLengthSmallerOrEqual('abc', 3) // true
+// aliases is.isLengthEqual, is.isLengthGreater, is.isLengthGreaterOrEqual,
+// is.isLengthSmaller, is.isLengthSmallerOrEqual
+
+compareCount('abc', 3) // true
+
+// the length functions also exist as methods on the length checks:
+is.len.eq('abc', 'def') // true
 ```
 
 #### Changelog
