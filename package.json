@@ -27,7 +27,8 @@
     "format": "f -w --exclude docs",
     "format:check": "f --exclude docs",
     "calls": "calls",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "lint:test": "tsc --noEmit -p tsconfig.test.json"
   },
   "engines": {
     "node": ">=18"
