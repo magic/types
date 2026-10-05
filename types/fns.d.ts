@@ -1,4 +1,4 @@
-export function isArray(e: unknown): e is unknown[]
+export function isArray(e: unknown): e is any[]
 export function isBoolean(e: unknown): e is boolean
 export function isDefined(e: unknown): e is NonNullable<unknown>
 export function isUndefined(e: unknown): e is undefined

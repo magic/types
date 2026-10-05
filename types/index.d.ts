@@ -237,10 +237,10 @@ export const is: {
   not: import('./lib.js').NotNamespace
   isNeq: (e: unknown, ...types: string[]) => boolean
   neq: (e: unknown, ...types: string[]) => boolean
-  isArray: (e: unknown) => e is unknown[]
-  isArr: (e: unknown) => e is unknown[]
-  array: (e: unknown) => e is unknown[]
-  arr: (e: unknown) => e is unknown[]
+  isArray: (e: unknown) => e is any[]
+  isArr: (e: unknown) => e is any[]
+  array: (e: unknown) => e is any[]
+  arr: (e: unknown) => e is any[]
   isBoolean: (e: unknown) => e is boolean
   isBool: (e: unknown) => e is boolean
   boolean: (e: unknown) => e is boolean
