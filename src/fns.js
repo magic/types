@@ -1,7 +1,7 @@
 /**
  * Check if a value is an Array
  * @param {unknown} e - value to test
- * @returns {e is unknown[]} - true if value is an array
+ * @returns {e is any[]} - true if value is an array
  */
 export const isArray = e => Array.isArray(e)
 
