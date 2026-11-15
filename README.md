@@ -530,6 +530,10 @@ update dependencies
 - update docs
 - update dependencies
 
-##### 0.1.42 - unreleased
+##### 0.1.42
+
+- @magic/types deep.equal no longer mutates inputs
+
+##### 0.1.43 - unreleased
 
 - ...
