@@ -36,15 +36,22 @@ const buff2 = Buffer.from('testink', 'utf8')
 
 const fn = () => {}
 
-const prot1 = new Error()
+const prot1: { prototype?: unknown } = {}
+prot1.prototype = Error
 
-const prot2 = new Date()
+const prot2: { prototype?: unknown } = {}
+prot2.prototype = Date
 
 const date = new Date()
 
 const arrowFn = () => {}
 const arrowFnWithArguments = (a: number, b: number) => a + b
 const arrowFnReturningArray = (a: unknown, b: unknown) => [a, b]
+
+// Regression fixture: different() delegates to equal(), which used to sort
+// array inputs in place. JSON snapshot keeps element order significant.
+const noMutate = [3, 'b', 1, 'a', 2]
+const noMutateSnapshot = JSON.stringify(noMutate)
 
 export default [
   { fn: () => is.deep.different({}, {}), expect: false, info: 'empty objects are not different' },
@@ -300,5 +307,15 @@ export default [
     fn: () => is.deep.different(123)(456),
     expect: true,
     info: 'curried function with different numbers returns true',
+  },
+
+  // Regression: different() must not mutate its inputs via equal().
+  {
+    fn: () => {
+      const result = is.deep.different(noMutate, [3, 'b', 1, 'a', 2])
+      return result === false && JSON.stringify(noMutate) === noMutateSnapshot
+    },
+    expect: true,
+    info: 'is.deep.different does not mutate its array arguments',
   },
 ] satisfies Test[]

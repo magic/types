@@ -37,12 +37,25 @@ const buff3 = Buffer.from('testinggg', 'utf8')
 
 const fn = () => {}
 
-const prot1 = new Error()
-const prot2 = new Date()
+const prot1: { prototype?: unknown } = {}
+prot1.prototype = Error
+
+const prot2: { prototype?: unknown } = {}
+prot2.prototype = Date
 
 const date = new Date()
 
 const arrowFnReturningArray = (a: unknown, b: unknown) => [a, b]
+
+// Regression fixtures: is.deep.equal used to sort array inputs in place.
+// Snapshots are taken before any comparison, and JSON.stringify keeps
+// element order significant (a deep-equal assertion would be order-insensitive).
+const noMutateA = [3, 'b', 1, 'a', 2]
+const noMutateASnapshot = JSON.stringify(noMutateA)
+const noMutateSelf = [3, 'b', 1, 'a', 2]
+const noMutateSelfSnapshot = JSON.stringify(noMutateSelf)
+const noMutateNested = [[3, 1], ['b', 'a'], 2]
+const noMutateNestedSnapshot = JSON.stringify(noMutateNested)
 
 export default [
   {
@@ -411,6 +424,41 @@ export default [
     fn: () => is.deep.equal([1, 2, 3], [1, 2, 4]),
     expect: false,
     info: 'arrays trigger sort but are still not equal after sorting',
+  },
+
+  // Regression: equal() must not mutate its inputs (it used to sort array
+  // arguments in place, corrupting shared data between callers).
+  {
+    fn: () => {
+      is.deep.equal(noMutateA, [...noMutateA])
+      return JSON.stringify(noMutateA)
+    },
+    expect: noMutateASnapshot,
+    info: 'is.deep.equal does not mutate its first array argument',
+  },
+  {
+    fn: () => {
+      is.deep.equal([...noMutateA], noMutateA)
+      return JSON.stringify(noMutateA)
+    },
+    expect: noMutateASnapshot,
+    info: 'is.deep.equal does not mutate its second array argument',
+  },
+  {
+    fn: () => {
+      is.deep.equal(noMutateSelf, noMutateSelf)
+      return JSON.stringify(noMutateSelf)
+    },
+    expect: noMutateSelfSnapshot,
+    info: 'is.deep.equal does not mutate its argument when both arguments are the same reference',
+  },
+  {
+    fn: () => {
+      is.deep.equal(noMutateNested, [[3, 1], ['b', 'a'], 2])
+      return JSON.stringify(noMutateNested)
+    },
+    expect: noMutateNestedSnapshot,
+    info: 'is.deep.equal does not mutate nested arrays',
   },
 
   {

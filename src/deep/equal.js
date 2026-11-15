@@ -27,7 +27,7 @@ import {
  * @param {unknown} [b]
  * @param {object} [options]
  * @param {boolean} [options.strict=false]
- * @param {boolean} [options.arrayOrderStrict=true]
+ * @param {boolean} [options.arrayOrderStrict=false]
  * @returns {boolean | ((c: unknown) => boolean)}
  */
 export const equal = (a, b, options = {}) => {
@@ -91,12 +91,12 @@ export const equal = (a, b, options = {}) => {
   }
 
   if (isArray(a) && isArray(b)) {
-    if (!strict && !arrayOrderStrict) {
-      a.sort()
-      b.sort()
-    }
+    // Sort shallow copies, never the inputs: equal() is a pure predicate
+    // and callers may pass shared (or identical) references.
+    const left = !strict && !arrayOrderStrict ? [...a].sort() : a
+    const right = !strict && !arrayOrderStrict ? [...b].sort() : b
 
-    const allEqual = !a.some((v, i) => !equal(v, b[i]))
+    const allEqual = !left.some((v, i) => !equal(v, right[i]))
     return allEqual
   }
 
