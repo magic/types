@@ -518,6 +518,18 @@ update dependencies
 - update docs
 - update dependencies
 
-##### 0.1.41 - unreleased
+##### 0.1.41
 
-...
+- isArray accepts type predicates and narrows the element type: `isArray(arr, isString, isNumber)` → `e is (string | number)[]`, falling back to `unknown[]` without predicates
+- change isArray return type from `unknown[]` to `any[]` in generated types
+- add `scripts/add-node-reference.mjs` and run it after tsc in the build so `Buffer` resolves in the generated `.d.ts` files
+- move `@types/node` from dependencies to devDependencies
+- add `oxlint.config.ts` and lint fixes (curly braces, unused `@ts-expect-error` removals)
+- use bundler module resolution in tsconfig, disable strict, add separate `tsconfig.test.json` for fixtures
+- update dependencies (@magic/core, @magic/format, @magic/lint, @magic/test, @swc/core)
+- update docs
+- update dependencies
+
+##### 0.1.42 - unreleased
+
+- ...
