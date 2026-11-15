@@ -443,16 +443,26 @@ export const isArguments = e => Object.prototype.toString.call(e) === '[object A
  * @returns {boolean}
  */
 export const isUUID = e => {
-  if (!isDefined(e)) return false
-  if (!isString(e)) return false
+  if (!isDefined(e)) {
+    return false
+  }
+  if (!isString(e)) {
+    return false
+  }
 
   const split = e.split('-')
-  if (!isLengthEqual(split, 5)) return false
+  if (!isLengthEqual(split, 5)) {
+    return false
+  }
 
   const lengths = [8, 4, 4, 4, 12]
-  if (lengths.some((l, i) => split[i].length !== l)) return false
+  if (lengths.some((l, i) => split[i].length !== l)) {
+    return false
+  }
 
-  if (Object.values(e).some(s => s > 'f')) return false
+  if (Object.values(e).some(s => s > 'f')) {
+    return false
+  }
 
   return true
 }
@@ -649,9 +659,13 @@ isCase.lower = isLowerCase
  * @returns {boolean} - true if value is an IPv4 address
  */
 export const isIPv4 = a => {
-  if (!isString(a)) return false
+  if (!isString(a)) {
+    return false
+  }
   const parts = a.split('.')
-  if (parts.length !== 4) return false
+  if (parts.length !== 4) {
+    return false
+  }
   return parts.every(part => {
     const num = Number(part)
     return /^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$/.test(part) && String(num) === part

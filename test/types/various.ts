@@ -126,10 +126,8 @@ export default [
   { fn: fns.isCase.lower('HELLO'), expect: false, info: 'fns.isCase.lower with uppercase' },
 
   // Edge cases for functions that might not be fully covered
-  // @ts-expect-error - intentional: null constructor for testing
   { fn: fns.isInstanceOf([], null), expect: false, info: 'fns.isInstanceOf with null constructor' },
   {
-    // @ts-expect-error - intentional: undefined constructor for testing
     fn: fns.isInstanceOf([], undefined),
     expect: false,
     info: 'fns.isInstanceOf with undefined constructor',

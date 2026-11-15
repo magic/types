@@ -138,11 +138,9 @@ export default [
   },
   {
     fn: is.deep.equal(
-      // @ts-expect-error - intentional: testing untyped function parameters
       function (a, b) {
         return a + b
       },
-      // @ts-expect-error - intentional: testing untyped function parameters
       function (a, b) {
         return a + b
       },
@@ -152,13 +150,11 @@ export default [
   {
     fn: is.deep.equal(
       {
-        // @ts-expect-error - intentional: testing untyped function parameters
         t: function (a, b) {
           return a + b
         },
       },
       {
-        // @ts-expect-error - intentional: testing untyped function parameters
         t: function (a, b) {
           return a + b
         },
@@ -176,6 +172,7 @@ export default [
     fn: is.deep.equal(
       {
         t: (a: number, b: number) => {
+          // eslint-disable-next-line no-unused-expressions -- intentional: bare expression body for toString comparison
           a + b
         },
       },
@@ -208,6 +205,7 @@ export default [
   },
   {
     fn: function () {
+      // eslint-disable-next-line prefer-rest-params -- intentional: testing the arguments object
       return is.deep.equal(arguments, arguments)
     },
     expect: true,

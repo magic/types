@@ -108,6 +108,7 @@ export default [
       is.deep.different(
         {
           t: (a: number, b: number) => {
+            // eslint-disable-next-line no-unused-expressions -- intentional: bare expression body for toString comparison
             a + b
           },
         },

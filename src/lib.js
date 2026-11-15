@@ -373,7 +373,9 @@ const addNotFunctions = (obj, target) => {
   const skipKeys = new Set(['length', 'name', 'prototype', 'caller', 'callee', 'arguments'])
 
   for (const [key, value] of Object.entries(obj)) {
-    if (key === 'not' || skipKeys.has(key)) continue
+    if (key === 'not' || skipKeys.has(key)) {
+      continue
+    }
     if (fns.isFunction(value)) {
       target[key] = negate(value)
       // Handle function sub-properties (e.g., isCase.upper, isIp.v4)

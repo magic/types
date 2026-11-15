@@ -10,7 +10,6 @@ export default [
     info: 'is.instance returns false for new Date() compared to RegExp',
   },
   {
-    // @ts-expect-error - intentional: testing undefined constructor
     fn: is.instance(true, undefined),
     expect: false,
     info: 'is.instance returns false for undefined instance',
