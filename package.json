@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "t",
-    "build": "tsc && npm run format",
+    "build": "tsc && node scripts/add-node-reference.mjs && npm run format",
     "prepublishOnly": "npm run test && npm run build",
     "build:docs": "NODE_ENV=production magic build",
     "prod": "NODE_ENV=production magic build serve",

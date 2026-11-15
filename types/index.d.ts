@@ -1,3 +1,4 @@
+/// <reference types="node" />
 export * from './fns.js'
 export * as deep from './deep/index.js'
 export const is: {
@@ -237,10 +238,30 @@ export const is: {
   not: import('./lib.js').NotNamespace
   isNeq: (e: unknown, ...types: string[]) => boolean
   neq: (e: unknown, ...types: string[]) => boolean
-  isArray: (e: unknown) => e is any[]
-  isArr: (e: unknown) => e is any[]
-  array: (e: unknown) => e is any[]
-  arr: (e: unknown) => e is any[]
+  isArray: <P extends readonly ((e: unknown) => e is unknown)[]>(
+    e: unknown,
+    ...predicates: P
+  ) => e is P extends readonly []
+    ? unknown[]
+    : (P[number] extends ((e: unknown) => e is infer U) ? U : never)[]
+  isArr: <P extends readonly ((e: unknown) => e is unknown)[]>(
+    e: unknown,
+    ...predicates: P
+  ) => e is P extends readonly []
+    ? unknown[]
+    : (P[number] extends ((e: unknown) => e is infer U) ? U : never)[]
+  array: <P extends readonly ((e: unknown) => e is unknown)[]>(
+    e: unknown,
+    ...predicates: P
+  ) => e is P extends readonly []
+    ? unknown[]
+    : (P[number] extends ((e: unknown) => e is infer U) ? U : never)[]
+  arr: <P extends readonly ((e: unknown) => e is unknown)[]>(
+    e: unknown,
+    ...predicates: P
+  ) => e is P extends readonly []
+    ? unknown[]
+    : (P[number] extends ((e: unknown) => e is infer U) ? U : never)[]
   isBoolean: (e: unknown) => e is boolean
   isBool: (e: unknown) => e is boolean
   boolean: (e: unknown) => e is boolean

@@ -1,4 +1,14 @@
-export function isArray(e: unknown): e is any[]
+/// <reference types="node" />
+/**
+ * Check if a value is an Array
+ * @type {<P extends readonly ((e: unknown) => e is unknown)[]>(e: unknown, ...predicates: P) => e is P extends readonly [] ? unknown[] : (P[number] extends (e: unknown) => e is infer U ? U : never)[]}
+ */
+export const isArray: <P extends readonly ((e: unknown) => e is unknown)[]>(
+  e: unknown,
+  ...predicates: P
+) => e is P extends readonly []
+  ? unknown[]
+  : (P[number] extends ((e: unknown) => e is infer U) ? U : never)[]
 export function isBoolean(e: unknown): e is boolean
 export function isDefined(e: unknown): e is NonNullable<unknown>
 export function isUndefined(e: unknown): e is undefined

@@ -1,3 +1,4 @@
+/// <reference types="node" />
 /**
  * Check if a value is an Array
  * @type {<P extends readonly ((e: unknown) => e is unknown)[]>(e: unknown, ...predicates: P) => e is P extends readonly [] ? unknown[] : (P[number] extends (e: unknown) => e is infer U ? U : never)[]}
