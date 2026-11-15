@@ -3,24 +3,9 @@
 typechecking utilities
 
 [![NPM version][npm-image]][npm-url]
-[![Linux Build Status][travis-image]][travis-url]
-[![Windows Build Status][appveyor-image]][appveyor-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
-[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
 
 [npm-image]: https://img.shields.io/npm/v/@magic/types.svg
 [npm-url]: https://www.npmjs.com/package/@magic/types
-[travis-image]: https://img.shields.io/travis/com/magic/types/master
-[travis-url]: https://travis-ci.com/magic/types
-[appveyor-image]: https://img.shields.io/appveyor/ci/magic/types/master.svg
-[appveyor-url]: https://ci.appveyor.com/project/magic/types/branch/master
-[coveralls-image]: https://coveralls.io/repos/github/magic/types/badge.svg
-[coveralls-url]: https://coveralls.io/github/magic/types
-[greenkeeper-image]: https://badges.greenkeeper.io/magic/types.svg
-[greenkeeper-url]: https://badges.greenkeeper.io/magic/types.svg
-[snyk-image]: https://snyk.io/test/github/magic/types/badge.svg
-[snyk-url]: https://snyk.io/test/github/magic/types
 
 ##### install
 
