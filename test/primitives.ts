@@ -13,6 +13,33 @@ const fns = {
     { fn: () => is.arr('string'), expect: false },
     { fn: () => is.arr(''), expect: false },
   ],
+  isArrayPredicate: [
+    // Each element must pass at least one predicate
+    {
+      fn: () => is.isArray(['a', 1], is.string, is.number),
+      expect: true,
+      info: 'each element must pass one predicate',
+    },
+    {
+      fn: () => is.isArray([true, false], is.string, is.number),
+      expect: false,
+      info: 'if all elements fail, returns false, even for booleans',
+    },
+    {
+      fn: () => is.isArray(['a', 1, 'b', 2], is.string, is.number),
+      expect: true,
+      info: 'can handle array with 4 elements',
+    },
+    // Mixed array where some elements pass is.string and others pass is.number
+    {
+      fn: () => is.isArray(['a', 1, true], is.string, is.number),
+      expect: false,
+      info: 'even if multiple elements pass, as long as one fails, returns false',
+    },
+    // Element fails all predicates -> should be false
+    { fn: () => is.isArray([1, 2, 3], is.string, is.function), expect: false },
+    { fn: () => is.isArray([null, undefined], is.string, is.number), expect: false },
+  ],
   isBoolean: [
     { fn: () => is.isBoolean(true), expect: true },
     { fn: () => is.isBool(true), expect: true },

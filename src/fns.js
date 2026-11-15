@@ -1,9 +1,20 @@
 /**
  * Check if a value is an Array
- * @param {unknown} e - value to test
- * @returns {e is any[]} - true if value is an array
+ * @type {<P extends readonly ((e: unknown) => e is unknown)[]>(e: unknown, ...predicates: P) => e is P extends readonly [] ? unknown[] : (P[number] extends (e: unknown) => e is infer U ? U : never)[]}
  */
-export const isArray = e => Array.isArray(e)
+export const isArray = (e, ...predicates) => {
+  if (!Array.isArray(e)) {
+    return false
+  }
+
+  // If no predicates provided, just check if it's an array
+  if (predicates.length === 0) {
+    return true
+  }
+
+  // Each element must pass at least one predicate
+  return e.every(element => predicates.some(predicate => predicate(element)))
+}
 
 /**
  * Check if a value is a boolean
